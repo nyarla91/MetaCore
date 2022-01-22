@@ -1,143 +1,91 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Enemies;
+using NyarlaEssentials;
+using Player;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace World
 {
-    public class Room : MonoBehaviour
+    public class Room : Transformer
     {
-        private const int MinWall = 3;
-        private const int MaxWall = 7;
-        private const int MinSquare = 15;
-        private const float FloorPieceSize = 2.5f;
+        [SerializeField] private WallPiece[] _exitWalls;
+        [SerializeField] private float _raiseSpeed;
+        [SerializeField] private Collider _enemyBounds;
+        [SerializeField] private GameObject _enemyBeaconPrefab;
+        
+        private float _targetY;
+        private bool _competed = true;
+        private List<Vector3>[] _enemyWaves;
+        public PlayerMarker _playerMarker { get; set; }
+        private List<EnemyStatus> _enemiesAlive = new List<EnemyStatus>();
+        
+        public WallPiece GetExitWall(int index) => _exitWalls[index];
 
-        private Vector3[] AllSides
+        public void Generate(bool isFinalAtWing)
         {
-            get
+            _competed = false;
+            int waves = 2 + Random.Range(-1, 1);
+
+            _enemyWaves = new List<Vector3>[waves];
+            for (int wave = 0; wave < waves; wave++)
             {
-                return new[]
+                _enemyWaves[wave] = new List<Vector3>();
+                int enemies = 5 - waves + Random.Range(-1, 1);
+                for (int enemy = 0; enemy < enemies; enemy++)
                 {
-                    Vector3.left,
-                    Vector3.right,
-                    Vector3.back,
-                    Vector3.forward
-                };
-            }
-        }
-
-        [SerializeField] private GameObject _floorPiecePrefab;
-        [SerializeField] private GameObject _wallPiecePrefab;
-        private Transform[,] _floor;
-        private List<WallPiece>[] _walls = new List<WallPiece>[4];
-
-        private void Awake()
-        {
-            for (int i = 0; i < _walls.Length; i++)
-            {
-                _walls[i] = new List<WallPiece>();
-            }
-        }
-
-        private void Start()
-        {
-            Generate(Vector3.back, 5);
-        }
-
-        public void Generate(Vector3 entranceSide, int exits)
-        {
-            int entranceSideNumber = NumberFromSide(entranceSide);
-            
-            int width = Random.Range(MinWall, MaxWall + 1);
-            int length = Random.Range(MinWall, MaxWall + 1);
-            if (width * length < MinSquare)
-            {
-                width++;
-                length++;
-            }
-
-            _floor = new Transform[length, width];
-            for (int z = 0; z < width; z++)
-            {
-                for (int x = 0; x < length; x++)
-                {
-                    Vector3 position = transform.position + new Vector3(x, 0, z) * FloorPieceSize;
-                    Transform floorPiece = Instantiate(_floorPiecePrefab, position, Quaternion.identity, transform).transform;
-                    _floor[x, z] = floorPiece;
-                    if (x == 0)
-                        _walls[0].Add(CreateWall(position + Vector3.left * FloorPieceSize * 0.5f, -90));
-                    else if (x == length - 1)
-                        _walls[1].Add(CreateWall(position + Vector3.right * FloorPieceSize * 0.5f, 90));
-                    if (z == 0)
-                        _walls[2].Add(CreateWall(position + Vector3.back * FloorPieceSize * 0.5f, 180));
-                    else if (z == width - 1)
-                        _walls[3].Add(CreateWall(position + Vector3.forward * FloorPieceSize * 0.5f, 0));
+                    Vector3 relativePosition = _enemyBounds.bounds.RandomPointInBounds() - transform.position;
+                    relativePosition.y = 0;
+                    _enemyWaves[wave].Add(relativePosition);
                 }
             }
-
-            Transform zeroZeroPiece = _floor[0, 0];
-            Transform maxMaxPiece = _floor[length - 1, width - 1];
-            
-            bool isEntranceAlongX = entranceSide.x == 0;
-            int roomAxisOffset = Random.Range(1, (isEntranceAlongX ? width : length) - 1);
-            Vector3 roomOffset = -FloorPieceSize * roomAxisOffset * (isEntranceAlongX ? Vector3.right : Vector3.forward);
-            transform.position += roomOffset;
-
-            int exitsLeft = exits;
-            int[] exitsForExits = new int[4];
-            do
-            {
-                for (int i = 0; i < exitsLeft; i++)
-                {
-                    exitsForExits[Random.Range(0, 4)]++;
-                }
-                exitsLeft = exitsForExits[entranceSideNumber];
-                exitsForExits[entranceSideNumber] = 0;
-            } while (exitsLeft > 0);
-            for (int i = 0; i < AllSides.Length; i++)
-            {
-                if (i == entranceSideNumber)
-                {
-                    _walls[entranceSideNumber][roomAxisOffset].TurnIntoDoor();
-                    continue;
-                }
-
-                if (exitsForExits[i] > 0)
-                {
-                    _walls[i][Random.Range(1, (isEntranceAlongX ? width : length) - 1)].TurnIntoDoor();
-                }
-            }
-
-            WallPiece CreateWall(Vector3 position, float yRotation)
-            {
-                return Instantiate(_wallPiecePrefab, position,
-                    Quaternion.Euler(0, yRotation, 0), transform).GetComponent<WallPiece>();
-            }
         }
 
-        private Vector3 SideFromNumber(int number)
+        public void AddEnemyAlive(EnemyStatus enemyStatus) => _enemiesAlive.Add(enemyStatus);
+
+        public void Show()
         {
-            switch (number)
-            {
-                case 0 : return Vector3.left;
-                case 1 : return Vector3.right;
-                case 2 : return Vector3.back;
-                case 3 : return Vector3.forward;
-                default: return Vector3.zero;
-            }
+            _targetY = 0;
+            _playerMarker.CurrentRoom = this;
+            _playerMarker.Core.ReturnCore();
+            if (!_competed)
+                StartCoroutine(Combat());
         }
 
-        private int NumberFromSide(Vector3 side)
+        public void Hide()
         {
-            if (side.Equals(Vector3.left))
-                return 0;
-            if (side.Equals(Vector3.right))
-                return 1;
-            if (side.Equals(Vector3.back))
-                return 2;
-            if (side.Equals(Vector3.forward))
-                return 3;
-            return -1;
+            _targetY = -200;
+        }
+
+        private IEnumerator Combat()
+        {
+            foreach (var wave in _enemyWaves)
+            {
+                yield return new WaitForSeconds(1);
+                foreach (var beacon in wave)
+                {
+                    Vector3 position = transform.position + beacon;
+                    EnemyBeacon enemyBeacon = Instantiate(_enemyBeaconPrefab, position, Quaternion.identity, transform)
+                        .GetComponent<EnemyBeacon>();
+                    enemyBeacon.Init(this);
+                }
+                yield return new WaitUntil(() => _enemiesAlive.Count == wave.Count);
+                foreach (var enemyAlive in _enemiesAlive)
+                {
+                    enemyAlive.OnDeath += () => { _enemiesAlive.Remove(enemyAlive); };
+                }
+                yield return new WaitUntil(() => _enemiesAlive.Count == 0);
+            }
+            _competed = true;
+        }
+        
+        private void FixedUpdate()
+        {
+            float newY = Mathf.Lerp(transform.position.y, _targetY, Time.fixedDeltaTime * _raiseSpeed);
+            transform.position = transform.position.WithY(newY);
         }
     }
 }

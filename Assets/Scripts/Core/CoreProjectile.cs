@@ -14,6 +14,7 @@ namespace Core
         private Rigidbody Rigidbody => _rigidbody ??= GetComponent<Rigidbody>();
 
         public Action OnCoreDestroy;
+        public Action OnReflect;
 
         public void Init(Vector3 direction)
         {
@@ -32,11 +33,9 @@ namespace Core
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.layer.Equals(10))
-            {
-                Vector3 normal = other.contacts[0].normal.WithY(0).normalized;
-                _velocity = Vector3.Reflect(_velocity, normal);
-            }
+            Vector3 normal = other.contacts[0].normal.WithY(0).normalized;
+            _velocity = Vector3.Reflect(_velocity, normal);
+            OnReflect?.Invoke();
         }
 
         private void OnDestroy() => OnCoreDestroy?.Invoke();

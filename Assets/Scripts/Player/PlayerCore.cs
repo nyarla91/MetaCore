@@ -11,15 +11,15 @@ namespace Player
     {
         [SerializeField] private GameObject _coreProjectilePrefab;
         [SerializeField] private GameObject _aimLine_prefab;
-        [SerializeField] private float _cooldown;
-        [SerializeField] private float _shortCooldown;
+        [SerializeField] private float _teleportCooldown;
 
         private Transform _aimLine;
         private CoreProjectile _projectile;
         private bool _isCoreOut;
-        private bool _coreReady = true;
+        private float _teleportCooldownLeft;
 
         public bool IsCoreOut => _isCoreOut;
+        public float TeleportCooldownLeft => _teleportCooldownLeft;
         
         public Action OnCoreShoot;
         public Action OnCoreCollect;
@@ -36,10 +36,9 @@ namespace Player
 
         private IEnumerator Aiming()
         {
-            if (IsCoreOut || !_coreReady)
+            if (IsCoreOut)
                 yield break;
-
-            //_coreReady = false;
+            
             Movement.Freeze();
             _aimLine = Instantiate(_aimLine_prefab, transform.position, Quaternion.identity).transform;
             bool endAiming = false;
@@ -77,7 +76,7 @@ namespace Player
             StopAllCoroutines();
         }
 
-        private void ReturnCore()
+        public void ReturnCore()
         {
             if (!_isCoreOut)
                 return;
@@ -87,11 +86,17 @@ namespace Player
 
         private void TeleportToCore()
         {
-            if (!_isCoreOut)
+            if (!_isCoreOut || _teleportCooldownLeft > 0)
                 return;
 
             Rigidbody.position = _projectile.transform.position;
+            _teleportCooldownLeft = _teleportCooldown;
             _projectile.Collect();
+        }
+
+        private void FixedUpdate()
+        {
+            _teleportCooldownLeft -= Time.fixedDeltaTime;
         }
     }
 }

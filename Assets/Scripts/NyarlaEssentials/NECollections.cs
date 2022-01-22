@@ -9,7 +9,7 @@ namespace NyarlaEssentials
 {
     public static class NECollections
     {
-        public static List<T> ChooseRandomElements<T>(List<T> collection, int ammount)
+        public static List<T> ChooseRandomElements<T>(this List<T> collection, int ammount)
         {
             List<T> choosed = new List<T>();
             for (int i = 0; i < ammount; i++)
@@ -47,7 +47,7 @@ namespace NyarlaEssentials
             return choosed;
         }
 
-        public static T ChooseRandomElement<T>(List<T> collection)
+        public static T ChooseRandomElement<T>(this List<T> collection)
         {
             if (collection.Count <= 0)
                 throw new IndexOutOfRangeException();

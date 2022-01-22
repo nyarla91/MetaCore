@@ -24,11 +24,13 @@ namespace Enemies.Species
         [SerializeField] private float _chargeSpeed;
         [SerializeField] private float _chargeDamage;
 
+        [Inject]
         private PlayerMarker _playerMarker;
         
         [Inject]
         private void Construct(PlayerMarker playerMarker)
         {
+            print("Injecscheno");
             Movement.CurrentFacingType = EnemyMovement.FacingType.Movement;
             _playerMarker = playerMarker;
             Movement.Destination = playerMarker.transform;

@@ -108,11 +108,18 @@ namespace NyarlaEssentials
             return new Vector3(vector.x, 0, vector.y);
         }
 
-        public static Vector2 RandomPointInBounds(this Bounds bounds)
+        public static Vector2 RandomPointInBounds2D(this Bounds bounds)
         {
             Vector2 max = bounds.max;
             Vector2 min = bounds.min;
             return new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
+        }
+
+        public static Vector3 RandomPointInBounds(this Bounds bounds)
+        {
+            Vector3 max = bounds.max;
+            Vector3 min = bounds.min;
+            return new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), Random.Range(min.z, max.z));
         }
 
         public static Vector3 LerpMulti(this Vector3[] vectors)

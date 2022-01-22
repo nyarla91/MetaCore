@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 485268134380740720}
   - component: {fileID: 485268134380740719}
   - component: {fileID: 485268134380740718}
+  - component: {fileID: 7615345103473273492}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -137,8 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackArea: {fileID: 485268135461151454}
-  _farSpeed: 2.5
-  _closeSpeed: 1.5
+  _beaconMaterial: {fileID: 2100000, guid: 956e1e23b38806e4fbc1642c3243d0b1, type: 2}
+  _farSpeed: 4
+  _closeSpeed: 2
   _regularMaterial: {fileID: 2100000, guid: 8b5e39415601abe428cafc7ef4f2e48d, type: 2}
   _chargingMaterial: {fileID: 2100000, guid: 956e1e23b38806e4fbc1642c3243d0b1, type: 2}
   _meshRenderer: {fileID: 485268134272805512}
@@ -223,6 +225,19 @@ CapsuleCollider:
   m_Height: 1.2
   m_Direction: 1
   m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!114 &7615345103473273492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485268134380740712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 0
 --- !u!1 &485268134446295425
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485268135461151452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.771, z: 0.37}
+  m_LocalPosition: {x: 0, y: 0.771, z: 0.265}
   m_LocalScale: {x: 1, y: 1, z: 0.44238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -410,4 +425,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e382ce3908e0485d95a3db9ccd4fbb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 30
+  _damage: 20

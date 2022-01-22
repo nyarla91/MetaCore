@@ -21,6 +21,7 @@ namespace Zenject
         public override void InstallBindings()
         {
             Container.Bind<CameraMouseCast>().FromInstance(_cameraMouseCast).AsSingle();
+            Container.Bind<GameplayInstaller>().FromInstance(this).AsSingle();
             Container.Bind<CameraView>().FromInstance(_cameraView).AsSingle();
             Container.Bind<Canvas>().FromInstance(_canvas).AsSingle();
             Container.Bind<PlayerUICluster>().FromInstance(_playerUICluster).AsSingle();
