@@ -1,0 +1,274 @@
+{
+    "name": "PointerActions",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "c300bc73-4668-49d3-91c2-aedaffaa4784",
+            "actions": [
+                {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "a3d04975-5c73-4b4c-a6ca-95bd970b9354",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightClick",
+                    "type": "Button",
+                    "id": "360009cd-f1d6-4a66-b1a7-faa27247a94d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MiddleClick",
+                    "type": "Button",
+                    "id": "075f7738-b300-4335-99df-3a02594ec32e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftMouse",
+                    "type": "Button",
+                    "id": "6e55d6eb-e88f-41cb-914f-6577ad843f54",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightMouse",
+                    "type": "Button",
+                    "id": "489b67ca-1431-4540-bad4-826db9efc61f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MiddleMouse",
+                    "type": "Button",
+                    "id": "2a01e055-7e9b-489a-9077-2e4c31f5b215",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftDouble",
+                    "type": "Button",
+                    "id": "c7113a04-879d-4535-9791-92be40f664af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightDouble",
+                    "type": "Button",
+                    "id": "86b8adef-b7e7-413c-9c71-4b3905c7fd93",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MiddleDouble",
+                    "type": "Button",
+                    "id": "a2dad4b4-ec19-481f-8abd-2f1bbfc1eebb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b17660e8-0230-4b96-8f64-be401d059b17",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87961dac-ff92-4899-8d84-c01efaf5ad21",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba87b9f4-d9a7-4f4f-82b6-70b9c283b44c",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "MiddleClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d816cfc-cb8b-405e-b24d-492c94073b37",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "LeftMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4deb0c1d-68f7-42e4-b898-df7e3f4b9c1f",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "RightMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29db7115-caa8-41e7-89eb-b81043cf97fa",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "MiddleMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef27c6cf-4dd9-4d8c-b278-41c96623f5f1",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "MultiTap(tapDelay=0.1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftDouble",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05b7300a-493b-474a-bc8f-18980778885a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "MultiTap(tapDelay=0.1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightDouble",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4eb8a944-3b82-435a-bd88-c1542b1ccebd",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "MultiTap(tapDelay=0.1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MiddleDouble",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Touch",
+            "id": "b99b3957-adb7-40b2-9b75-b8d3942c30b3",
+            "actions": [
+                {
+                    "name": "TapPosition",
+                    "type": "Value",
+                    "id": "c1e169eb-0372-4069-b92e-029ff02969c9",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Tap",
+                    "type": "Button",
+                    "id": "746e1039-bbcc-48bc-97c8-362769e16aac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DoubleTap",
+                    "type": "Button",
+                    "id": "46d107b6-5619-4a13-b3f6-d707e072aab9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "363dbc6b-51ac-4c05-b4ce-e045f08cb603",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "MultiTap(tapDelay=0.1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DoubleTap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0622116-67da-474f-81a2-aff8ca604745",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TapPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e60c5288-0e14-41c8-a433-9ed8978d2887",
+                    "path": "<Touchscreen>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Mouse",
+            "bindingGroup": "Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
