@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Timers;
 using Enemies;
 using NyarlaEssentials;
+using NyarlaEssentials.Sound;
 using UnityEngine;
 
 namespace Player
@@ -63,7 +64,9 @@ namespace Player
         {
             _attackReady = false;
             _attackReadyCooldownLeft = _shortCooldown;
-            Marker.Animator.SetInteger("AttackNumber", 4 - _attacksLeft);
+            int attackNumber = 4 - _attacksLeft;
+            Marker.Animator.SetInteger("AttackNumber", attackNumber);
+            SoundPlayer.Play($"attack" + attackNumber.ToString(), 1f);
             _attacksLeft--;
             _attacksRestoreCooldownLeft = _longCooldown;
 

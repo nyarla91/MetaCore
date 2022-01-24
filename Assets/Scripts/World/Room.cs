@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enemies;
 using NyarlaEssentials;
 using Player;
+using Project;
 using UnityEngine;
 using Tutorial;
 using Random = UnityEngine.Random;
@@ -76,6 +77,7 @@ namespace World
             Tutorials.MechanicTutorialProgress++;
 
             PlayerMarker.Status.IsInCombat = true;
+            Music.Instance.TargetVolume = 1;
             foreach (var wave in _enemyWaves)
             {
                 yield return new WaitForSeconds(1);
@@ -87,6 +89,7 @@ namespace World
                         .GetComponent<EnemyBeacon>();
                     enemyBeacon.Init(this);
                 }
+                Music.Instance.TargetVolume = 1;
                 yield return new WaitUntil(() => _enemiesAlive.Count == wave.Count);
                 foreach (var enemyAlive in _enemiesAlive)
                 {
@@ -96,6 +99,7 @@ namespace World
             }
             _competed = true;
             PlayerMarker.Status.IsInCombat = false;
+            Music.Instance.TargetVolume = 0.3f;
             
             foreach (var exitWall in _exitWalls)
                 exitWall.UnlockDoor();

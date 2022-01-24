@@ -10,6 +10,7 @@ namespace NyarlaEssentials.Sound
         private const float MASTER_VOLUME = 0.1f;
     
         private static SoundPlayer _instance;
+        public static SoundPlayer Instance => _instance;
     
         [SerializeField] private GameObject _soundPrefab;
         [SerializeField] private List<SoundPair> _soundLibary;
@@ -27,12 +28,14 @@ namespace NyarlaEssentials.Sound
 
         public static void Play(string clip, float volume)
         {
+            print(clip);
             if (_instance._soundDictionary.ContainsKey(clip))
             {
                 SoundInstance newInstance =
                     Instantiate(_instance._soundPrefab, CameraProperties.Instance.transform.position, Quaternion.identity)
                         .GetComponent<SoundInstance>();
                 newInstance.Play(_instance._soundDictionary[clip], volume * MASTER_VOLUME);
+                print(newInstance);
             }
         }
     

@@ -11,7 +11,7 @@ namespace NyarlaEssentials
             b = swapper;
         }
 
-        public static void DestroyItself(this GameObject gameObject)
+        public static void SelfDestruct(this GameObject gameObject)
         {
             GameObject.Destroy(gameObject);
         }

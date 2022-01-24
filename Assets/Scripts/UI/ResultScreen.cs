@@ -41,6 +41,8 @@ namespace UI
             _floorCounter.text = Progression.Floor.ToString();
             _killsCounter.text = Progression.Kills.ToString();
             _timeCounter.text = NEString.SecondsToFormatTime(Mathf.CeilToInt(Progression.RunTime), false);
+            _controls.Menu.Enable();
+            _controls.Gameplay.Disable();
             
         }
 
@@ -51,6 +53,8 @@ namespace UI
             if (!_playerMarker.Status.IsDead)
                 return;
 
+            _controls.Menu.Disable();
+            _controls.Gameplay.Enable();
             Progression.Reset();
             StartCoroutine(SceneTransition());
             Time.timeScale = 1;
@@ -62,6 +66,8 @@ namespace UI
         {
             if (!_playerMarker.Status.IsDead)
                 return;
+            
+            Application.Quit();
         }
         
         private IEnumerator SceneTransition()

@@ -1,5 +1,6 @@
 ﻿using System;
 using NyarlaEssentials;
+using Project;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -46,6 +47,7 @@ namespace Tutorial
             _label.text = page.Label;
             _text.text = page.TutorialText;
             _illustration.sprite = page.Illustration;
+            Music.Instance.TargetVolume = 0.2f;
             _controls.Gameplay.Disable();
             _controls.Menu.Enable();
         }
@@ -57,6 +59,7 @@ namespace Tutorial
             if (_t < 0.97f)
                 return;
             
+            Music.Instance.RevertVolumeToPrevious();
             _targetT = 0;
             _controls.Gameplay.Enable();
             _controls.Menu.Disable();

@@ -1,4 +1,6 @@
 ﻿using System;
+using NyarlaEssentials.Sound;
+using Project;
 using UnityEngine;
 using World;
 
@@ -54,6 +56,7 @@ namespace Player
             if (_damageImmunityTimeLeft > 0 || ImmortaliityTimeLeft > 0)
                 return;
 
+            SoundPlayer.Play("damage", 1);
             if (Core.IsCoreOut)
             {
                 Health -= damage;
@@ -82,6 +85,11 @@ namespace Player
             _maxHealth *= Progression.FloorDifficultiModifier;
             Health = Progression.Health > 0 ? Progression.Health : _maxHealth;
             Shields = _maxShields;
+            OnDeath += () =>
+            {
+                Music.Instance.TargetVolume = 0.1f;
+                SoundPlayer.Play("death", 3);
+            };
         }
 
         private void FixedUpdate()

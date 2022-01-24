@@ -76,3 +76,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controlsTypePrefab: {fileID: 1186131052298285752, guid: d7c47dd4cdfe16649a8e745d0bd2bd82, type: 3}
   _tutorialsPrefab: {fileID: 448580546764503571, guid: e4ee0de16de059941aa1dcbedfca9997, type: 3}
+  _musicPrefab: {fileID: 3701669612656414513, guid: d259c1bd252e60942960cd2f7b57f895, type: 3}

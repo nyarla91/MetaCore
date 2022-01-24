@@ -75,7 +75,6 @@ namespace Enemies
 
         private void Move()
         {
-            print(_freezed);
             Specie.Animator.SetFloat("Speed", _velocity.magnitude);
             if (_freezed || Specie.Status.IsStunned)
             {

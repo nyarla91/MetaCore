@@ -33,7 +33,6 @@ namespace Player
         public void Unfreeze()
         {
             _freezed = false;
-            print(_freezed);
         }
 
         private void Awake()

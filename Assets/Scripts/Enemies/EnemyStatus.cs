@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using NyarlaEssentials.Sound;
 using TMPro;
 using UnityEngine;
 using World;
@@ -69,8 +70,12 @@ namespace Enemies
         private void Awake()
         {
             Health = _maxHealth;
-            OnDeath += () => { Progression.Kills++; };
-            OnDeath += () => { Instantiate(_explosionPrefab, transform.position, Quaternion.identity); };
+            OnDeath += () =>
+            {
+                Progression.Kills++;
+                Instantiate(_explosionPrefab, transform.position, Quaternion.identity); 
+                SoundPlayer.Play("enemyDeath", 1);
+            };
         }
 
         private void Die()

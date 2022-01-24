@@ -12,12 +12,14 @@ namespace Zenject
     {
         [SerializeField] private GameObject _controlsTypePrefab;
         [SerializeField] private GameObject _tutorialsPrefab;
+        [SerializeField] private GameObject _musicPrefab;
 
         public override void InstallBindings()
         {
             BindControls();
             BindControlsType();
             BindTutorials();
+            Container.InstantiatePrefab(_musicPrefab, Vector3.zero, Quaternion.identity, null);
         }
         
         private void BindControls()

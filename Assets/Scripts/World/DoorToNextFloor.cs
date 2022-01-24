@@ -21,7 +21,7 @@ namespace World
                 return;
 
             _playerInput = playerInput;
-            MessageWindow.Instance.Show("Press [F]/(Y) to go to the next floor");
+            MessageWindow.Instance.Show("<sprite name=\"kF\">/<sprite name=\"gY\"> to go to the next floor");
             playerInput.OnInteract += GoToNextFloor;
         }
 

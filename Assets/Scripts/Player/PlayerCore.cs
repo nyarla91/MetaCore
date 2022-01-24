@@ -2,6 +2,7 @@
 using System.Collections;
 using Core;
 using NyarlaEssentials;
+using NyarlaEssentials.Sound;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,7 +37,11 @@ namespace Player
             Input.OnCoreReturn += ReturnCore;
             Input.OnTeleportToCore += TeleportToCore;
             Input.OnStartCoreAim += StartAiming;
-            OnCoreShoot += () => _coreInPlayer.SetActive(false);
+            OnCoreShoot += () =>
+            {
+                _coreInPlayer.SetActive(false);
+                SoundPlayer.Play("shoot", 1);
+            };
             OnCoreCollect += () => _coreInPlayer.SetActive(true);
             //Input.OnCancelCoreAim += ExecutePostAiming;
         }
@@ -83,7 +88,7 @@ namespace Player
         {
             Movement.Unfreeze();
             Marker.Animator.SetBool("Aiming", false);
-            _aimLine?.gameObject?.DestroyItself();
+            _aimLine?.gameObject?.SelfDestruct();
             StopAllCoroutines();
         }
 
@@ -100,6 +105,7 @@ namespace Player
             if (!_isCoreOut || _teleportCooldownLeft > 0)
                 return;
 
+            SoundPlayer.Play("teleport", 2);
             Rigidbody.position = _projectile.transform.position;
             _teleportCooldownLeft = _teleportCooldown;
             _projectile.Collect();

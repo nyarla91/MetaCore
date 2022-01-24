@@ -1,5 +1,6 @@
 ﻿using System;
 using NyarlaEssentials;
+using NyarlaEssentials.Sound;
 using UnityEngine;
 
 namespace Core
@@ -39,6 +40,7 @@ namespace Core
             _velocity = Vector3.Reflect(_velocity, normal);
             print(other.gameObject);
             OnReflect?.Invoke();
+            SoundPlayer.Play("ricochet", 0.5f);
         }
 
         private void OnDestroy() => OnCoreDestroy?.Invoke();

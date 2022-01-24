@@ -39,6 +39,7 @@ namespace Core
 
         private void OnTriggerStay(Collider other)
         {
+            print(other);
             if (other.TryGetComponent(out EnemyStatus status))
             {
                 status.TakeDamage(_damagePerSecond * Time.deltaTime, false);
