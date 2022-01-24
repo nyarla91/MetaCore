@@ -12,6 +12,8 @@ namespace Player
         private PlayerAttack _attack;
         private PlayerStatus _status;
         private PlayerUI _ui;
+        private PlayerInventory _inventory;
+        private PlayerMarker _marker;
         
         public PlayerInput Input => _input ??= GetComponent<PlayerInput>();
         
@@ -21,5 +23,8 @@ namespace Player
         public PlayerAttack Attack => _attack ??= GetComponent<PlayerAttack>();
         public PlayerStatus Status => _status ??= GetComponent<PlayerStatus>();
         public PlayerUI UI => _ui ??= GetComponent<PlayerUI>();
+        public PlayerInventory Inventory => _inventory ??= GetComponent<PlayerInventory>();
+
+        public PlayerMarker Marker => _marker ??= GetComponent<PlayerMarker>();
     }
 }

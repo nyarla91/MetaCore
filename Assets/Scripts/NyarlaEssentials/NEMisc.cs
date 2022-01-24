@@ -1,4 +1,6 @@
-﻿namespace NyarlaEssentials
+﻿using UnityEngine;
+
+namespace NyarlaEssentials
 {
     public static class NEMisc
     {
@@ -7,6 +9,11 @@
             T swapper = a;
             a = b;
             b = swapper;
+        }
+
+        public static void DestroyItself(this GameObject gameObject)
+        {
+            GameObject.Destroy(gameObject);
         }
     }
 }

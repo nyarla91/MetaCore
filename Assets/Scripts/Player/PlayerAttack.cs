@@ -23,6 +23,11 @@ namespace Player
         [SerializeField] [Range(0, 0.3f)] private float _thrustFinishThreshold;
         [SerializeField] [Range(0, 1)] private float _enemyThrustModifier;
 
+        [Header("Highlights")]
+        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private Material _regularMaterial;
+        [SerializeField] private Material _attackMaterial;
+
         private int _attacksLeft;
         private bool _attackReady;
 
@@ -58,6 +63,7 @@ namespace Player
         {
             _attackReady = false;
             _attackReadyCooldownLeft = _shortCooldown;
+            Marker.Animator.SetInteger("AttackNumber", 4 - _attacksLeft);
             _attacksLeft--;
             _attacksRestoreCooldownLeft = _longCooldown;
 
@@ -65,14 +71,17 @@ namespace Player
             Vector3 direction = Input.RelativeAimVector;
 
             DealDamageInTheArea(direction);
-        
+
+            _meshRenderer.material = _attackMaterial;
             for (float i = 1; i > _thrustFinishThreshold; i = Mathf.Lerp(i, 0, Time.fixedDeltaTime * _thrustDrag))
             {
                 Vector3 offset = direction * _thrustForce * i * Time.fixedDeltaTime;
                 Rigidbody.position += offset;
                 yield return new WaitForFixedUpdate();
             }
+            _meshRenderer.material = _regularMaterial;
             Movement.Unfreeze();
+            Marker.Animator.SetInteger("AttackNumber", 0);
         }
 
         private void DealDamageInTheArea(Vector3 direction)

@@ -98,6 +98,60 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseRepairPack"",
+                    ""type"": ""Button"",
+                    ""id"": ""c38202ba-eafd-40ca-829e-e200835d7ee0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseImmortalityModule"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba2eafee-5faf-4b57-9fa6-9e98c5090971"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseCoreCharger"",
+                    ""type"": ""Button"",
+                    ""id"": ""36ae6ab0-1774-448a-aa46-7e8a1e6175dd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseChronoBooster"",
+                    ""type"": ""Button"",
+                    ""id"": ""2032c7fe-9d6a-494e-a2fb-f82dbc6bca3d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CancelAim"",
+                    ""type"": ""Button"",
+                    ""id"": ""da23695a-0b5a-48d4-a6a4-a4d07251cba0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""f95c8662-4e85-4c61-b12f-b1c505d32e32"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -280,7 +334,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4e199eb9-b903-4d3b-bfb4-7dabf798562f"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
@@ -296,6 +350,138 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""CoreReturn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2a534b0-3b28-4da7-ad9b-4524c1bd2b84"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UseRepairPack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""376a8ab5-6525-4986-b25d-4e3ea9e6155c"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UseRepairPack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aaadd1fd-720c-4a3c-8b9d-47efa2c66eb1"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UseImmortalityModule"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""620db2e9-ca1e-4a9e-ace7-5ab9aec92e22"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UseImmortalityModule"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0ed9b20-cc3c-4100-9974-eb13f41b12f5"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UseCoreCharger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11c1ee54-3872-4b23-8d6b-1a3eb7032841"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UseCoreCharger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9da45d5d-2788-4f1a-9133-9e39033f8600"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UseChronoBooster"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94a0b641-4bff-47ce-80e9-89a8c4e0ed68"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UseChronoBooster"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07ca9dd0-5db8-4439-aebd-ca08ee79a51f"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""CancelAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0074dc65-157b-4d35-a0dc-b0de5274c752"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CancelAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc04f778-64f5-450b-96a5-cc64c07b5feb"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eff543be-f591-427b-ab76-9ca2b8107fe3"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -447,6 +633,107 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""4db2a7b5-ebf8-4a64-bf2a-4d0182fc49a4"",
+            ""actions"": [
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""811e2bf6-b278-404b-96d3-8c159ba17de5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""acdb837c-ec5d-4d2e-8e22-b86564fef037"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NeverShow"",
+                    ""type"": ""Button"",
+                    ""id"": ""897abb9e-0046-4ad8-a639-2ef0d3d1f4ad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""132f8cd3-929d-4da0-837e-2b17e8ba5665"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c45f810-ec9d-4ff9-81f5-bff98ae06ba2"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca643cb9-db75-4261-9d82-c39005cf7876"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""948fbf01-3a79-4ee3-a6c4-8536d7497efa"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a397ce6e-550f-4457-a100-cbf10e14b238"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NeverShow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64a37fd9-f06f-4314-86d8-f3d0947fc768"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NeverShow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -489,10 +776,21 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_TeleportToCore = m_Gameplay.FindAction("TeleportToCore", throwIfNotFound: true);
         m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
+        m_Gameplay_UseRepairPack = m_Gameplay.FindAction("UseRepairPack", throwIfNotFound: true);
+        m_Gameplay_UseImmortalityModule = m_Gameplay.FindAction("UseImmortalityModule", throwIfNotFound: true);
+        m_Gameplay_UseCoreCharger = m_Gameplay.FindAction("UseCoreCharger", throwIfNotFound: true);
+        m_Gameplay_UseChronoBooster = m_Gameplay.FindAction("UseChronoBooster", throwIfNotFound: true);
+        m_Gameplay_CancelAim = m_Gameplay.FindAction("CancelAim", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         // System
         m_System = asset.FindActionMap("System", throwIfNotFound: true);
         m_System_SwitchToKeyboardMouse = m_System.FindAction("SwitchToKeyboardMouse", throwIfNotFound: true);
         m_System_SwitchToGamepad = m_System.FindAction("SwitchToGamepad", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
+        m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
+        m_Menu_NeverShow = m_Menu.FindAction("NeverShow", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -560,6 +858,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_TeleportToCore;
     private readonly InputAction m_Gameplay_Attack;
     private readonly InputAction m_Gameplay_Dash;
+    private readonly InputAction m_Gameplay_UseRepairPack;
+    private readonly InputAction m_Gameplay_UseImmortalityModule;
+    private readonly InputAction m_Gameplay_UseCoreCharger;
+    private readonly InputAction m_Gameplay_UseChronoBooster;
+    private readonly InputAction m_Gameplay_CancelAim;
+    private readonly InputAction m_Gameplay_Interact;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -572,6 +876,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @TeleportToCore => m_Wrapper.m_Gameplay_TeleportToCore;
         public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
+        public InputAction @UseRepairPack => m_Wrapper.m_Gameplay_UseRepairPack;
+        public InputAction @UseImmortalityModule => m_Wrapper.m_Gameplay_UseImmortalityModule;
+        public InputAction @UseCoreCharger => m_Wrapper.m_Gameplay_UseCoreCharger;
+        public InputAction @UseChronoBooster => m_Wrapper.m_Gameplay_UseChronoBooster;
+        public InputAction @CancelAim => m_Wrapper.m_Gameplay_CancelAim;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -605,6 +915,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
+                @UseRepairPack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseRepairPack;
+                @UseRepairPack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseRepairPack;
+                @UseRepairPack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseRepairPack;
+                @UseImmortalityModule.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseImmortalityModule;
+                @UseImmortalityModule.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseImmortalityModule;
+                @UseImmortalityModule.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseImmortalityModule;
+                @UseCoreCharger.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseCoreCharger;
+                @UseCoreCharger.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseCoreCharger;
+                @UseCoreCharger.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseCoreCharger;
+                @UseChronoBooster.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseChronoBooster;
+                @UseChronoBooster.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseChronoBooster;
+                @UseChronoBooster.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseChronoBooster;
+                @CancelAim.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCancelAim;
+                @CancelAim.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCancelAim;
+                @CancelAim.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCancelAim;
+                @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -633,6 +961,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @UseRepairPack.started += instance.OnUseRepairPack;
+                @UseRepairPack.performed += instance.OnUseRepairPack;
+                @UseRepairPack.canceled += instance.OnUseRepairPack;
+                @UseImmortalityModule.started += instance.OnUseImmortalityModule;
+                @UseImmortalityModule.performed += instance.OnUseImmortalityModule;
+                @UseImmortalityModule.canceled += instance.OnUseImmortalityModule;
+                @UseCoreCharger.started += instance.OnUseCoreCharger;
+                @UseCoreCharger.performed += instance.OnUseCoreCharger;
+                @UseCoreCharger.canceled += instance.OnUseCoreCharger;
+                @UseChronoBooster.started += instance.OnUseChronoBooster;
+                @UseChronoBooster.performed += instance.OnUseChronoBooster;
+                @UseChronoBooster.canceled += instance.OnUseChronoBooster;
+                @CancelAim.started += instance.OnCancelAim;
+                @CancelAim.performed += instance.OnCancelAim;
+                @CancelAim.canceled += instance.OnCancelAim;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -678,6 +1024,55 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public SystemActions @System => new SystemActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_Confirm;
+    private readonly InputAction m_Menu_Cancel;
+    private readonly InputAction m_Menu_NeverShow;
+    public struct MenuActions
+    {
+        private @Controls m_Wrapper;
+        public MenuActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Confirm => m_Wrapper.m_Menu_Confirm;
+        public InputAction @Cancel => m_Wrapper.m_Menu_Cancel;
+        public InputAction @NeverShow => m_Wrapper.m_Menu_NeverShow;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                @Confirm.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
+                @Cancel.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnCancel;
+                @NeverShow.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnNeverShow;
+                @NeverShow.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnNeverShow;
+                @NeverShow.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnNeverShow;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Confirm.started += instance.OnConfirm;
+                @Confirm.performed += instance.OnConfirm;
+                @Confirm.canceled += instance.OnConfirm;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
+                @NeverShow.started += instance.OnNeverShow;
+                @NeverShow.performed += instance.OnNeverShow;
+                @NeverShow.canceled += instance.OnNeverShow;
+            }
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -706,10 +1101,22 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnTeleportToCore(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnUseRepairPack(InputAction.CallbackContext context);
+        void OnUseImmortalityModule(InputAction.CallbackContext context);
+        void OnUseCoreCharger(InputAction.CallbackContext context);
+        void OnUseChronoBooster(InputAction.CallbackContext context);
+        void OnCancelAim(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface ISystemActions
     {
         void OnSwitchToKeyboardMouse(InputAction.CallbackContext context);
         void OnSwitchToGamepad(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnConfirm(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
+        void OnNeverShow(InputAction.CallbackContext context);
     }
 }

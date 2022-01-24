@@ -1,3 +1,14 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 67eadd21005b48b795174fff33421ea8
-timeCreated: 1642756040
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _coreProjectilePrefab: {fileID: 100000, guid: 972561acbe31e7147b76d1a430caf37d, type: 3}
+  - _aimLine_prefab: {instanceID: 0}
+  - _coreInPlayer: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

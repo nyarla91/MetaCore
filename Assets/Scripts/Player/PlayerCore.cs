@@ -12,6 +12,7 @@ namespace Player
         [SerializeField] private GameObject _coreProjectilePrefab;
         [SerializeField] private GameObject _aimLine_prefab;
         [SerializeField] private float _teleportCooldown;
+        [SerializeField] private GameObject _coreInPlayer;
 
         private Transform _aimLine;
         private CoreProjectile _projectile;
@@ -20,16 +21,24 @@ namespace Player
 
         public bool IsCoreOut => _isCoreOut;
         public float TeleportCooldownLeft => _teleportCooldownLeft;
+        public CoreProjectile Projectile => _projectile;
         
         public Action OnCoreShoot;
         public Action OnCoreCollect;
+
+        public void ForceRestoreTeleport()
+        {
+            _teleportCooldownLeft = 0;
+        }
         
         private void Awake()
         {
             Input.OnCoreReturn += ReturnCore;
             Input.OnTeleportToCore += TeleportToCore;
             Input.OnStartCoreAim += StartAiming;
-            Input.OnCancelCoreAim += ExecutePostAiming;
+            OnCoreShoot += () => _coreInPlayer.SetActive(false);
+            OnCoreCollect += () => _coreInPlayer.SetActive(true);
+            //Input.OnCancelCoreAim += ExecutePostAiming;
         }
 
         private void StartAiming() => StartCoroutine(Aiming());
@@ -39,6 +48,7 @@ namespace Player
             if (IsCoreOut)
                 yield break;
             
+            Marker.Animator.SetBool("Aiming", true);
             Movement.Freeze();
             _aimLine = Instantiate(_aimLine_prefab, transform.position, Quaternion.identity).transform;
             bool endAiming = false;
@@ -72,7 +82,8 @@ namespace Player
         private void ExecutePostAiming()
         {
             Movement.Unfreeze();
-            Destroy(_aimLine.gameObject);
+            Marker.Animator.SetBool("Aiming", false);
+            _aimLine?.gameObject?.DestroyItself();
             StopAllCoroutines();
         }
 

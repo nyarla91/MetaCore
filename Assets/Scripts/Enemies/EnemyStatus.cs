@@ -2,13 +2,14 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using World;
 
 namespace Enemies
 {
     public class EnemyStatus : EnemyComponent
     {
+        [SerializeField] private GameObject _explosionPrefab;
         [SerializeField]  private float _maxHealth;
-        [SerializeField] private TextMeshPro _healthCounter;
 
         private bool _isStunned;
         private float _health;
@@ -45,6 +46,7 @@ namespace Enemies
             
             StopAllCoroutines();
             _isStunned = true;
+            Specie.Animator.SetBool("Stun", false);
             StartCoroutine(ExitStun(duration));
         }
 
@@ -52,17 +54,23 @@ namespace Enemies
         {
             StopAllCoroutines();
             _isStunned = false;
+            Specie.Animator.SetBool("Stun", _isStunned);
         }
 
         private IEnumerator ExitStun(float duration)
         {
+            yield return null;
+            Specie.Animator.SetBool("Stun", true);
             yield return new WaitForSeconds(duration);
             _isStunned = false;
+            Specie.Animator.SetBool("Stun", _isStunned);
         }
 
         private void Awake()
         {
             Health = _maxHealth;
+            OnDeath += () => { Progression.Kills++; };
+            OnDeath += () => { Instantiate(_explosionPrefab, transform.position, Quaternion.identity); };
         }
 
         private void Die()

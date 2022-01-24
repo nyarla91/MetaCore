@@ -65,6 +65,13 @@ namespace Player
         public Action OnTeleportToCore;
         public Action OnAttack;
         public Action OnDash;
+        public Action OnRepairPackUse;
+        public Action OnImmortalityModuleUse;
+        public Action OnCoreChargeUse;
+        public Action OnChronoBoostUse;
+        public Action OnInteract;
+
+        public void DisabeControls() => _controls.Gameplay.Disable();
 
         [Inject]
         private void Construct(Controls controls, ControlsType controlsType, CameraMouseCast cameraMouseCast)
@@ -98,18 +105,30 @@ namespace Player
         {
             _controls.Gameplay.CoreShoot.started += OnStartCoreAimInvoke;
             _controls.Gameplay.CoreShoot.canceled += OnEndCoreAimInvoke;
+            _controls.Gameplay.CancelAim.canceled += OnCancelAimInvoke;
             _controls.Gameplay.CoreReturn.performed += OnCoreReturnInvoke;
             _controls.Gameplay.TeleportToCore.performed += OnTeleportToCoreInvoke;
             _controls.Gameplay.Attack.performed += OnAttackInvoke;
-            _controls.Gameplay.Dash.performed += OnDashInvoke;
+            _controls.Gameplay.Dash.started += OnDashInvoke;
+            _controls.Gameplay.UseRepairPack.started += OnRepairPackUseInvoke;
+            _controls.Gameplay.UseImmortalityModule.started += OnImmortalityModuleUseInvoke;
+            _controls.Gameplay.UseCoreCharger.started += OnCoreChargeUseInvoke;
+            _controls.Gameplay.UseChronoBooster.started += OnChronoBoostUseInvoke;
+            _controls.Gameplay.Interact.performed += OnInteractInvoke;
         }
 
         private void OnStartCoreAimInvoke(InputAction.CallbackContext context) => OnStartCoreAim?.Invoke();
         private void OnEndCoreAimInvoke(InputAction.CallbackContext context) => OnEndCoreAim?.Invoke();
+        private void OnCancelAimInvoke(InputAction.CallbackContext context) => OnCancelCoreAim?.Invoke();
         private void OnCoreReturnInvoke(InputAction.CallbackContext context) => OnCoreReturn?.Invoke();
         private void OnTeleportToCoreInvoke(InputAction.CallbackContext context) => OnTeleportToCore?.Invoke();
         private void OnAttackInvoke(InputAction.CallbackContext context) => OnAttack?.Invoke();
         private void OnDashInvoke(InputAction.CallbackContext context) => OnDash?.Invoke();
+        private void OnRepairPackUseInvoke(InputAction.CallbackContext context) => OnRepairPackUse?.Invoke();
+        private void OnImmortalityModuleUseInvoke(InputAction.CallbackContext context) => OnImmortalityModuleUse?.Invoke();
+        private void OnCoreChargeUseInvoke(InputAction.CallbackContext context) => OnCoreChargeUse?.Invoke();
+        private void OnChronoBoostUseInvoke(InputAction.CallbackContext context) => OnChronoBoostUse?.Invoke();
+        private void OnInteractInvoke(InputAction.CallbackContext context) => OnInteract?.Invoke();
 
         private void OnDestroy()
         {
@@ -120,10 +139,16 @@ namespace Player
         {
             _controls.Gameplay.CoreShoot.started -= OnStartCoreAimInvoke;
             _controls.Gameplay.CoreShoot.canceled -= OnEndCoreAimInvoke;
+            _controls.Gameplay.CancelAim.canceled -= OnCancelAimInvoke;
             _controls.Gameplay.CoreReturn.performed -= OnCoreReturnInvoke;
             _controls.Gameplay.TeleportToCore.performed -= OnTeleportToCoreInvoke;
             _controls.Gameplay.Attack.performed -= OnAttackInvoke;
             _controls.Gameplay.Dash.performed -= OnDashInvoke;
+            _controls.Gameplay.UseRepairPack.started -= OnRepairPackUseInvoke;
+            _controls.Gameplay.UseImmortalityModule.started -= OnImmortalityModuleUseInvoke;
+            _controls.Gameplay.UseCoreCharger.started -= OnCoreChargeUseInvoke;
+            _controls.Gameplay.UseChronoBooster.started -= OnChronoBoostUseInvoke;
+            _controls.Gameplay.Interact.performed -= OnInteractInvoke;
         }
     }
 }

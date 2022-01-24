@@ -51,7 +51,18 @@ namespace Enemies
         
         public Vector3 FacingDirection { get; private set; }
         public FacingType CurrentFacingType { get; set; }
-        public bool FleeFromDestination { get; set; }
+        
+        private bool _fleeFromDestination;
+
+        public bool FleeFromDestination
+        {
+            get => _fleeFromDestination;
+            set
+            {
+                _fleeFromDestination = value;
+                Specie.Animator.SetBool("Flee", value);
+            }
+        }
 
         public void Freeze() => _freezed = true;
         public void Unfreeze() => _freezed = false;
@@ -64,6 +75,8 @@ namespace Enemies
 
         private void Move()
         {
+            print(_freezed);
+            Specie.Animator.SetFloat("Speed", _velocity.magnitude);
             if (_freezed || Specie.Status.IsStunned)
             {
                 _velocity = Vector3.zero;
@@ -81,8 +94,9 @@ namespace Enemies
             }
 
             _velocity = Vector3.Lerp(_velocity, targetDirection.WithY(0) * _maxSpeed * Time.fixedDeltaTime,
-                Time.fixedDeltaTime);
-            Specie.Rigidbody.position += _velocity;
+                Time.fixedDeltaTime * _acceleration);
+            
+            Specie.Rigidbody.position += (FleeFromDestination ? -1 : 1) * _velocity;
         }
 
         private void FaceTarget()
@@ -90,8 +104,7 @@ namespace Enemies
             if (CurrentFacingType == FacingType.Movement && _velocity.magnitude > 0)
                 FacingDirection = _velocity.normalized;
             else if (CurrentFacingType == FacingType.Destination)
-                FacingDirection = (FleeFromDestination ? -1 : 1) *
-                                  (Destination.position - transform.position).WithY(0).normalized;
+                FacingDirection = (Destination.position - transform.position).WithY(0).normalized;
 
             float z = -FacingDirection.XZtoXY().Rotated(-90).ToDegrees();
             transform.rotation = Quaternion.Euler(0, z, 0);
@@ -110,7 +123,6 @@ namespace Enemies
             Specie.Status.Stun(int.MaxValue);
             for (float i = force; i > 0.2f; i = Mathf.Lerp(i, 0, drag * Time.fixedDeltaTime))
             {
-                print(i);
                 Specie.Rigidbody.position += direction * i * Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }

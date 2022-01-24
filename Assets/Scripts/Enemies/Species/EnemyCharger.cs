@@ -7,14 +7,13 @@ using Random = UnityEngine.Random;
 
 namespace Enemies.Species
 {
-    public class RegualrEnemy : EnemySpecie
+    public class EnemyCharger : EnemySpecie
     {
         [Header("General")]
         [SerializeField] private float _farSpeed;
         [SerializeField] private float _closeSpeed;
         [SerializeField] private Material _regularMaterial;
         [SerializeField] private Material _chargingMaterial;
-        [SerializeField] private MeshRenderer _meshRenderer;
         [Header("Charge")]
         [SerializeField] private float _chargeMinCooldown; 
         [SerializeField] private float _chargeMaxCooldown; 
@@ -22,7 +21,6 @@ namespace Enemies.Species
         [SerializeField] private float _chargeDelay;
         [SerializeField] private float _chargeDistance;
         [SerializeField] private float _chargeSpeed;
-        [SerializeField] private float _chargeDamage;
 
         [Inject]
         private PlayerMarker _playerMarker;
@@ -30,7 +28,6 @@ namespace Enemies.Species
         [Inject]
         private void Construct(PlayerMarker playerMarker)
         {
-            print("Injecscheno");
             Movement.CurrentFacingType = EnemyMovement.FacingType.Movement;
             _playerMarker = playerMarker;
             Movement.Destination = playerMarker.transform;
@@ -57,10 +54,11 @@ namespace Enemies.Species
         {
             Movement.CurrentFacingType = EnemyMovement.FacingType.Destination;
             yield return new WaitForSeconds(0.1f);
+            Movement.CurrentFacingType = EnemyMovement.FacingType.None;
             
             Status.ForceExitStun();
             Status.CannotBeStunned = true;
-            _meshRenderer.material = _chargingMaterial;
+            Animator.SetBool("Charge", true);
 
             Movement.Freeze();
             yield return new WaitForSeconds(_chargeDelay);
@@ -72,12 +70,12 @@ namespace Enemies.Species
                 Rigidbody.position += direction * _chargeSpeed * Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
+            Animator.SetBool("Charge", false);
 
             Status.CannotBeStunned = false;
             AttackArea.Active = false;
             Movement.CurrentFacingType = EnemyMovement.FacingType.Movement;
             Movement.Unfreeze();
-            _meshRenderer.material = _regularMaterial;
             ReloadCharge();
         }
 

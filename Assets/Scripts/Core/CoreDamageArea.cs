@@ -15,16 +15,26 @@ namespace Core
         [SerializeField] private float _radiusBonus;
         [SerializeField] private int _bonuses;
 
+        public void FullyCharge()
+        {
+            for (int i = 0; i < _bonuses; i++)
+            {
+                UseBonus();
+            }
+        }
+        
         private void Awake()
         {
-            _core.OnReflect += () =>
-            {
-                if (_bonuses <= 0)
-                    return;
-                _bonuses--;
-                _damagePerSecond += _damageBonus;
-                transform.localScale += new Vector3(_radiusBonus, 0, _radiusBonus);
-            };
+            _core.OnReflect += UseBonus;
+        }
+
+        private void UseBonus()
+        {
+            if (_bonuses <= 0)
+                return;
+            _bonuses--;
+            _damagePerSecond += _damageBonus;
+            transform.localScale += new Vector3(_radiusBonus, 0, _radiusBonus);
         }
 
         private void OnTriggerStay(Collider other)

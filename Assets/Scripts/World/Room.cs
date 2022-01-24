@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using NyarlaEssentials;
 using Player;
 using UnityEngine;
-using Zenject;
+using Tutorial;
 using Random = UnityEngine.Random;
 
 namespace World
@@ -20,7 +19,8 @@ namespace World
         private float _targetY;
         private bool _competed = true;
         private List<Vector3>[] _enemyWaves;
-        public PlayerMarker _playerMarker { get; set; }
+        public PlayerMarker PlayerMarker { get; set; }
+        public Tutorials Tutorials { get; set; }
         private List<EnemyStatus> _enemiesAlive = new List<EnemyStatus>();
         
         public WallPiece GetExitWall(int index) => _exitWalls[index];
@@ -34,7 +34,9 @@ namespace World
             for (int wave = 0; wave < waves; wave++)
             {
                 _enemyWaves[wave] = new List<Vector3>();
-                int enemies = 5 - waves + Random.Range(-1, 1);
+                int enemies = 2;
+                if (Random.value < 0.3f * waves)
+                    enemies++;
                 for (int enemy = 0; enemy < enemies; enemy++)
                 {
                     Vector3 relativePosition = _enemyBounds.bounds.RandomPointInBounds() - transform.position;
@@ -49,8 +51,8 @@ namespace World
         public void Show()
         {
             _targetY = 0;
-            _playerMarker.CurrentRoom = this;
-            _playerMarker.Core.ReturnCore();
+            PlayerMarker.CurrentRoom = this;
+            PlayerMarker.Core.ReturnCore();
             if (!_competed)
                 StartCoroutine(Combat());
         }
@@ -62,9 +64,22 @@ namespace World
 
         private IEnumerator Combat()
         {
+            foreach (var exitWall in _exitWalls)
+                exitWall.LockDoor();
+
+            yield return new WaitForSeconds(0.3f);
+            if (Tutorials.MechanicTutorialProgress < Tutorials.MechanicTutorialsTotal)
+            {
+                TutorialWindow.Instance.Show("mechanic" + Tutorials.MechanicTutorialProgress);
+            }
+            
+            Tutorials.MechanicTutorialProgress++;
+
+            PlayerMarker.Status.IsInCombat = true;
             foreach (var wave in _enemyWaves)
             {
                 yield return new WaitForSeconds(1);
+                
                 foreach (var beacon in wave)
                 {
                     Vector3 position = transform.position + beacon;
@@ -80,6 +95,10 @@ namespace World
                 yield return new WaitUntil(() => _enemiesAlive.Count == 0);
             }
             _competed = true;
+            PlayerMarker.Status.IsInCombat = false;
+            
+            foreach (var exitWall in _exitWalls)
+                exitWall.UnlockDoor();
         }
         
         private void FixedUpdate()

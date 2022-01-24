@@ -2,6 +2,7 @@
 using System.Collections;
 using NyarlaEssentials;
 using Player;
+using Tutorial;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -13,22 +14,24 @@ namespace World
         private const float RoomSize = 17.5f;
         
         [SerializeField] private GameObject _roomPrefab;
-        [SerializeField] private int _roomsTotal;
+        [SerializeField] private int _additionalRooms;
 
         private PlayerMarker _playerMarker;
+        private Tutorials _tutorials;
 
         [Inject]
-        private void Construct(PlayerMarker playerMarker)
+        private void Construct(PlayerMarker playerMarker, Tutorials tutorials)
         {
             _playerMarker = playerMarker;
+            _tutorials = tutorials;
             StartCoroutine(Generate());
         }
 
         private IEnumerator Generate()
         {
             int nextFloorAtWing = Random.Range(0, 4);
-            int[] roomsAtWing = new int[]{1, 1, 1, 1};
-            for (int i = 0; i < _roomsTotal - 4; i++)
+            int[] roomsAtWing = {1, 1, 1, 1};
+            for (int i = 0; i < _additionalRooms; i++)
             {
                 roomsAtWing[Random.Range(0, 4)]++;
             }
@@ -58,6 +61,8 @@ namespace World
                     newRoom.Generate(room == roomsAtWing[wing] - 1);
                     previousRoom = newRoom;
                 }
+                if (wing == nextFloorAtWing)
+                    previousRoom.GetExitWall(wing).TurnIntoFloorExit();
             }
             yield return null;
             startingRoom.Show();
@@ -66,7 +71,8 @@ namespace World
         public Room CreateRoom(Vector3 position)
         {
             Room room = Instantiate(_roomPrefab, position.WithY(0), Quaternion.identity).GetComponent<Room>();
-            room._playerMarker = _playerMarker;
+            room.PlayerMarker = _playerMarker;
+            room.Tutorials = _tutorials;
             return room;
         }
 
