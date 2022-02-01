@@ -1,7 +1,6 @@
 ﻿using System;
 using NyarlaEssentials;
 using Player;
-using Tutorial;
 using UnityEngine;
 
 namespace Consumable
@@ -16,13 +15,6 @@ namespace Consumable
             {
                 playerConsumables.AddConsumableOfType(_type);
 
-                if (!Tutorials.ConsumableTutorialsSeen.Contains(_type))
-                {
-                    print(_type.ToString());
-                    Tutorials.ConsumableTutorialsSeen.Add(_type);
-                    TutorialWindow.Instance.Show(_type.ToString());
-                }
-                
                 Destroy(gameObject);
             }
         }

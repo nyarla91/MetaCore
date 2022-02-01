@@ -74,7 +74,6 @@ namespace Enemies
             {
                 Progression.Kills++;
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity); 
-                SoundPlayer.Play("enemyDeath", 1);
             };
         }
 

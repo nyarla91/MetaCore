@@ -721,11 +721,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c130ab8c0cc4267b2f90da37fb14f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 0}
+  _rectTransform: {fileID: 0}
   _canvasGroup: {fileID: 236957065}
   _text: {fileID: 608581378}
   _label: {fileID: 1040067400}
   _window: {fileID: 969531471}
   _illustration: {fileID: 2048051413}
+  _tutorials: {fileID: 0}
+  _t: 0
+  _targetT: 0
+  _neverShow: 0
 --- !u!114 &236957067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5799,144 +5805,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86061b154482481f8c427a6c20b6cdc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &6988786242606366939
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 877.00146
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 533.0636
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.3927956
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381509, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[0]._name
-      value: attack1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[1]._name
-      value: attack2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[2]._name
-      value: attack3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[3]._name
-      value: teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[4]._name
-      value: death
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[5]._name
-      value: use
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[6]._name
-      value: damage
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[7]._name
-      value: shoot
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[8]._name
-      value: enemyDeath
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[9]._name
-      value: ricochet
-      objectReference: {fileID: 0}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[0]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 7b889162724f05c4f95da46adbd50ef7, type: 3}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[1]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: b9bcff787e03ea4448419527c126e177, type: 3}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[2]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: b39ec697f76aec04fb8081c0c4f6dbae, type: 3}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[3]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: dc9f34f8f8083485187956f1e0a5df2f, type: 3}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[4]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 70fe92b578c764a68b540870f64f4ef9, type: 3}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[5]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 6330390a4bc54504185cc557dbb6cb4e, type: 3}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[6]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: e196615aab553a14ab4e1aeb462c195c, type: 3}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[7]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: b39ec697f76aec04fb8081c0c4f6dbae, type: 3}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[8]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: e87fb2e782bcac14d82191fa02c2c841, type: 3}
-    - target: {fileID: 6988786243267381510, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: _soundLibary.Array.data[9]._sound
-      value: 
-      objectReference: {fileID: 8300000, guid: b7e1eca6777e5e24d974ba04b93c56ac, type: 3}
-    - target: {fileID: 6988786243267381511, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}
-      propertyPath: m_Name
-      value: SoundPlayer
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7bbe323c218a06b4bbfd983109cc561d, type: 3}

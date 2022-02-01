@@ -1,24 +1,17 @@
-using System;
-using System.Collections;
 using Project;
-using Tutorial;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Zenject;
 
 namespace Zenject
 {
     public class ProjectInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _controlsTypePrefab;
-        [SerializeField] private GameObject _tutorialsPrefab;
         [SerializeField] private GameObject _musicPrefab;
 
         public override void InstallBindings()
         {
             BindControls();
             BindControlsType();
-            BindTutorials();
             Container.InstantiatePrefab(_musicPrefab, Vector3.zero, Quaternion.identity, null);
         }
         
@@ -34,14 +27,6 @@ namespace Zenject
                 Vector3.zero, Quaternion.identity, null).GetComponent<ControlsType>();
             
             Container.Bind<ControlsType>().FromInstance(controlsType).AsSingle();
-        }
-
-        private void BindTutorials()
-        {
-            Tutorials tutorials = Container.InstantiatePrefabForComponent<Tutorials>(_tutorialsPrefab,
-                Vector3.zero, Quaternion.identity, null).GetComponent<Tutorials>();
-            
-            Container.Bind<Tutorials>().FromInstance(tutorials).AsSingle();
         }
     }
 }

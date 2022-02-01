@@ -5,7 +5,6 @@ using NyarlaEssentials;
 using Player;
 using Project;
 using UnityEngine;
-using Tutorial;
 using Random = UnityEngine.Random;
 
 namespace World
@@ -21,7 +20,6 @@ namespace World
         private bool _competed = true;
         private List<Vector3>[] _enemyWaves;
         public PlayerMarker PlayerMarker { get; set; }
-        public Tutorials Tutorials { get; set; }
         private List<EnemyStatus> _enemiesAlive = new List<EnemyStatus>();
         
         public WallPiece GetExitWall(int index) => _exitWalls[index];
@@ -69,13 +67,7 @@ namespace World
                 exitWall.LockDoor();
 
             yield return new WaitForSeconds(0.3f);
-            if (Tutorials.MechanicTutorialProgress < Tutorials.MechanicTutorialsTotal)
-            {
-                TutorialWindow.Instance.Show("mechanic" + Tutorials.MechanicTutorialProgress);
-            }
             
-            Tutorials.MechanicTutorialProgress++;
-
             PlayerMarker.Status.IsInCombat = true;
             Music.Instance.TargetVolume = 1;
             foreach (var wave in _enemyWaves)

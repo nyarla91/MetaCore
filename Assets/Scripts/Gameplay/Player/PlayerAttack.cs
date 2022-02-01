@@ -66,7 +66,6 @@ namespace Player
             _attackReadyCooldownLeft = _shortCooldown;
             int attackNumber = 4 - _attacksLeft;
             Marker.Animator.SetInteger("AttackNumber", attackNumber);
-            SoundPlayer.Play($"attack" + attackNumber.ToString(), 1f);
             _attacksLeft--;
             _attacksRestoreCooldownLeft = _longCooldown;
 

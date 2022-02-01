@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using Enemies;
 using NyarlaEssentials;
-using Tutorial;
 using UnityEngine;
 
-namespace Enemies
+namespace Gameplay.Enemies
 {
     public class EnemyDrop : EnemyComponent
     {
@@ -20,10 +20,7 @@ namespace Enemies
             if (Random.value > _dropChance)
                 return;
 
-            GameObject consumable = Tutorials.MechanicTutorialProgress < Tutorials.MechanicTutorialsTotal
-                ? _consumables[0]
-                : _consumables.ChooseRandomElement();
-            Instantiate(consumable, transform.position, Quaternion.identity);
+            Instantiate(_consumables.ChooseRandomElement(), transform.position, Quaternion.identity);
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using NyarlaEssentials;
+using Player;
+using Project;
 using UnityEngine;
 
-namespace Player
+namespace Gameplay.Player
 {
     public class PlayerMovement : PlayerComponent
     {
@@ -88,16 +89,24 @@ namespace Player
             Freeze();
             Vector3 direction = Input.RelativeMoveVector.normalized;
             _dashCurrentAnimationModifier = _dashAnimationModifier;
+            gameObject.layer = Layers.PlayerIFrame;
             for (float i = 0; i < _dashDistance; i += _dashSpeed * Time.fixedDeltaTime)
             {
                 Rigidbody.velocity= direction * _dashSpeed;
                 yield return new WaitForFixedUpdate();
             }
-            _dashCurrentAnimationModifier = 1;
-            Unfreeze();
 
+            EndDash();
+            
             yield return new WaitForSeconds(_dashCooldown);
             _dashReady = true;
+        }
+
+        private void EndDash()
+        {
+            _dashCurrentAnimationModifier = 1;
+            gameObject.layer = Layers.Player;
+            Unfreeze();
         }
     }
 }

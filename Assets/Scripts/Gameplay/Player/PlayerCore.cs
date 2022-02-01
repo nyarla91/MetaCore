@@ -40,7 +40,6 @@ namespace Player
             OnCoreShoot += () =>
             {
                 _coreInPlayer.SetActive(false);
-                SoundPlayer.Play("shoot", 1);
             };
             OnCoreCollect += () => _coreInPlayer.SetActive(true);
             //Input.OnCancelCoreAim += ExecutePostAiming;
@@ -105,7 +104,6 @@ namespace Player
             if (!_isCoreOut || _teleportCooldownLeft > 0)
                 return;
 
-            SoundPlayer.Play("teleport", 2);
             Rigidbody.position = _projectile.transform.position;
             _teleportCooldownLeft = _teleportCooldown;
             _projectile.Collect();

@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Graphics;
-using NyarlaEssentials.Sound;
 using UI;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using World;
 
 namespace Player
@@ -75,7 +73,6 @@ namespace Player
                 MessageWindow.Instance.Show("! You are already at full health !", 3);
                 return;
             }
-            SoundPlayer.Play("use", 1);
             Status.RestoreHealth(RepairAmmount);
             RemoveOneConsumableOfType(ConsumableType.RepairPack);
         }
@@ -89,7 +86,6 @@ namespace Player
                 MessageWindow.Instance.Show("! The core is in you !", 2);
                 return;
             }
-            SoundPlayer.Play("use", 1);
             Core.Projectile.DamageArea.FullyCharge();
             RemoveOneConsumableOfType(ConsumableType.CoreCharger);
         }
@@ -103,7 +99,6 @@ namespace Player
                 MessageWindow.Instance.Show("! You are already immortal !", 2);
                 return;
             }
-            SoundPlayer.Play("use", 1);
             _immortalityModuleCoroutine = StartCoroutine(ImmortalityModuleUsage());
             RemoveOneConsumableOfType(ConsumableType.ImmortalityModule);
         }
@@ -117,7 +112,6 @@ namespace Player
                 MessageWindow.Instance.Show("! You are already chono boosted and teleport has no cooldown !", 4);
                 return;
             }
-            SoundPlayer.Play("use", 1);
             _chronoBoosterCoroutine = StartCoroutine(ChronoBoosterUsage());
             RemoveOneConsumableOfType(ConsumableType.ChronoBooster);
         }

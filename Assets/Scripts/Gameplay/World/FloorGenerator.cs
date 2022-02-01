@@ -2,7 +2,6 @@
 using System.Collections;
 using NyarlaEssentials;
 using Player;
-using Tutorial;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -17,13 +16,11 @@ namespace World
         [SerializeField] private int _additionalRooms;
 
         private PlayerMarker _playerMarker;
-        private Tutorials _tutorials;
 
         [Inject]
-        private void Construct(PlayerMarker playerMarker, Tutorials tutorials)
+        private void Construct(PlayerMarker playerMarker)
         {
             _playerMarker = playerMarker;
-            _tutorials = tutorials;
             StartCoroutine(Generate());
         }
 
@@ -72,7 +69,6 @@ namespace World
         {
             Room room = Instantiate(_roomPrefab, position.WithY(0), Quaternion.identity).GetComponent<Room>();
             room.PlayerMarker = _playerMarker;
-            room.Tutorials = _tutorials;
             return room;
         }
 

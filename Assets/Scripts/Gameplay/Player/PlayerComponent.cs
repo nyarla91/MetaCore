@@ -1,4 +1,5 @@
-﻿using NyarlaEssentials;
+﻿using Gameplay.Player;
+using NyarlaEssentials;
 using UnityEngine;
 
 namespace Player

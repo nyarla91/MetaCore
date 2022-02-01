@@ -56,7 +56,6 @@ namespace Player
             if (_damageImmunityTimeLeft > 0 || ImmortaliityTimeLeft > 0)
                 return;
 
-            SoundPlayer.Play("damage", 1);
             if (Core.IsCoreOut)
             {
                 Health -= damage;
@@ -88,7 +87,6 @@ namespace Player
             OnDeath += () =>
             {
                 Music.Instance.TargetVolume = 0.1f;
-                SoundPlayer.Play("death", 3);
             };
         }
 

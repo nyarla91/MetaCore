@@ -167,8 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 3.5
   _acceleration: 20
-  _dashDistance: 3
-  _dashSpeed: 22
+  _dashDistance: 6
+  _dashSpeed: 35
   _dashCooldown: 0.7
   _dashAnimationModifier: 3
 --- !u!114 &5171858306639353828
