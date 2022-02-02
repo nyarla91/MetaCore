@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154e02c4ebcb40be8e563d54a469febd, type: 3}
+  m_Name: Blade
+  m_EditorClassIdentifier: 
+  _seriesRestorationTime: 0.7
+  _attacks:
+  - _swingTime: 0.1
+    _restorationTime: 0.5
+    _thrustForce: 7
+    _pushModifier: 1
+    _damageModifier: 1
+  - _swingTime: 0.1
+    _restorationTime: 0.5
+    _thrustForce: 7
+    _pushModifier: 1
+    _damageModifier: 1
+  - _swingTime: 0.1
+    _restorationTime: 0.2
+    _thrustForce: 7
+    _pushModifier: 1
+    _damageModifier: 1

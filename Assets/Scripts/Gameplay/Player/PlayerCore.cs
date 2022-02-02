@@ -19,8 +19,10 @@ namespace Player
         private CoreProjectile _projectile;
         private bool _isCoreOut;
         private float _teleportCooldownLeft;
+        private bool _isAiming;
 
         public bool IsCoreOut => _isCoreOut;
+        public bool IsAiming => _isAiming;
         public float TeleportCooldownLeft => _teleportCooldownLeft;
         public CoreProjectile Projectile => _projectile;
         
@@ -42,7 +44,7 @@ namespace Player
                 _coreInPlayer.SetActive(false);
             };
             OnCoreCollect += () => _coreInPlayer.SetActive(true);
-            //Input.OnCancelCoreAim += ExecutePostAiming;
+            Input.OnCancelCoreAim += InterruptAiming;
         }
 
         private void StartAiming() => StartCoroutine(Aiming());
@@ -51,7 +53,8 @@ namespace Player
         {
             if (IsCoreOut)
                 yield break;
-            
+
+            _isAiming = true;
             Marker.Animator.SetBool("Aiming", true);
             Movement.Freeze();
             _aimLine = Instantiate(_aimLine_prefab, transform.position, Quaternion.identity).transform;
@@ -78,16 +81,18 @@ namespace Player
             _isCoreOut = true;
             OnCoreShoot?.Invoke();
             
-            ExecutePostAiming();
+            InterruptAiming();
             
             void EndAiming() => endAiming = true;
         }
 
-        private void ExecutePostAiming()
+        public void InterruptAiming()
         {
+            _isAiming = false;
             Movement.Unfreeze();
             Marker.Animator.SetBool("Aiming", false);
-            _aimLine?.gameObject?.SelfDestruct();
+            if (_aimLine != null)
+                _aimLine.gameObject.SelfDestruct();
             StopAllCoroutines();
         }
 

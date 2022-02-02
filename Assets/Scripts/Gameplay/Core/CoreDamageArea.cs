@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Enemies;
 using NyarlaEssentials;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Core
         [SerializeField] private float _radiusBonus;
         [SerializeField] private int _bonuses;
 
+        private readonly List<EnemyStatus> _damagedEnemies = new List<EnemyStatus>();
+        
         public void FullyCharge()
         {
             for (int i = 0; i < _bonuses; i++)
@@ -37,12 +40,27 @@ namespace Core
             transform.localScale += new Vector3(_radiusBonus, 0, _radiusBonus);
         }
 
-        private void OnTriggerStay(Collider other)
+        private void Update()
         {
-            print(other);
+            foreach (var damagedEnemy in _damagedEnemies)
+            {
+                damagedEnemy?.TakeDamage(_damagePerSecond * Time.deltaTime, false);
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
             if (other.TryGetComponent(out EnemyStatus status))
             {
-                status.TakeDamage(_damagePerSecond * Time.deltaTime, false);
+                _damagedEnemies.Add(status);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.TryGetComponent(out EnemyStatus status) && _damagedEnemies.Contains(status))
+            {
+                _damagedEnemies.Remove(status);
             }
         }
     }

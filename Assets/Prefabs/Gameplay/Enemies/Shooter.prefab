@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 1320557124090788854}
   - component: {fileID: 1320557124090788855}
   - component: {fileID: 9025406613969088781}
+  - component: {fileID: 2877212684442695927}
   m_Layer: 6
   m_Name: Shooter
   m_TagString: Untagged
@@ -126,7 +127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosionPrefab: {fileID: 9056558330293912474, guid: 1378b52df40863f43af662a8a780d1ac, type: 3}
   _maxHealth: 60
-  _healthCounter: {fileID: 0}
 --- !u!114 &1320557124090788841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +204,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _containerSource: 0
+--- !u!114 &2877212684442695927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320557124090788849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d67296c7014a1cbd09b2b784edf613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4736082709913756956
 PrefabInstance:
   m_ObjectHideFlags: 0

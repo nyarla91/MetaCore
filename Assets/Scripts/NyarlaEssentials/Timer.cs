@@ -7,43 +7,47 @@ namespace NyarlaEssentials
     public class Timer
     {
 
-        private TimerContainer _container;
+        private MonoBehaviour _container;
         private float _timeElapsed;
         private bool _active;
+        private Coroutine _tickingCoroutine;
         
         public float Length { get; set; }
         public bool Loop { get; set; }
-        public bool FixedTime { get; set; }
+        public bool FixedTime { get; set; } = true;
 
         public float TimeElapsed => _timeElapsed;
         public float TimeLeft => Length - TimeElapsed;
 
         public Action OnExpired;
 
-        public Timer(float length, bool loop, bool fixedTime)
+        public Timer(MonoBehaviour container, float length, bool loop, bool fixedTime)
         {
+            _container = container;
             Length = length;
             Loop = loop;
             FixedTime = fixedTime;
             Init();
         }
 
-        public Timer(float length, bool loop)
+        public Timer(MonoBehaviour container, float length, bool loop)
         {
+            _container = container;
             Length = length;
             Loop = loop;
             Init();
         }
         
-        public Timer(float length)
+        public Timer(MonoBehaviour container, float length)
         {
+            _container = container;
             Length = length;
             Init();
         }
 
         public void Start()
         {
-            _container.StartCoroutine(Ticking());
+            _tickingCoroutine = _container.StartCoroutine(Ticking());
         }
 
         public void Restart()
@@ -60,12 +64,15 @@ namespace NyarlaEssentials
 
         public void Stop()
         {
-            _container.StopAllCoroutines();
+            if (_tickingCoroutine == null)
+                return;
+            
+            _container.StopCoroutine(_tickingCoroutine);
+            _tickingCoroutine = null;
         }
 
         private void Init()
         {
-            _container = new GameObject().AddComponent<TimerContainer>();
         }
 
         private IEnumerator Ticking()

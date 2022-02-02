@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 27110478778021394}
   - component: {fileID: 2920255939481876390}
   - component: {fileID: 84951386281126939}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DamageArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}

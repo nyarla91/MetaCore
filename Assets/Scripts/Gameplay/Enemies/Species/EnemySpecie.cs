@@ -1,4 +1,5 @@
-﻿using NyarlaEssentials;
+﻿using Gameplay.EntityPhysics;
+using NyarlaEssentials;
 using UnityEngine;
 
 namespace Enemies.Species
@@ -13,6 +14,7 @@ namespace Enemies.Species
         private EnemyStatus _status;
         private Rigidbody _rigidbody;
         private EnemyUI _ui;
+        private Thrust _thrust;
 
         public Material BeaconMaterial => _beaconMaterial;
         public EnemyMovement Movement => _movement ??= GetComponent<EnemyMovement>();
@@ -21,5 +23,6 @@ namespace Enemies.Species
         public EnemyAttackArea AttackArea => _attackArea;
         public EnemyUI UI => _ui ??= GetComponent<EnemyUI>();
         public Animator Animator => _animator;
+        public Thrust Thrust => _thrust ??= GetComponent<Thrust>();
     }
 }

@@ -17,7 +17,7 @@ namespace Gameplay.Player
 
         private Vector3 _velocity;
 
-        private bool _freezed;
+        public bool Freezed { get; private set; }
         private bool _dashReady = true;
         private float _dashCurrentAnimationModifier = 1;
 
@@ -28,12 +28,12 @@ namespace Gameplay.Player
         }
         public void Freeze()
         {
-            _freezed = true;
+            Freezed = true;
         }
 
         public void Unfreeze()
         {
-            _freezed = false;
+            Freezed = false;
         }
 
         private void Awake()
@@ -49,7 +49,7 @@ namespace Gameplay.Player
 
         private void Move()
         {
-            if (_freezed)
+            if (Freezed)
             {
                 _velocity = Vector3.zero;
                 return;
@@ -65,20 +65,22 @@ namespace Gameplay.Player
 
         private void UpdateAnimation()
         {
-            Vector2 originDirection = _freezed ? Input.AimVector : Input.MoveVector;
+            Vector2 originDirection = Freezed ? Input.AimVector : Input.MoveVector;
             if (originDirection.magnitude > 0)
                 transform.rotation = Quaternion.Euler(0, -originDirection.ToDegrees() + 110, 0);
 
-            Marker.Animator.SetBool("Run", !_freezed && Input.MoveVector.magnitude > 0);
+            Marker.Animator.SetBool("Run", !Freezed && Input.MoveVector.magnitude > 0);
             Marker.Animator.SetFloat("RunSpeed", Movement.MaxSpeed / 3.5f *
                                                  Input.MoveVector.magnitude * _dashCurrentAnimationModifier);
         }
 
         private void StartDash()
         {
-            if (!_dashReady || _freezed || Input.MoveVector.magnitude == 0)
+            if (!_dashReady || Input.MoveVector.magnitude == 0)
                 return;
             
+            Attack.InterruptAttack();
+            Core.InterruptAiming();
             StartCoroutine(Dash());
         }
         

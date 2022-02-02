@@ -1,109 +1,154 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Timers;
-using Enemies;
+using Gameplay.Weapon;
 using NyarlaEssentials;
-using NyarlaEssentials.Sound;
+using Player;
 using UnityEngine;
 
-namespace Player
+namespace Gameplay.Player
 {
     public class PlayerAttack : PlayerComponent
     {
         [Header("General")]
-        [SerializeField] private float _shortCooldown;
-        [SerializeField] private float _longCooldown;
-        [SerializeField] private int _attacksInARow;
+        [SerializeField] private WeaponClass _class;
+        [SerializeField] private PlayerAttackArea _attackArea;
+        [SerializeField] private float _attackBufferTime;
+        [SerializeField] private float _perfectHitTiming;
+        
         [Header("Damage")]
         [SerializeField] private float _damage;
-        [SerializeField] private float _cleaveRadius;
-        [Header("Thrust")]
-        [SerializeField] private float _thrustDrag;
-        [SerializeField] private float _thrustForce;
-        [SerializeField] [Range(0, 0.3f)] private float _thrustFinishThreshold;
-        [SerializeField] [Range(0, 1)] private float _enemyThrustModifier;
 
         [Header("Highlights")]
         [SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private Material _regularMaterial;
-        [SerializeField] private Material _attackMaterial;
+        [SerializeField] private Material _swingMaterial;
+        [SerializeField] private Material _restorationMaterial;
 
         private int _attacksLeft;
-        private bool _attackReady;
 
-        private float _attackReadyCooldownLeft;
-        private float _attacksRestoreCooldownLeft;
+        private Timer _seriesRestorationTimer;
+        private Coroutine _attackCoroutine;
+        private float _attackBuffer;
+        
+        private PerfectHitStage _perfectHitStage = PerfectHitStage.None;
+        private float _perfectHitTimeLeft;
+
+        public Action OnPerfectHitSucceed;
+        public Action OnPerfectHitFailed;
+        public Action OnPerfectHitWaiting;
+
+        public float PerfectHitTimeLeft => _perfectHitTimeLeft;
+
+        public void InterruptAttack()
+        {
+            if (_attackCoroutine == null)
+                return;
+
+            _meshRenderer.material = _regularMaterial;
+            StopCoroutine(_attackCoroutine);
+            _attackCoroutine = null;
+            Movement.Unfreeze();
+            Thrust.Force = Vector3.zero;
+            Marker.Animator.SetInteger("AttackNumber", 0);
+        }
+
+        public void DiscardSeries()
+        {
+            _perfectHitStage = PerfectHitStage.None;
+            _attacksLeft = _class.AttacksCount;
+            _seriesRestorationTimer.Reset();
+        }
         
         private void Awake()
         {
-            Input.OnAttack += StartAttacking;
+            _seriesRestorationTimer = new Timer(this, _class.SeriesRestorationTime);
+            Input.OnAttack += AttackPressed;
+            _seriesRestorationTimer.OnExpired += DiscardSeries;
+            _attacksLeft = _class.AttacksCount;
         }
 
         private void FixedUpdate()
         {
-            _attacksRestoreCooldownLeft -= Time.fixedDeltaTime;
-            if (_attacksRestoreCooldownLeft <= 0)
-                _attacksLeft = _attacksInARow;
+            _attackBuffer -= Time.fixedDeltaTime;
+            _perfectHitTimeLeft -= Time.fixedDeltaTime;
+            if (_perfectHitStage == PerfectHitStage.Waiting && _perfectHitTimeLeft < 0)
+            {
+                _perfectHitStage = 0;
+                _perfectHitStage = PerfectHitStage.Failed;
+                OnPerfectHitFailed?.Invoke();
+            }
             
-            _attackReadyCooldownLeft -= Time.fixedDeltaTime;
-            if (_attackReadyCooldownLeft <= 0)
-                _attackReady = true;
+            if (_attackBuffer > 0)
+                StartAttacking();
+        }
+
+        private void AttackPressed()
+        {
+            _attackBuffer = _attackBufferTime;
+            if (_perfectHitStage == PerfectHitStage.Waiting)
+            {
+                bool succeed = _perfectHitTimeLeft < _perfectHitTiming && _perfectHitTimeLeft > 0;
+                _perfectHitStage = succeed ? PerfectHitStage.Success : PerfectHitStage.Failed;
+                if (succeed)
+                {
+                    OnPerfectHitSucceed?.Invoke();
+                }
+                else
+                {
+                    OnPerfectHitFailed?.Invoke();
+                }
+            }
         }
 
         private void StartAttacking()
         {
-            if (_attacksLeft == 0 || !_attackReady)
+            if (_attacksLeft == 0  || Movement.Freezed || _attackCoroutine != null)
                 return;
-            
-            StopAllCoroutines();
-            StartCoroutine(Attacking());
+
+            _attackBuffer = 0;
+            _attackCoroutine = StartCoroutine(Attacking());
         }
 
         private IEnumerator Attacking()
         {
-            _attackReady = false;
-            _attackReadyCooldownLeft = _shortCooldown;
-            int attackNumber = 4 - _attacksLeft;
-            Marker.Animator.SetInteger("AttackNumber", attackNumber);
-            _attacksLeft--;
-            _attacksRestoreCooldownLeft = _longCooldown;
-
-            Movement.Freeze();
             Vector3 direction = Input.RelativeAimVector;
-
-            DealDamageInTheArea(direction);
-
-            _meshRenderer.material = _attackMaterial;
-            for (float i = 1; i > _thrustFinishThreshold; i = Mathf.Lerp(i, 0, Time.fixedDeltaTime * _thrustDrag))
+            WeaponAttack attack = _class.GetAttack(_class.AttacksCount - _attacksLeft);
+            int attackNumber = 4 - _attacksLeft;
+            print(attack.SwingTime);
+            
+            _seriesRestorationTimer.Restart();
+            Movement.Freeze();
+            _meshRenderer.material = _swingMaterial;
+            if (_attacksLeft == 2)
             {
-                Vector3 offset = direction * _thrustForce * i * Time.fixedDeltaTime;
-                Rigidbody.position += offset;
-                yield return new WaitForFixedUpdate();
+                _perfectHitStage = PerfectHitStage.Waiting;
+                _perfectHitTimeLeft = attack.RestorationTime + attack.SwingTime;
+                _perfectHitTiming = _perfectHitTimeLeft * 0.2f;
+                OnPerfectHitWaiting?.Invoke();
             }
-            _meshRenderer.material = _regularMaterial;
-            Movement.Unfreeze();
-            Marker.Animator.SetInteger("AttackNumber", 0);
+            
+            yield return new WaitForSeconds(attack.SwingTime);
+            
+            _attacksLeft--;
+            Marker.Animator.SetInteger("AttackNumber", attackNumber);
+            _meshRenderer.material = _restorationMaterial;
+            
+            Vector3 thrustForce = direction * attack.ThrustForce;
+            Thrust.Force = thrustForce;
+            _attackArea.Activate(_damage * attack.DamageModifier, thrustForce * attack.PushModifier);
+            
+            yield return new WaitForSeconds(attack.RestorationTime);
+            
+            _attackArea.Deactivate();
+            InterruptAttack();
         }
 
-        private void DealDamageInTheArea(Vector3 direction)
+        private enum PerfectHitStage
         {
-            Vector3 sphereCenter = Rigidbody.position + direction * _cleaveRadius;
-            Collider[] colliders= Physics.OverlapSphere(sphereCenter.WithY(0.5f),
-                _cleaveRadius, LayerMask.GetMask("Enemy"));
-
-            List<EnemyStatus> targets = new List<EnemyStatus>();
-            foreach (var collider in colliders)
-            {
-                if (collider.TryGetComponent<EnemyStatus>(out EnemyStatus status))
-                {
-                    targets.Add(status);
-                    status.Stun(_shortCooldown * 1.2f);
-                    status.TakeDamage(_damage, true);
-                    const float PushModifier = 0.6f;
-                    status.Specie.Movement.Push(direction, _thrustForce * PushModifier, _thrustDrag * PushModifier);
-                }
-            }
+            None,
+            Waiting,
+            Failed,
+            Success
         }
     }
 }

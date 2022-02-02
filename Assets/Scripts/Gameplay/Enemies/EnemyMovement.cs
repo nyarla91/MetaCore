@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Timers;
-using NyarlaEssentials;
-using TMPro;
+﻿using NyarlaEssentials;
 using UnityEngine;
 
 namespace Enemies
@@ -107,25 +103,6 @@ namespace Enemies
 
             float z = -FacingDirection.XZtoXY().Rotated(-90).ToDegrees();
             transform.rotation = Quaternion.Euler(0, z, 0);
-        }
-
-        public void Push(Vector3 direction, float force, float drag)
-        {
-            if (Specie.Status.CannotBeStunned)
-                return;
-            StopAllCoroutines();
-            StartCoroutine(Pushing(direction, force, drag));
-        }
-
-        private IEnumerator Pushing(Vector3 direction, float force, float drag)
-        {
-            Specie.Status.Stun(int.MaxValue);
-            for (float i = force; i > 0.2f; i = Mathf.Lerp(i, 0, drag * Time.fixedDeltaTime))
-            {
-                Specie.Rigidbody.position += direction * i * Time.fixedDeltaTime;
-                yield return new WaitForFixedUpdate();
-            }
-            Specie.Status.ForceExitStun();
         }
 
         public enum FacingType

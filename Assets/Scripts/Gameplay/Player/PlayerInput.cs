@@ -105,7 +105,7 @@ namespace Player
         {
             _controls.Gameplay.CoreShoot.started += OnStartCoreAimInvoke;
             _controls.Gameplay.CoreShoot.canceled += OnEndCoreAimInvoke;
-            _controls.Gameplay.CancelAim.canceled += OnCancelAimInvoke;
+            _controls.Gameplay.CancelAim.performed += OnCancelAimInvoke;
             _controls.Gameplay.CoreReturn.performed += OnCoreReturnInvoke;
             _controls.Gameplay.TeleportToCore.performed += OnTeleportToCoreInvoke;
             _controls.Gameplay.Attack.performed += OnAttackInvoke;
