@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Player;
 using Graphics;
 using UI;
 using UnityEngine;
@@ -51,10 +52,7 @@ namespace Player
 
         private void Awake()
         {
-            Input.OnRepairPackUse += UseRepairPack;
-            Input.OnImmortalityModuleUse += UseImmortalityModule;
-            Input.OnCoreChargeUse += UseCoreCharger;
-            Input.OnChronoBoostUse += UseChronoBooster;
+            
         }
 
         private void Start()
@@ -68,7 +66,7 @@ namespace Player
         {
             if (ConsumablesAmmountOfType(ConsumableType.RepairPack) < 1)
                 return;
-            if (Status.Health >= Status.MaxHealth)
+            if (Status.Health >= Status.TotalHealth)
             {
                 MessageWindow.Instance.Show("! You are already at full health !", 3);
                 return;
@@ -119,9 +117,9 @@ namespace Player
         private IEnumerator ChronoBoosterUsage()
         {
             Core.ForceRestoreTeleport();
-            Movement.MaxSpeed *= ChronoBoostMultiplier;
+            Movement.AddSpeedModifier("ChronoBoost",ChronoBoostMultiplier);
             yield return new WaitForSeconds(ChronoBoostDuration);
-            Movement.MaxSpeed /= ChronoBoostMultiplier;
+            Movement.RemoveSpeedModifier("ChronoBoost");
             _chronoBoosterCoroutine = null;
         }
 

@@ -76,7 +76,7 @@ namespace NyarlaEssentials
             return collection;
         }
 
-        public static T[] Copy<T>(T[] originCollection)
+        public static T[] Copy<T>(this T[] originCollection)
         {
             T[] finalCollection = new T[originCollection.Length];
             for (int i = 0; i < finalCollection.Length; i++)
@@ -104,5 +104,7 @@ namespace NyarlaEssentials
             }
             return final;
         }
+
+        public static bool HasIndex<T>(this T[] collection, int index) => index < collection.Length;
     }
 }

@@ -37,45 +37,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""CoreShoot"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
-                    ""id"": ""7061c01b-2abc-4e23-a392-eda8e7da6209"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""AimDirection"",
-                    ""type"": ""Value"",
-                    ""id"": ""717c6e28-936b-40ba-b9ce-a0d726b826c2"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""AimPosition"",
-                    ""type"": ""Value"",
-                    ""id"": ""4801d153-0506-494f-8989-e83ddc174acb"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""CoreReturn"",
-                    ""type"": ""Button"",
-                    ""id"": ""8228eccb-c205-40b0-a91e-35de0d294a18"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TeleportToCore"",
-                    ""type"": ""Button"",
-                    ""id"": ""7415433e-5bfd-4250-9183-8837373c5a3a"",
+                    ""id"": ""9ed5554c-2374-4fd7-9e4b-e2707617dec9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -91,49 +55,22 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Dash"",
-                    ""type"": ""Button"",
-                    ""id"": ""9ed5554c-2374-4fd7-9e4b-e2707617dec9"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""AimPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""4801d153-0506-494f-8989-e83ddc174acb"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""UseRepairPack"",
-                    ""type"": ""Button"",
-                    ""id"": ""c38202ba-eafd-40ca-829e-e200835d7ee0"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""AimDirection"",
+                    ""type"": ""Value"",
+                    ""id"": ""717c6e28-936b-40ba-b9ce-a0d726b826c2"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""UseImmortalityModule"",
-                    ""type"": ""Button"",
-                    ""id"": ""ba2eafee-5faf-4b57-9fa6-9e98c5090971"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""UseCoreCharger"",
-                    ""type"": ""Button"",
-                    ""id"": ""36ae6ab0-1774-448a-aa46-7e8a1e6175dd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""UseChronoBooster"",
-                    ""type"": ""Button"",
-                    ""id"": ""2032c7fe-9d6a-494e-a2fb-f82dbc6bca3d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""CancelAim"",
@@ -145,9 +82,54 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""CoreShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""7061c01b-2abc-4e23-a392-eda8e7da6209"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CoreReturn"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a426bf3-8a4f-4e7e-80d0-f456217148a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TeleportToCore"",
+                    ""type"": ""Button"",
+                    ""id"": ""7415433e-5bfd-4250-9183-8837373c5a3a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""f95c8662-4e85-4c61-b12f-b1c505d32e32"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""3299d3f1-4bb3-4ea1-b117-4906ca208bea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseHealing"",
+                    ""type"": ""Button"",
+                    ""id"": ""3fe2f6c0-99b4-4d29-afdf-2aaed1d230cb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -234,34 +216,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""63771625-619b-437f-bf59-671421c156bc"",
+                    ""id"": ""35dc39b3-b029-4ddb-bccc-9683107f82a6"",
                     ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.1,pressPoint=0.6)"",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": """",
                     ""action"": ""CoreShoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""11d70bde-1e0f-4352-88c3-a2c549f3d4da"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""AimDirection"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""150ec7d0-5e69-4803-b3e6-62e10adf053c"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
-                    ""action"": ""AimPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -289,23 +249,23 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""75a9b1d0-367b-4b12-bd06-a98f8c315a16"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""13601aa6-d912-4b1f-9b18-95e887887a6a"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""Attack"",
+                    ""action"": ""CoreReturn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e1618002-c6c4-46f3-9795-3f7d501ef9c4"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
+                    ""id"": ""ccb066b0-b73f-421d-bb5b-bce13e4cbdb0"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Hold(duration=0.1,pressPoint=0.9)"",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Attack"",
+                    ""groups"": """",
+                    ""action"": ""CoreReturn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -333,118 +293,52 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4e199eb9-b903-4d3b-bfb4-7dabf798562f"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""75a9b1d0-367b-4b12-bd06-a98f8c315a16"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""CoreReturn"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d4a671f2-9967-4710-947a-8c819d65acf5"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""id"": ""e1618002-c6c4-46f3-9795-3f7d501ef9c4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""CoreReturn"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b2a534b0-3b28-4da7-ad9b-4524c1bd2b84"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""id"": ""b8143db5-1203-4f0e-af14-7cfb691f409e"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""150ec7d0-5e69-4803-b3e6-62e10adf053c"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""UseRepairPack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""376a8ab5-6525-4986-b25d-4e3ea9e6155c"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""UseRepairPack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""aaadd1fd-720c-4a3c-8b9d-47efa2c66eb1"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""UseImmortalityModule"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""620db2e9-ca1e-4a9e-ace7-5ab9aec92e22"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
-                    ""action"": ""UseImmortalityModule"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d0ed9b20-cc3c-4100-9974-eb13f41b12f5"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
-                    ""action"": ""UseCoreCharger"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""11c1ee54-3872-4b23-8d6b-1a3eb7032841"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""UseCoreCharger"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9da45d5d-2788-4f1a-9133-9e39033f8600"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""UseChronoBooster"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""94a0b641-4bff-47ce-80e9-89a8c4e0ed68"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
-                    ""action"": ""UseChronoBooster"",
+                    ""action"": ""AimPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""07ca9dd0-5db8-4439-aebd-ca08ee79a51f"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
@@ -466,7 +360,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fc04f778-64f5-450b-96a5-cc64c07b5feb"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
@@ -482,6 +376,50 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6efc0d94-6c1a-4906-a498-488a2aeccbfb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""091132c8-3869-4c6d-9113-141babe7f8cd"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e99666be-4d57-4707-9dda-4572c65e09f4"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseHealing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""017ce3a0-f52d-4b28-849d-5a36a36d5803"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseHealing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -603,17 +541,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""a8142559-8a4e-47cd-9c86-91a222032bf6"",
                     ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchToKeyboardMouse"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b84ec18c-4c38-45b3-8d83-95dd5a43ff6a"",
-                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -878,8 +805,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""132f8cd3-929d-4da0-837e-2b17e8ba5665"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""8c45f810-ec9d-4ff9-81f5-bff98ae06ba2"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -889,8 +816,19 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8c45f810-ec9d-4ff9-81f5-bff98ae06ba2"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""132f8cd3-929d-4da0-837e-2b17e8ba5665"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""655ed72a-bac2-4bcb-8076-08492903cdea"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -978,19 +916,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
-        m_Gameplay_CoreShoot = m_Gameplay.FindAction("CoreShoot", throwIfNotFound: true);
-        m_Gameplay_AimDirection = m_Gameplay.FindAction("AimDirection", throwIfNotFound: true);
+        m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
+        m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
         m_Gameplay_AimPosition = m_Gameplay.FindAction("AimPosition", throwIfNotFound: true);
+        m_Gameplay_AimDirection = m_Gameplay.FindAction("AimDirection", throwIfNotFound: true);
+        m_Gameplay_CancelAim = m_Gameplay.FindAction("CancelAim", throwIfNotFound: true);
+        m_Gameplay_CoreShoot = m_Gameplay.FindAction("CoreShoot", throwIfNotFound: true);
         m_Gameplay_CoreReturn = m_Gameplay.FindAction("CoreReturn", throwIfNotFound: true);
         m_Gameplay_TeleportToCore = m_Gameplay.FindAction("TeleportToCore", throwIfNotFound: true);
-        m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
-        m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
-        m_Gameplay_UseRepairPack = m_Gameplay.FindAction("UseRepairPack", throwIfNotFound: true);
-        m_Gameplay_UseImmortalityModule = m_Gameplay.FindAction("UseImmortalityModule", throwIfNotFound: true);
-        m_Gameplay_UseCoreCharger = m_Gameplay.FindAction("UseCoreCharger", throwIfNotFound: true);
-        m_Gameplay_UseChronoBooster = m_Gameplay.FindAction("UseChronoBooster", throwIfNotFound: true);
-        m_Gameplay_CancelAim = m_Gameplay.FindAction("CancelAim", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
+        m_Gameplay_UseAbility = m_Gameplay.FindAction("UseAbility", throwIfNotFound: true);
+        m_Gameplay_UseHealing = m_Gameplay.FindAction("UseHealing", throwIfNotFound: true);
         // System
         m_System = asset.FindActionMap("System", throwIfNotFound: true);
         m_System_SwitchToKeyboardMouse = m_System.FindAction("SwitchToKeyboardMouse", throwIfNotFound: true);
@@ -1060,37 +996,33 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Move;
-    private readonly InputAction m_Gameplay_CoreShoot;
-    private readonly InputAction m_Gameplay_AimDirection;
+    private readonly InputAction m_Gameplay_Dash;
+    private readonly InputAction m_Gameplay_Attack;
     private readonly InputAction m_Gameplay_AimPosition;
+    private readonly InputAction m_Gameplay_AimDirection;
+    private readonly InputAction m_Gameplay_CancelAim;
+    private readonly InputAction m_Gameplay_CoreShoot;
     private readonly InputAction m_Gameplay_CoreReturn;
     private readonly InputAction m_Gameplay_TeleportToCore;
-    private readonly InputAction m_Gameplay_Attack;
-    private readonly InputAction m_Gameplay_Dash;
-    private readonly InputAction m_Gameplay_UseRepairPack;
-    private readonly InputAction m_Gameplay_UseImmortalityModule;
-    private readonly InputAction m_Gameplay_UseCoreCharger;
-    private readonly InputAction m_Gameplay_UseChronoBooster;
-    private readonly InputAction m_Gameplay_CancelAim;
     private readonly InputAction m_Gameplay_Interact;
+    private readonly InputAction m_Gameplay_UseAbility;
+    private readonly InputAction m_Gameplay_UseHealing;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
         public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
-        public InputAction @CoreShoot => m_Wrapper.m_Gameplay_CoreShoot;
-        public InputAction @AimDirection => m_Wrapper.m_Gameplay_AimDirection;
+        public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
+        public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
         public InputAction @AimPosition => m_Wrapper.m_Gameplay_AimPosition;
+        public InputAction @AimDirection => m_Wrapper.m_Gameplay_AimDirection;
+        public InputAction @CancelAim => m_Wrapper.m_Gameplay_CancelAim;
+        public InputAction @CoreShoot => m_Wrapper.m_Gameplay_CoreShoot;
         public InputAction @CoreReturn => m_Wrapper.m_Gameplay_CoreReturn;
         public InputAction @TeleportToCore => m_Wrapper.m_Gameplay_TeleportToCore;
-        public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
-        public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
-        public InputAction @UseRepairPack => m_Wrapper.m_Gameplay_UseRepairPack;
-        public InputAction @UseImmortalityModule => m_Wrapper.m_Gameplay_UseImmortalityModule;
-        public InputAction @UseCoreCharger => m_Wrapper.m_Gameplay_UseCoreCharger;
-        public InputAction @UseChronoBooster => m_Wrapper.m_Gameplay_UseChronoBooster;
-        public InputAction @CancelAim => m_Wrapper.m_Gameplay_CancelAim;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+        public InputAction @UseAbility => m_Wrapper.m_Gameplay_UseAbility;
+        public InputAction @UseHealing => m_Wrapper.m_Gameplay_UseHealing;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1103,45 +1035,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
-                @CoreShoot.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCoreShoot;
-                @CoreShoot.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCoreShoot;
-                @CoreShoot.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCoreShoot;
-                @AimDirection.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAimDirection;
-                @AimDirection.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAimDirection;
-                @AimDirection.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAimDirection;
+                @Dash.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
+                @Attack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
                 @AimPosition.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAimPosition;
                 @AimPosition.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAimPosition;
                 @AimPosition.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAimPosition;
+                @AimDirection.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAimDirection;
+                @AimDirection.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAimDirection;
+                @AimDirection.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAimDirection;
+                @CancelAim.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCancelAim;
+                @CancelAim.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCancelAim;
+                @CancelAim.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCancelAim;
+                @CoreShoot.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCoreShoot;
+                @CoreShoot.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCoreShoot;
+                @CoreShoot.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCoreShoot;
                 @CoreReturn.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCoreReturn;
                 @CoreReturn.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCoreReturn;
                 @CoreReturn.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCoreReturn;
                 @TeleportToCore.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTeleportToCore;
                 @TeleportToCore.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTeleportToCore;
                 @TeleportToCore.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTeleportToCore;
-                @Attack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
-                @Attack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
-                @Attack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
-                @Dash.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
-                @UseRepairPack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseRepairPack;
-                @UseRepairPack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseRepairPack;
-                @UseRepairPack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseRepairPack;
-                @UseImmortalityModule.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseImmortalityModule;
-                @UseImmortalityModule.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseImmortalityModule;
-                @UseImmortalityModule.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseImmortalityModule;
-                @UseCoreCharger.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseCoreCharger;
-                @UseCoreCharger.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseCoreCharger;
-                @UseCoreCharger.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseCoreCharger;
-                @UseChronoBooster.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseChronoBooster;
-                @UseChronoBooster.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseChronoBooster;
-                @UseChronoBooster.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseChronoBooster;
-                @CancelAim.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCancelAim;
-                @CancelAim.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCancelAim;
-                @CancelAim.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCancelAim;
                 @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @UseAbility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseAbility;
+                @UseAbility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseAbility;
+                @UseAbility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseAbility;
+                @UseHealing.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHealing;
+                @UseHealing.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHealing;
+                @UseHealing.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHealing;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -1149,45 +1075,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @CoreShoot.started += instance.OnCoreShoot;
-                @CoreShoot.performed += instance.OnCoreShoot;
-                @CoreShoot.canceled += instance.OnCoreShoot;
-                @AimDirection.started += instance.OnAimDirection;
-                @AimDirection.performed += instance.OnAimDirection;
-                @AimDirection.canceled += instance.OnAimDirection;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
                 @AimPosition.started += instance.OnAimPosition;
                 @AimPosition.performed += instance.OnAimPosition;
                 @AimPosition.canceled += instance.OnAimPosition;
+                @AimDirection.started += instance.OnAimDirection;
+                @AimDirection.performed += instance.OnAimDirection;
+                @AimDirection.canceled += instance.OnAimDirection;
+                @CancelAim.started += instance.OnCancelAim;
+                @CancelAim.performed += instance.OnCancelAim;
+                @CancelAim.canceled += instance.OnCancelAim;
+                @CoreShoot.started += instance.OnCoreShoot;
+                @CoreShoot.performed += instance.OnCoreShoot;
+                @CoreShoot.canceled += instance.OnCoreShoot;
                 @CoreReturn.started += instance.OnCoreReturn;
                 @CoreReturn.performed += instance.OnCoreReturn;
                 @CoreReturn.canceled += instance.OnCoreReturn;
                 @TeleportToCore.started += instance.OnTeleportToCore;
                 @TeleportToCore.performed += instance.OnTeleportToCore;
                 @TeleportToCore.canceled += instance.OnTeleportToCore;
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
-                @UseRepairPack.started += instance.OnUseRepairPack;
-                @UseRepairPack.performed += instance.OnUseRepairPack;
-                @UseRepairPack.canceled += instance.OnUseRepairPack;
-                @UseImmortalityModule.started += instance.OnUseImmortalityModule;
-                @UseImmortalityModule.performed += instance.OnUseImmortalityModule;
-                @UseImmortalityModule.canceled += instance.OnUseImmortalityModule;
-                @UseCoreCharger.started += instance.OnUseCoreCharger;
-                @UseCoreCharger.performed += instance.OnUseCoreCharger;
-                @UseCoreCharger.canceled += instance.OnUseCoreCharger;
-                @UseChronoBooster.started += instance.OnUseChronoBooster;
-                @UseChronoBooster.performed += instance.OnUseChronoBooster;
-                @UseChronoBooster.canceled += instance.OnUseChronoBooster;
-                @CancelAim.started += instance.OnCancelAim;
-                @CancelAim.performed += instance.OnCancelAim;
-                @CancelAim.canceled += instance.OnCancelAim;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @UseAbility.started += instance.OnUseAbility;
+                @UseAbility.performed += instance.OnUseAbility;
+                @UseAbility.canceled += instance.OnUseAbility;
+                @UseHealing.started += instance.OnUseHealing;
+                @UseHealing.performed += instance.OnUseHealing;
+                @UseHealing.canceled += instance.OnUseHealing;
             }
         }
     }
@@ -1303,19 +1223,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnCoreShoot(InputAction.CallbackContext context);
-        void OnAimDirection(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
         void OnAimPosition(InputAction.CallbackContext context);
+        void OnAimDirection(InputAction.CallbackContext context);
+        void OnCancelAim(InputAction.CallbackContext context);
+        void OnCoreShoot(InputAction.CallbackContext context);
         void OnCoreReturn(InputAction.CallbackContext context);
         void OnTeleportToCore(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
-        void OnUseRepairPack(InputAction.CallbackContext context);
-        void OnUseImmortalityModule(InputAction.CallbackContext context);
-        void OnUseCoreCharger(InputAction.CallbackContext context);
-        void OnUseChronoBooster(InputAction.CallbackContext context);
-        void OnCancelAim(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnUseAbility(InputAction.CallbackContext context);
+        void OnUseHealing(InputAction.CallbackContext context);
     }
     public interface ISystemActions
     {

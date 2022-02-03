@@ -1,36 +1,36 @@
 ﻿using System;
 using System.Collections;
+using Gameplay.Player;
 using Player;
 using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Zenject;
-using PlayerInput = Player.PlayerInput;
 
 namespace World
 {
     [RequireComponent(typeof(Collider))]
     public class DoorToNextFloor : MonoBehaviour
     {
-        private PlayerInput _playerInput;
+        private PlayerControls _playerControls;
         
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.TryGetComponent(out PlayerInput playerInput) || playerInput.Status.IsInCombat)
+            if (!other.TryGetComponent(out PlayerControls playerInput) || playerInput.Status.IsInCombat)
                 return;
 
-            _playerInput = playerInput;
+            _playerControls = playerInput;
             MessageWindow.Instance.Show("<sprite name=\"kF\">/<sprite name=\"gY\"> to go to the next floor");
             playerInput.OnInteract += GoToNextFloor;
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (!other.TryGetComponent(out PlayerInput playerInput))
+            if (!other.TryGetComponent(out PlayerControls playerInput))
                 return;
 
-            _playerInput = null;
+            _playerControls = null;
             MessageWindow.Instance.Hide();
             playerInput.OnInteract -= GoToNextFloor;
         }
@@ -38,9 +38,9 @@ namespace World
         private void GoToNextFloor()
         {
             MessageWindow.Instance.Hide();
-            _playerInput.DisabeControls();
-            _playerInput.Inventory.StoreInventoryToProgression();
-            _playerInput.Status.StoreHealthToProgression();
+            _playerControls.DisabeControls();
+            _playerControls.Inventory.StoreInventoryToProgression();
+            _playerControls.Status.StoreHealthToProgression();
             StartCoroutine(SceneTransition());
         }
 

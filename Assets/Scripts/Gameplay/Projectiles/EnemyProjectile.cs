@@ -1,3 +1,4 @@
+using Gameplay.Player;
 using Player;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ namespace Projectiles
         {
             if (other.TryGetComponent(out PlayerStatus playerStatus))
             {
-                playerStatus.TakeDamage(_damage);
+                playerStatus.TakeDamage(_damage, 0.3f);
                 Destroy(gameObject);
             }
             else if (other.gameObject.layer == 10)

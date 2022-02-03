@@ -46,7 +46,7 @@ namespace Gameplay.Player
             if (other.TryGetComponent(out EnemyStatus status) && !_affectedEnemies.Contains(other))
             {
                 _affectedEnemies.Add(other);
-                status.TakeDamage(Damage, true);
+                status.TakeDamage(Damage, PlayerDamageSource.Melee);
                 status.Specie.Thrust.Force = Force;
             }
         }

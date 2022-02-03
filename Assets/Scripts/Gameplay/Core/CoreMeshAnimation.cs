@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Core
+namespace Gameplay.Core
 {
     public class CoreMeshAnimation : MonoBehaviour
     {

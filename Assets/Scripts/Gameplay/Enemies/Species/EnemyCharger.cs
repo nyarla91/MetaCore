@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using Enemies;
+using Enemies.Species;
 using Player;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Enemies.Species
+namespace Gameplay.Enemies.Species
 {
     public class EnemyCharger : EnemySpecie
     {
+        private static List<EnemyCharger> _chargers = new List<EnemyCharger>();
+        
         [Header("General")]
         [SerializeField] private float _farSpeed;
         [SerializeField] private float _closeSpeed;
@@ -36,6 +41,7 @@ namespace Enemies.Species
         private void Awake()
         {
             ReloadCharge();
+            _chargers.Add(this);
         }
 
         private void FixedUpdate()
@@ -88,6 +94,11 @@ namespace Enemies.Species
             yield return new WaitUntil(() =>
                 Vector3.Distance(_playerMarker.transform.position, transform.position) < _chargeActivationDistance);
             StartCoroutine(Charge());
+        }
+
+        private void OnDestroy()
+        {
+            _chargers.Remove(this);
         }
     }
 }

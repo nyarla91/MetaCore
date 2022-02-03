@@ -1,48 +1,25 @@
-﻿using System;
+﻿using Player;
 using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Player
+namespace Gameplay.Player
 {
     public class PlayerUI : PlayerComponent
     {
-        [SerializeField] private float _shieldScaleSpeed;
-
         private PlayerUICluster _cluster;
-
-        private float _shieldsTargetT;
-        private float _shieldsT;
         
         [Inject]
         private void Construct(PlayerUICluster cluster)
         {
             _cluster = cluster;
-            Status.OnHealthPercentChanged += SetHealthBarLength;
-            Status.OnShieldsPercentChanged += SetShieldBarLength;
-            Core.OnCoreShoot += () => { _shieldsTargetT = 1; };
-            Core.OnCoreCollect += () => { _shieldsTargetT = 0; };
             Inventory.OnInventoryUpdated += UpdateInventory;
-        }
-        
-        private void SetHealthBarLength(float percent)
-        {
-            _cluster.HealthBarLine.rectTransform.localScale = new Vector3(percent, 1, 1);
-        }
-        private void SetShieldBarLength(float percent)
-        {
-            _cluster.ShieldBarLine.rectTransform.localScale = new Vector3(percent, 1, 1);
         }
 
         private void FixedUpdate()
         {
-            _shieldsT = Mathf.Lerp(_shieldsT, _shieldsTargetT, _shieldScaleSpeed * Time.fixedDeltaTime);
-            _cluster.ShieldBar.alpha = 1 - _shieldsT * 0.6f;
-            _cluster.ShieldBar.GetComponent<RectTransform>().localScale =
-                new Vector3(1 - _shieldsT * 0.2f, 1 - _shieldsT * 0.5f, 1);
-
             float teleportCooldownLeft = Core.TeleportCooldownLeft;
             float targetT = teleportCooldownLeft > 0 ? 0.6f : 1;
             float t = Mathf.Lerp(_cluster.TeleportCooldown.rectTransform.localScale.x, targetT, Time.fixedDeltaTime * 5);

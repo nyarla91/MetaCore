@@ -31,12 +31,12 @@ namespace Enemies
         public bool IsStunned => _isStunned;
         public bool CannotBeStunned { get; set; }
 
-        public Action<float, bool> OnTakeDamage;
+        public Action<float, PlayerDamageSource> OnTakeDamage;
         public Action OnDeath;
 
-        public void TakeDamage(float damage, bool isMelee)
+        public void TakeDamage(float damage, PlayerDamageSource source)
         {
-            OnTakeDamage?.Invoke(damage, isMelee);
+            OnTakeDamage?.Invoke(damage, source);
             Health -= damage;
         }
 
@@ -82,5 +82,11 @@ namespace Enemies
             OnDeath?.Invoke();
             Destroy(gameObject);
         }
+    }
+
+    public enum PlayerDamageSource
+    {
+        Melee,
+        Core
     }
 }

@@ -1,13 +1,13 @@
 ﻿using Gameplay.EntityPhysics;
-using Gameplay.Player;
 using NyarlaEssentials;
+using Player;
 using UnityEngine;
 
-namespace Player
+namespace Gameplay.Player
 {
     public class PlayerComponent : Transformer
     {
-        private PlayerInput _input;
+        private PlayerControls _controls;
         private PlayerMovement _movement;
         private PlayerCore _core;
         private Rigidbody _rigidbody;
@@ -16,9 +16,10 @@ namespace Player
         private PlayerUI _ui;
         private PlayerInventory _inventory;
         private PlayerMarker _marker;
+        private PlayerAbility _ability;
         private Thrust _thrust;
         
-        public PlayerInput Input => _input ??= GetComponent<PlayerInput>();
+        public PlayerControls Controls => _controls ??= GetComponent<PlayerControls>();
         public PlayerMovement Movement => _movement ??= GetComponent<PlayerMovement>();
         public PlayerCore Core => _core ??= GetComponent<PlayerCore>();
         public Rigidbody Rigidbody => _rigidbody ??= GetComponent<Rigidbody>();
@@ -28,5 +29,6 @@ namespace Player
         public PlayerInventory Inventory => _inventory ??= GetComponent<PlayerInventory>();
         public PlayerMarker Marker => _marker ??= GetComponent<PlayerMarker>();
         public Thrust Thrust => _thrust ??= GetComponent<Thrust>();
+        public PlayerAbility Ability => _ability ??= GetComponent<PlayerAbility>();
     }
 }

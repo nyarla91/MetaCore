@@ -1,30 +1,51 @@
 ﻿using System;
-using NyarlaEssentials.Sound;
+using Player;
 using Project;
 using UnityEngine;
 using World;
 
-namespace Player
+namespace Gameplay.Player
 {
     public class PlayerStatus : PlayerComponent
     {
         [SerializeField] private float _damageImmunityDuration;
-        [SerializeField] private float _maxHealth;
-        [SerializeField] private float _maxShields;
-        [SerializeField] private float _shieldRestorationRate;
+        [SerializeField] private float _totalHealth;
 
+        private float _maxHealth;
+        private float _health;
         private float _damageImmunityTimeLeft;
         public float ImmortaliityTimeLeft { get; set; }
-        [SerializeField] private float _health;
 
-        public float MaxHealth => _maxHealth;
+        public float TotalHealth
+        {
+            get => _totalHealth;
+            private set
+            {
+                _totalHealth = value;
+                ValidateHealth();
+                OnHealthChangedInvoke();
+            }
+        }
+
+        public float MaxHealth
+        {
+            get => _maxHealth;
+            set
+            {
+                _maxHealth = value;
+                ValidateHealth();
+                OnHealthChangedInvoke();
+            }
+        }
+
         public float Health
         {
             get => _health;
             private set
             {
-                _health = Mathf.Min(value, _maxHealth);
-                OnHealthPercentChanged?.Invoke(Mathf.Max(_health / _maxHealth, 0));
+                _health = Mathf.Min(value, _totalHealth);
+                ValidateHealth();
+                OnHealthChangedInvoke();
 
                 if (_health < 0 && !IsDead)
                 {
@@ -33,42 +54,21 @@ namespace Player
                 }
             }
         }
-        public Action<float> OnHealthPercentChanged;
-
-        [SerializeField] private float _shields;
-        public float Shields
-        {
-            get => _shields;
-            private set
-            {
-                _shields = Mathf.Min(value, _maxShields);
-                OnShieldsPercentChanged?.Invoke(Mathf.Max(_shields / _maxShields, 0));
-            }
-        }
-        public Action<float> OnShieldsPercentChanged;
+        
+        public Action<float, float, float> OnHealthChanged;
         
         public bool IsInCombat { get; set; }
         public bool IsDead { get; private set; }
         public Action OnDeath;
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, float maxHealthDamageModifier)
         {
             if (_damageImmunityTimeLeft > 0 || ImmortaliityTimeLeft > 0)
                 return;
 
-            if (Core.IsCoreOut)
-            {
-                Health -= damage;
-            }
-            else
-            {
-                Shields -= damage;
-                if (Shields < 0)
-                {
-                    Health += Shields;
-                    Shields = 0;
-                }   
-            }
+            maxHealthDamageModifier = Mathf.Min(1, maxHealthDamageModifier);
+            Health -= damage;
+            MaxHealth -= damage * maxHealthDamageModifier;
             _damageImmunityTimeLeft = _damageImmunityDuration;
         }
 
@@ -79,23 +79,37 @@ namespace Player
 
         public void StoreHealthToProgression() => Progression.Health = Health;
 
+        private void ValidateHealth()
+        {
+            if (_maxHealth > _totalHealth)
+                _maxHealth = _totalHealth;
+            if (_health > _maxHealth)
+                _health = _maxHealth;
+        }
+        
+        private void OnHealthChangedInvoke()
+        {
+            OnHealthChanged?.Invoke(_health, _maxHealth, _totalHealth);
+        }
+
         private void Awake()
         {
-            _maxHealth *= Progression.FloorDifficultiModifier;
-            Health = Progression.Health > 0 ? Progression.Health : _maxHealth;
-            Shields = _maxShields;
             OnDeath += () =>
             {
                 Music.Instance.TargetVolume = 0.1f;
             };
         }
 
+        private void Start()
+        {
+            MaxHealth = TotalHealth;
+            Health = MaxHealth;
+        }
+
         private void FixedUpdate()
         {
             _damageImmunityTimeLeft -= Time.fixedDeltaTime;
             ImmortaliityTimeLeft -= Time.fixedDeltaTime;
-            if (_damageImmunityTimeLeft <= 0)
-                Shields += _shieldRestorationRate * Time.fixedDeltaTime;
         }
     }
 }

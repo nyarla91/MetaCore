@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Core;
+using Gameplay.Player;
 using NyarlaEssentials;
 using NyarlaEssentials.Sound;
 using UnityEngine;
@@ -36,15 +37,15 @@ namespace Player
         
         private void Awake()
         {
-            Input.OnCoreReturn += ReturnCore;
-            Input.OnTeleportToCore += TeleportToCore;
-            Input.OnStartCoreAim += StartAiming;
+            Controls.OnCoreReturn += ReturnCore;
+            Controls.OnTeleportToCore += TeleportToCore;
+            Controls.OnStartCoreAim += StartAiming;
             OnCoreShoot += () =>
             {
                 _coreInPlayer.SetActive(false);
             };
             OnCoreCollect += () => _coreInPlayer.SetActive(true);
-            Input.OnCancelCoreAim += InterruptAiming;
+            Controls.OnCancelCoreAim += InterruptAiming;
         }
 
         private void StartAiming() => StartCoroutine(Aiming());
@@ -56,23 +57,23 @@ namespace Player
 
             _isAiming = true;
             Marker.Animator.SetBool("Aiming", true);
-            Movement.Freeze();
+            Movement.AddSpeedModifier("CoreAiming", 0.3f);
             _aimLine = Instantiate(_aimLine_prefab, transform.position, Quaternion.identity).transform;
             bool endAiming = false;
             
-            Input.OnEndCoreAim += EndAiming;
+            Controls.OnEndCoreAim += EndAiming;
             while (!endAiming)
             {
                 _aimLine.position = transform.position;
-                _aimLine.rotation = Quaternion.Euler(0, -Input.RelativeAimVector.XZtoXY().ToDegrees(), 0);
+                _aimLine.rotation = Quaternion.Euler(0, -Controls.RelativeAimVector.XZtoXY().ToDegrees(), 0);
                 yield return null;
             }
-            Input.OnEndCoreAim -= EndAiming;
+            Controls.OnEndCoreAim -= EndAiming;
 
             _projectile = Instantiate(_coreProjectilePrefab, transform.position, Quaternion.identity)
                 .GetComponent<CoreProjectile>();
             
-            _projectile.Init(Input.RelativeAimVector);
+            _projectile.Init(Controls.RelativeAimVector);
             _projectile.OnCoreDestroy += () =>
             {
                 _isCoreOut = false;
@@ -89,7 +90,7 @@ namespace Player
         public void InterruptAiming()
         {
             _isAiming = false;
-            Movement.Unfreeze();
+            Movement.RemoveSpeedModifier("CoreAiming");
             Marker.Animator.SetBool("Aiming", false);
             if (_aimLine != null)
                 _aimLine.gameObject.SelfDestruct();

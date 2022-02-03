@@ -11,12 +11,9 @@ namespace Core
     public class CoreDamageArea : Transformer
     {
         [SerializeField] private CoreProjectile _core;
-        [SerializeField] private float _damagePerSecond;
+        [SerializeField] private float _damage;
         [SerializeField] private float _damageBonus;
-        [SerializeField] private float _radiusBonus;
         [SerializeField] private int _bonuses;
-
-        private readonly List<EnemyStatus> _damagedEnemies = new List<EnemyStatus>();
         
         public void FullyCharge()
         {
@@ -36,31 +33,14 @@ namespace Core
             if (_bonuses <= 0)
                 return;
             _bonuses--;
-            _damagePerSecond += _damageBonus;
-            transform.localScale += new Vector3(_radiusBonus, 0, _radiusBonus);
-        }
-
-        private void Update()
-        {
-            foreach (var damagedEnemy in _damagedEnemies)
-            {
-                damagedEnemy?.TakeDamage(_damagePerSecond * Time.deltaTime, false);
-            }
+            _damage += _damageBonus;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out EnemyStatus status))
             {
-                _damagedEnemies.Add(status);
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.TryGetComponent(out EnemyStatus status) && _damagedEnemies.Contains(status))
-            {
-                _damagedEnemies.Remove(status);
+                status.TakeDamage(_damage, PlayerDamageSource.Core);
             }
         }
     }

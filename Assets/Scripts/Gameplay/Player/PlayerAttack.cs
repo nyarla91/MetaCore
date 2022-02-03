@@ -39,6 +39,9 @@ namespace Gameplay.Player
 
         public float PerfectHitTimeLeft => _perfectHitTimeLeft;
 
+        private static readonly int AnimationAttackStage = Animator.StringToHash("AttackState");
+        private static readonly int AnimationAttackSpeed = Animator.StringToHash("AttackSpeed");
+
         public void InterruptAttack()
         {
             if (_attackCoroutine == null)
@@ -49,7 +52,7 @@ namespace Gameplay.Player
             _attackCoroutine = null;
             Movement.Unfreeze();
             Thrust.Force = Vector3.zero;
-            Marker.Animator.SetInteger("AttackNumber", 0);
+            Marker.Animator.SetInteger(AnimationAttackStage, 0);
         }
 
         public void DiscardSeries()
@@ -62,7 +65,7 @@ namespace Gameplay.Player
         private void Awake()
         {
             _seriesRestorationTimer = new Timer(this, _class.SeriesRestorationTime);
-            Input.OnAttack += AttackPressed;
+            Controls.OnAttack += AttackPressed;
             _seriesRestorationTimer.OnExpired += DiscardSeries;
             _attacksLeft = _class.AttacksCount;
         }
@@ -111,7 +114,7 @@ namespace Gameplay.Player
 
         private IEnumerator Attacking()
         {
-            Vector3 direction = Input.RelativeAimVector;
+            Vector3 direction = Controls.RelativeAimVector;
             WeaponAttack attack = _class.GetAttack(_class.AttacksCount - _attacksLeft);
             int attackNumber = 4 - _attacksLeft;
             print(attack.SwingTime);
@@ -127,16 +130,19 @@ namespace Gameplay.Player
                 OnPerfectHitWaiting?.Invoke();
             }
             
+            Marker.Animator.SetInteger(AnimationAttackStage, 1);
+            Marker.Animator.SetFloat(AnimationAttackSpeed, 1 / attack.SwingTime);
             yield return new WaitForSeconds(attack.SwingTime);
             
             _attacksLeft--;
-            Marker.Animator.SetInteger("AttackNumber", attackNumber);
             _meshRenderer.material = _restorationMaterial;
             
             Vector3 thrustForce = direction * attack.ThrustForce;
             Thrust.Force = thrustForce;
             _attackArea.Activate(_damage * attack.DamageModifier, thrustForce * attack.PushModifier);
             
+            Marker.Animator.SetInteger(AnimationAttackStage, 2);
+            Marker.Animator.SetFloat(AnimationAttackSpeed, 1 / attack.RestorationTime);
             yield return new WaitForSeconds(attack.RestorationTime);
             
             _attackArea.Deactivate();

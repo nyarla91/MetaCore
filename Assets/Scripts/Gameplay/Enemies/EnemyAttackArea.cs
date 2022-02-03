@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Player;
 using Player;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace Enemies
             
             if (other.TryGetComponent(out PlayerStatus status))
             {
-                status.TakeDamage(_damage);
+                status.TakeDamage(_damage, 0.3f);
             }
         }
     }

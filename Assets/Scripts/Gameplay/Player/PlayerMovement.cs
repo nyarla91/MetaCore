@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using NyarlaEssentials;
 using Player;
 using Project;
@@ -16,6 +17,7 @@ namespace Gameplay.Player
         [SerializeField] private float _dashAnimationModifier;
 
         private Vector3 _velocity;
+        private Dictionary<string, float> _speedModifiers = new Dictionary<string, float>();
 
         public bool Freezed { get; private set; }
         private bool _dashReady = true;
@@ -24,8 +26,20 @@ namespace Gameplay.Player
         public float MaxSpeed
         {
             get => _maxSpeed;
-            set => _maxSpeed = value;
+            private set => _maxSpeed = value;
         }
+
+        public void AddSpeedModifier(string id, float modifier)
+        {
+            _speedModifiers.Add(id, modifier);
+        }
+
+        public void RemoveSpeedModifier(string id)
+        {
+            if (_speedModifiers.ContainsKey(id))
+                _speedModifiers.Remove(id);
+        }
+        
         public void Freeze()
         {
             Freezed = true;
@@ -38,7 +52,7 @@ namespace Gameplay.Player
 
         private void Awake()
         {
-            Input.OnDash += StartDash;
+            Controls.OnDash += StartDash;
         }
 
         private void FixedUpdate()
@@ -54,8 +68,13 @@ namespace Gameplay.Player
                 _velocity = Vector3.zero;
                 return;
             }
-            
-            Vector3 targetVelocity = Input.RelativeMoveVector * _maxSpeed * Time.deltaTime;
+
+            float speed = _maxSpeed;
+            foreach (var speedModifier in _speedModifiers.Values)
+            {
+                speed *= speedModifier;
+            }
+            Vector3 targetVelocity = Controls.RelativeMoveVector * speed * Time.deltaTime;
             _velocity = 
                 Vector3.Lerp(_velocity, targetVelocity, _acceleration * Time.fixedDeltaTime);
 
@@ -65,18 +84,18 @@ namespace Gameplay.Player
 
         private void UpdateAnimation()
         {
-            Vector2 originDirection = Freezed ? Input.AimVector : Input.MoveVector;
+            Vector2 originDirection = Freezed ? Controls.AimVector : Controls.MoveVector;
             if (originDirection.magnitude > 0)
                 transform.rotation = Quaternion.Euler(0, -originDirection.ToDegrees() + 110, 0);
 
-            Marker.Animator.SetBool("Run", !Freezed && Input.MoveVector.magnitude > 0);
+            Marker.Animator.SetBool("Run", !Freezed && Controls.MoveVector.magnitude > 0);
             Marker.Animator.SetFloat("RunSpeed", Movement.MaxSpeed / 3.5f *
-                                                 Input.MoveVector.magnitude * _dashCurrentAnimationModifier);
+                                                 Controls.MoveVector.magnitude * _dashCurrentAnimationModifier);
         }
 
         private void StartDash()
         {
-            if (!_dashReady || Input.MoveVector.magnitude == 0)
+            if (!_dashReady || Controls.MoveVector.magnitude == 0)
                 return;
             
             Attack.InterruptAttack();
@@ -89,7 +108,7 @@ namespace Gameplay.Player
             _dashReady = false;
             
             Freeze();
-            Vector3 direction = Input.RelativeMoveVector.normalized;
+            Vector3 direction = Controls.RelativeMoveVector.normalized;
             _dashCurrentAnimationModifier = _dashAnimationModifier;
             gameObject.layer = Layers.PlayerIFrame;
             for (float i = 0; i < _dashDistance; i += _dashSpeed * Time.fixedDeltaTime)

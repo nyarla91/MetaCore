@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 5056469164439997196}
   - component: {fileID: -5234143744122307442}
   - component: {fileID: 7439330941325731627}
+  - component: {fileID: 8734079321213932920}
   - component: {fileID: -3177521064926245909}
   - component: {fileID: -4750640581921547061}
   - component: {fileID: 516826489201542635}
@@ -307,11 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageImmunityDuration: 0.6
-  _maxHealth: 200
-  _maxShields: 40
-  _shieldRestorationRate: 4
-  _health: 0
-  _shields: 0
+  _totalHealth: 200
 --- !u!114 &7417629286662324995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5a4381e83f4361a6cc703f8883846f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _class: {fileID: 11400000, guid: b137b4ae5a5b84145b8ba36ee7cf1128, type: 2}
+  _class: {fileID: 11400000, guid: f622275dd63530b4b958faa1e56a9e18, type: 2}
   _attackArea: {fileID: 760282787948733764}
   _attackBufferTime: 0.4
   _perfectHitTiming: 0.18
@@ -379,7 +376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d6c202d007411ab8cf3de733517bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shieldScaleSpeed: 5
 --- !u!114 &7439330941325731627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +389,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shieldPrefab: {fileID: 9091091562221119470, guid: a8cdd4c9914ad4f40970204b36595142, type: 3}
+--- !u!114 &8734079321213932920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7510866661001589814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1e767f96ba4f95a40a030644e5b5dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manaSegments:
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
 --- !u!114 &-3177521064926245909
 MonoBehaviour:
   m_ObjectHideFlags: 0

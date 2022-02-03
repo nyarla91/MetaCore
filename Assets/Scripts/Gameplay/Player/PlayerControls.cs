@@ -1,14 +1,15 @@
 ﻿using System;
 using NyarlaEssentials;
+using Player;
 using Project;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using View;
 using Zenject;
 
-namespace Player
+namespace Gameplay.Player
 {
-    public class PlayerInput : PlayerComponent
+    public class PlayerControls : PlayerComponent
     {
         [SerializeField] [Range(0,1)] private float _innerDeadZone;
         [SerializeField] [Range(0,1)] private float _outerDeadZone;
@@ -33,14 +34,14 @@ namespace Player
 
         public Vector3 RelativeMoveVector => CameraView.Vector2ToRelative(MoveVector);
 
-        private Vector2 _stickVector;
+        private Vector2 _aimVector;
         public Vector2 AimVector
         {
             get
             {
                 if (_controlsType.IsGamepad)
                 {
-                    return _stickVector;
+                    return _aimVector;
                 }
                 return RelativeAimVector.XZtoXY().Rotated(CameraProperties.YRotation).normalized;
             }
@@ -65,11 +66,9 @@ namespace Player
         public Action OnTeleportToCore;
         public Action OnAttack;
         public Action OnDash;
-        public Action OnRepairPackUse;
-        public Action OnImmortalityModuleUse;
-        public Action OnCoreChargeUse;
-        public Action OnChronoBoostUse;
         public Action OnInteract;
+        public Action OnUseAbility;
+        public Action OnUseHealing;
 
         public void DisabeControls() => _controls.Gameplay.Disable();
 
@@ -90,9 +89,12 @@ namespace Player
         private void Update()
         {
             _moveVector = _controls.Gameplay.Move.ReadValue<Vector2>();
-            Vector2 stickVector = _controls.Gameplay.AimDirection.ReadValue<Vector2>();
-            if (stickVector.magnitude > _innerDeadZone)
-                _stickVector = stickVector.normalized;
+            
+            Vector2 rightStickVector = _controls.Gameplay.AimDirection.ReadValue<Vector2>();
+            if (rightStickVector.magnitude > _innerDeadZone)
+                _aimVector = rightStickVector.normalized;
+            else if (_moveVector.magnitude > _innerDeadZone)
+                _aimVector = _moveVector.normalized;
         }
 
         private void OnValidate()
@@ -110,11 +112,9 @@ namespace Player
             _controls.Gameplay.TeleportToCore.performed += OnTeleportToCoreInvoke;
             _controls.Gameplay.Attack.performed += OnAttackInvoke;
             _controls.Gameplay.Dash.started += OnDashInvoke;
-            _controls.Gameplay.UseRepairPack.started += OnRepairPackUseInvoke;
-            _controls.Gameplay.UseImmortalityModule.started += OnImmortalityModuleUseInvoke;
-            _controls.Gameplay.UseCoreCharger.started += OnCoreChargeUseInvoke;
-            _controls.Gameplay.UseChronoBooster.started += OnChronoBoostUseInvoke;
             _controls.Gameplay.Interact.performed += OnInteractInvoke;
+            _controls.Gameplay.UseAbility.performed += OnUseAbilityInvoke;
+            _controls.Gameplay.UseHealing.performed += OnUseHealingInvoke;
         }
 
         private void OnStartCoreAimInvoke(InputAction.CallbackContext context) => OnStartCoreAim?.Invoke();
@@ -124,11 +124,9 @@ namespace Player
         private void OnTeleportToCoreInvoke(InputAction.CallbackContext context) => OnTeleportToCore?.Invoke();
         private void OnAttackInvoke(InputAction.CallbackContext context) => OnAttack?.Invoke();
         private void OnDashInvoke(InputAction.CallbackContext context) => OnDash?.Invoke();
-        private void OnRepairPackUseInvoke(InputAction.CallbackContext context) => OnRepairPackUse?.Invoke();
-        private void OnImmortalityModuleUseInvoke(InputAction.CallbackContext context) => OnImmortalityModuleUse?.Invoke();
-        private void OnCoreChargeUseInvoke(InputAction.CallbackContext context) => OnCoreChargeUse?.Invoke();
-        private void OnChronoBoostUseInvoke(InputAction.CallbackContext context) => OnChronoBoostUse?.Invoke();
         private void OnInteractInvoke(InputAction.CallbackContext context) => OnInteract?.Invoke();
+        private void OnUseAbilityInvoke(InputAction.CallbackContext context) => OnUseAbility?.Invoke();
+        private void OnUseHealingInvoke(InputAction.CallbackContext context) => OnUseHealing?.Invoke();
 
         private void OnDestroy()
         {
@@ -144,11 +142,9 @@ namespace Player
             _controls.Gameplay.TeleportToCore.performed -= OnTeleportToCoreInvoke;
             _controls.Gameplay.Attack.performed -= OnAttackInvoke;
             _controls.Gameplay.Dash.performed -= OnDashInvoke;
-            _controls.Gameplay.UseRepairPack.started -= OnRepairPackUseInvoke;
-            _controls.Gameplay.UseImmortalityModule.started -= OnImmortalityModuleUseInvoke;
-            _controls.Gameplay.UseCoreCharger.started -= OnCoreChargeUseInvoke;
-            _controls.Gameplay.UseChronoBooster.started -= OnChronoBoostUseInvoke;
             _controls.Gameplay.Interact.performed -= OnInteractInvoke;
+            _controls.Gameplay.UseAbility.performed -= OnUseAbilityInvoke;
+            _controls.Gameplay.UseHealing.performed -= OnUseHealingInvoke;
         }
     }
 }
