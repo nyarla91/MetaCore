@@ -16,7 +16,7 @@ namespace Gameplay.Player
         private PlayerUI _ui;
         private PlayerInventory _inventory;
         private PlayerMarker _marker;
-        private PlayerAbility _ability;
+        private PlayerAbilities _abilities;
         private Thrust _thrust;
         
         public PlayerControls Controls => _controls ??= GetComponent<PlayerControls>();
@@ -29,6 +29,6 @@ namespace Gameplay.Player
         public PlayerInventory Inventory => _inventory ??= GetComponent<PlayerInventory>();
         public PlayerMarker Marker => _marker ??= GetComponent<PlayerMarker>();
         public Thrust Thrust => _thrust ??= GetComponent<Thrust>();
-        public PlayerAbility Ability => _ability ??= GetComponent<PlayerAbility>();
+        public PlayerAbilities Abilities => _abilities ??= GetComponent<PlayerAbilities>();
     }
 }

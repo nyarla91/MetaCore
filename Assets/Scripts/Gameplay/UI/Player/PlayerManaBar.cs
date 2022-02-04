@@ -1,11 +1,10 @@
-﻿using System;
-using NyarlaEssentials;
+﻿using NyarlaEssentials;
 using Player;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Gameplay.UI
+namespace Gameplay.UI.Player
 {
     public class PlayerManaBar : Transformer
     {
@@ -20,14 +19,14 @@ namespace Gameplay.UI
         private void Construct(PlayerMarker player)
         {
             _player = player;
-            _maxMana = _player.Ability.TotalMana;
-            _player.Ability.OnManaChanged += UpdateMana;
+            _maxMana = _player.Abilities.TotalMana;
+            _player.Abilities.OnManaChanged += UpdateMana;
             InstantiateManaBar();
         }
 
         private void InstantiateManaBar()
         {
-            float[] manaSegments = _player.Ability.ManaSegments;
+            float[] manaSegments = _player.Abilities.ManaSegments;
             float lastX = 0;
             for (int i = 0; i < manaSegments.Length; i++)
             {

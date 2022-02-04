@@ -1,13 +1,11 @@
-﻿using System;
-using DG.Tweening;
-using Gameplay.Player;
+﻿using DG.Tweening;
 using NyarlaEssentials;
 using Player;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Gameplay.UI
+namespace Gameplay.UI.Player
 {
     public class PerfectHitHelper : Transformer
     {

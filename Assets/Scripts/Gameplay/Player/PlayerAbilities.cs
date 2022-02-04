@@ -1,13 +1,18 @@
 ﻿using System;
+using NyarlaEssentials;
 using UnityEngine;
 
 namespace Gameplay.Player
 {
-    public class PlayerAbility : PlayerComponent
+    public class PlayerAbilities : PlayerComponent
     {
+        [SerializeField] private float _maskAbilityCooldown;
         [SerializeField] private float[] _manaSegments;
         
         private float _mana;
+        private float _totalMana;
+        private Timer _maskAbilityCooldownTimer;
+        
         public float Mana
         {
             get => _mana;
@@ -17,10 +22,7 @@ namespace Gameplay.Player
                 OnManaChanged?.Invoke(_mana);
             }
         }
-
         public float[] ManaSegments => _manaSegments;
-
-        private float _totalMana;
         public float TotalMana
         {
             get
@@ -34,17 +36,19 @@ namespace Gameplay.Player
                 return _totalMana;
             }
         }
-
         private bool EnoughManaForOneUse => Mana >= ManaSegments[0];
-
-        public Action<float> OnManaChanged;
+        public float MaskAbilityCooldownLeft => _maskAbilityCooldownTimer.TimeLeft;
+        public Timer MaskAbilityCooldownTimer => _maskAbilityCooldownTimer;
+        public event Action<float> OnManaChanged;
+        public event Action OnMaskAbilityUsed;
 
         private void Awake()
         {
             Controls.OnInteract += () => Status.TakeDamage(30, 0.1f);
             Controls.OnTeleportToCore += () => Mana += 8;
-            Controls.OnUseAbility += () => print("Ability");
+            Controls.OnUseMaskAbility += TryUseMaskAbility;
             Controls.OnUseHealing += TryUseHealing;
+            _maskAbilityCooldownTimer = new Timer(this, _maskAbilityCooldown);
         }
 
         private void Start()
@@ -58,6 +62,17 @@ namespace Gameplay.Player
                 return;
 
             Status.RestoreHealth(Status.MaxHealth * 0.3f);
+            SpendManaSegment();
+        }
+
+        private void TryUseMaskAbility()
+        {
+            if (!EnoughManaForOneUse || !_maskAbilityCooldownTimer.IsExpired)
+                return;
+
+            Status.RestoreHealth(5);
+            _maskAbilityCooldownTimer.Restart();
+            OnMaskAbilityUsed?.Invoke();
             SpendManaSegment();
         }
 

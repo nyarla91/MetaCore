@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Gameplay.Player;
-using Player;
 using UI;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using Zenject;
 
-namespace World
+namespace Gameplay.World
 {
     [RequireComponent(typeof(Collider))]
     public class DoorToNextFloor : MonoBehaviour
@@ -39,7 +35,6 @@ namespace World
         {
             MessageWindow.Instance.Hide();
             _playerControls.DisabeControls();
-            _playerControls.Inventory.StoreInventoryToProgression();
             _playerControls.Status.StoreHealthToProgression();
             StartCoroutine(SceneTransition());
         }

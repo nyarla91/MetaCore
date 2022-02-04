@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coreProjectilePrefab: {fileID: 2075702645085323134, guid: 040e090401678a54ba4d124467667fee, type: 3}
-  _aimLine_prefab: {fileID: 353096259562242890, guid: 76a9330c7cf24da4590e9f2a7ad0ff35, type: 3}
+  _aimLinePrefab: {fileID: 353096259562242890, guid: 76a9330c7cf24da4590e9f2a7ad0ff35, type: 3}
   _teleportCooldown: 8
   _coreInPlayer: {fileID: 5859891126691051386}
 --- !u!114 &5056469164439997196
@@ -388,7 +388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355ba69414844a11992857a2262dfee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shieldPrefab: {fileID: 9091091562221119470, guid: a8cdd4c9914ad4f40970204b36595142, type: 3}
 --- !u!114 &8734079321213932920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1e767f96ba4f95a40a030644e5b5dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maskAbilityCooldown: 5
   _manaSegments:
   - 20
   - 25

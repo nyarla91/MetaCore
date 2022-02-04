@@ -96,7 +96,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseAbility",
+                    "name": "UseMaskAbility",
                     "type": "Button",
                     "id": "3299d3f1-4bb3-4ea1-b117-4906ca208bea",
                     "expectedControlType": "Button",
@@ -364,7 +364,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseAbility",
+                    "action": "UseMaskAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -375,7 +375,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseAbility",
+                    "action": "UseMaskAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

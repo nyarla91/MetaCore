@@ -15,5 +15,10 @@ namespace NyarlaEssentials
         {
             GameObject.Destroy(gameObject);
         }
+
+        public static void StopThisCoroutine(this Coroutine coroutine, MonoBehaviour container)
+        {
+            container.StopCoroutine(coroutine);
+        }
     }
 }

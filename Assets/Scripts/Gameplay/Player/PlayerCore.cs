@@ -1,38 +1,37 @@
 ﻿using System;
 using System.Collections;
 using Core;
-using Gameplay.Player;
 using NyarlaEssentials;
-using NyarlaEssentials.Sound;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace Player
+namespace Gameplay.Player
 {
     public class PlayerCore : PlayerComponent
     {
         [SerializeField] private GameObject _coreProjectilePrefab;
-        [SerializeField] private GameObject _aimLine_prefab;
+        [SerializeField] private GameObject _aimLinePrefab;
         [SerializeField] private float _teleportCooldown;
         [SerializeField] private GameObject _coreInPlayer;
 
         private Transform _aimLine;
         private CoreProjectile _projectile;
+        private Timer _teleportCooldownTimer;
         private bool _isCoreOut;
-        private float _teleportCooldownLeft;
         private bool _isAiming;
+        private Coroutine _aimingCoroutine;
 
         public bool IsCoreOut => _isCoreOut;
         public bool IsAiming => _isAiming;
-        public float TeleportCooldownLeft => _teleportCooldownLeft;
         public CoreProjectile Projectile => _projectile;
+        public Timer TeleportCooldownTimer => _teleportCooldownTimer;
         
-        public Action OnCoreShoot;
-        public Action OnCoreCollect;
+        public event Action OnCoreShoot;
+        public event Action OnCoreCollect;
+        public event Action OnCoreTeleport;
 
         public void ForceRestoreTeleport()
         {
-            _teleportCooldownLeft = 0;
+            _teleportCooldownTimer.Stop();
         }
         
         private void Awake()
@@ -46,9 +45,10 @@ namespace Player
             };
             OnCoreCollect += () => _coreInPlayer.SetActive(true);
             Controls.OnCancelCoreAim += InterruptAiming;
+            _teleportCooldownTimer = new Timer(this, _teleportCooldown, false, true);
         }
 
-        private void StartAiming() => StartCoroutine(Aiming());
+        private void StartAiming() => _aimingCoroutine = StartCoroutine(Aiming());
 
         private IEnumerator Aiming()
         {
@@ -58,7 +58,7 @@ namespace Player
             _isAiming = true;
             Marker.Animator.SetBool("Aiming", true);
             Movement.AddSpeedModifier("CoreAiming", 0.3f);
-            _aimLine = Instantiate(_aimLine_prefab, transform.position, Quaternion.identity).transform;
+            _aimLine = Instantiate(_aimLinePrefab, transform.position, Quaternion.identity).transform;
             bool endAiming = false;
             
             Controls.OnEndCoreAim += EndAiming;
@@ -94,7 +94,9 @@ namespace Player
             Marker.Animator.SetBool("Aiming", false);
             if (_aimLine != null)
                 _aimLine.gameObject.SelfDestruct();
-            StopAllCoroutines();
+            
+            _aimingCoroutine?.StopThisCoroutine(this);
+            _aimingCoroutine = null;
         }
 
         public void ReturnCore()
@@ -107,17 +109,13 @@ namespace Player
 
         private void TeleportToCore()
         {
-            if (!_isCoreOut || _teleportCooldownLeft > 0)
+            if (!_isCoreOut || !_teleportCooldownTimer.IsExpired)
                 return;
-
+            
             Rigidbody.position = _projectile.transform.position;
-            _teleportCooldownLeft = _teleportCooldown;
+            _teleportCooldownTimer.Restart();
             _projectile.Collect();
-        }
-
-        private void FixedUpdate()
-        {
-            _teleportCooldownLeft -= Time.fixedDeltaTime;
+            OnCoreTeleport?.Invoke();
         }
     }
 }

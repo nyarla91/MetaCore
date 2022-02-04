@@ -59,16 +59,16 @@ namespace Gameplay.Player
             }
         }
 
-        public Action OnStartCoreAim;
-        public Action OnEndCoreAim;
-        public Action OnCancelCoreAim;
-        public Action OnCoreReturn;
-        public Action OnTeleportToCore;
-        public Action OnAttack;
-        public Action OnDash;
-        public Action OnInteract;
-        public Action OnUseAbility;
-        public Action OnUseHealing;
+        public event Action OnStartCoreAim;
+        public event Action OnEndCoreAim;
+        public event Action OnCancelCoreAim;
+        public event Action OnCoreReturn;
+        public event Action OnTeleportToCore;
+        public event Action OnAttack;
+        public event Action OnDash;
+        public event Action OnInteract;
+        public event Action OnUseMaskAbility;
+        public event Action OnUseHealing;
 
         public void DisabeControls() => _controls.Gameplay.Disable();
 
@@ -113,7 +113,7 @@ namespace Gameplay.Player
             _controls.Gameplay.Attack.performed += OnAttackInvoke;
             _controls.Gameplay.Dash.started += OnDashInvoke;
             _controls.Gameplay.Interact.performed += OnInteractInvoke;
-            _controls.Gameplay.UseAbility.performed += OnUseAbilityInvoke;
+            _controls.Gameplay.UseMaskAbility.performed += OnUseMaskAbilityInvoke;
             _controls.Gameplay.UseHealing.performed += OnUseHealingInvoke;
         }
 
@@ -125,7 +125,7 @@ namespace Gameplay.Player
         private void OnAttackInvoke(InputAction.CallbackContext context) => OnAttack?.Invoke();
         private void OnDashInvoke(InputAction.CallbackContext context) => OnDash?.Invoke();
         private void OnInteractInvoke(InputAction.CallbackContext context) => OnInteract?.Invoke();
-        private void OnUseAbilityInvoke(InputAction.CallbackContext context) => OnUseAbility?.Invoke();
+        private void OnUseMaskAbilityInvoke(InputAction.CallbackContext context) => OnUseMaskAbility?.Invoke();
         private void OnUseHealingInvoke(InputAction.CallbackContext context) => OnUseHealing?.Invoke();
 
         private void OnDestroy()
@@ -143,7 +143,7 @@ namespace Gameplay.Player
             _controls.Gameplay.Attack.performed -= OnAttackInvoke;
             _controls.Gameplay.Dash.performed -= OnDashInvoke;
             _controls.Gameplay.Interact.performed -= OnInteractInvoke;
-            _controls.Gameplay.UseAbility.performed -= OnUseAbilityInvoke;
+            _controls.Gameplay.UseMaskAbility.performed -= OnUseMaskAbilityInvoke;
             _controls.Gameplay.UseHealing.performed -= OnUseHealingInvoke;
         }
     }

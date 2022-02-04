@@ -16,8 +16,8 @@ namespace Core
         private Rigidbody Rigidbody => _rigidbody ??= GetComponent<Rigidbody>();
         public CoreDamageArea DamageArea => _damageArea;
 
-        public Action OnCoreDestroy;
-        public Action OnReflect;
+        public event Action OnCoreDestroy;
+        public event Action OnReflect;
 
         public void Init(Vector3 direction)
         {
@@ -38,7 +38,6 @@ namespace Core
         {
             Vector3 normal = other.contacts[0].normal.WithY(0).normalized;
             _velocity = Vector3.Reflect(_velocity, normal);
-            print(other.gameObject);
             OnReflect?.Invoke();
         }
 

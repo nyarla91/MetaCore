@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.World;
 using Player;
 using Project;
 using UnityEngine;
@@ -30,7 +31,7 @@ namespace Gameplay.Player
         public float MaxHealth
         {
             get => _maxHealth;
-            set
+            private set
             {
                 _maxHealth = value;
                 ValidateHealth();
@@ -55,11 +56,11 @@ namespace Gameplay.Player
             }
         }
         
-        public Action<float, float, float> OnHealthChanged;
+        public event Action<float, float, float> OnHealthChanged;
         
         public bool IsInCombat { get; set; }
         public bool IsDead { get; private set; }
-        public Action OnDeath;
+        public event Action OnDeath;
 
         public void TakeDamage(float damage, float maxHealthDamageModifier)
         {

@@ -33,9 +33,9 @@ namespace Gameplay.Player
         private PerfectHitStage _perfectHitStage = PerfectHitStage.None;
         private float _perfectHitTimeLeft;
 
-        public Action OnPerfectHitSucceed;
-        public Action OnPerfectHitFailed;
-        public Action OnPerfectHitWaiting;
+        public event Action OnPerfectHitSucceed;
+        public event Action OnPerfectHitFailed;
+        public event Action OnPerfectHitWaiting;
 
         public float PerfectHitTimeLeft => _perfectHitTimeLeft;
 

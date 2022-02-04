@@ -1,11 +1,10 @@
-﻿using System;
-using NyarlaEssentials;
+﻿using NyarlaEssentials;
 using Player;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Gameplay.UI
+namespace Gameplay.UI.Player
 {
     public class PlayerHealthBar : Transformer
     {

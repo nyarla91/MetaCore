@@ -118,7 +118,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""UseAbility"",
+                    ""name"": ""UseMaskAbility"",
                     ""type"": ""Button"",
                     ""id"": ""3299d3f1-4bb3-4ea1-b117-4906ca208bea"",
                     ""expectedControlType"": ""Button"",
@@ -386,7 +386,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""UseAbility"",
+                    ""action"": ""UseMaskAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -397,7 +397,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""UseAbility"",
+                    ""action"": ""UseMaskAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -925,7 +925,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_CoreReturn = m_Gameplay.FindAction("CoreReturn", throwIfNotFound: true);
         m_Gameplay_TeleportToCore = m_Gameplay.FindAction("TeleportToCore", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
-        m_Gameplay_UseAbility = m_Gameplay.FindAction("UseAbility", throwIfNotFound: true);
+        m_Gameplay_UseMaskAbility = m_Gameplay.FindAction("UseMaskAbility", throwIfNotFound: true);
         m_Gameplay_UseHealing = m_Gameplay.FindAction("UseHealing", throwIfNotFound: true);
         // System
         m_System = asset.FindActionMap("System", throwIfNotFound: true);
@@ -1005,7 +1005,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_CoreReturn;
     private readonly InputAction m_Gameplay_TeleportToCore;
     private readonly InputAction m_Gameplay_Interact;
-    private readonly InputAction m_Gameplay_UseAbility;
+    private readonly InputAction m_Gameplay_UseMaskAbility;
     private readonly InputAction m_Gameplay_UseHealing;
     public struct GameplayActions
     {
@@ -1021,7 +1021,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @CoreReturn => m_Wrapper.m_Gameplay_CoreReturn;
         public InputAction @TeleportToCore => m_Wrapper.m_Gameplay_TeleportToCore;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
-        public InputAction @UseAbility => m_Wrapper.m_Gameplay_UseAbility;
+        public InputAction @UseMaskAbility => m_Wrapper.m_Gameplay_UseMaskAbility;
         public InputAction @UseHealing => m_Wrapper.m_Gameplay_UseHealing;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
@@ -1062,9 +1062,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
-                @UseAbility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseAbility;
-                @UseAbility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseAbility;
-                @UseAbility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseAbility;
+                @UseMaskAbility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseMaskAbility;
+                @UseMaskAbility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseMaskAbility;
+                @UseMaskAbility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseMaskAbility;
                 @UseHealing.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHealing;
                 @UseHealing.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHealing;
                 @UseHealing.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHealing;
@@ -1102,9 +1102,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @UseAbility.started += instance.OnUseAbility;
-                @UseAbility.performed += instance.OnUseAbility;
-                @UseAbility.canceled += instance.OnUseAbility;
+                @UseMaskAbility.started += instance.OnUseMaskAbility;
+                @UseMaskAbility.performed += instance.OnUseMaskAbility;
+                @UseMaskAbility.canceled += instance.OnUseMaskAbility;
                 @UseHealing.started += instance.OnUseHealing;
                 @UseHealing.performed += instance.OnUseHealing;
                 @UseHealing.canceled += instance.OnUseHealing;
@@ -1232,7 +1232,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnCoreReturn(InputAction.CallbackContext context);
         void OnTeleportToCore(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnUseAbility(InputAction.CallbackContext context);
+        void OnUseMaskAbility(InputAction.CallbackContext context);
         void OnUseHealing(InputAction.CallbackContext context);
     }
     public interface ISystemActions

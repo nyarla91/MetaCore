@@ -19,7 +19,11 @@ namespace NyarlaEssentials
         public float TimeElapsed => _timeElapsed;
         public float TimeLeft => Length - TimeElapsed;
 
+        public Action OnStarted;
+        public Action<float> OnTick;
         public Action OnExpired;
+
+        public bool IsExpired => _tickingCoroutine == null;
 
         public Timer(MonoBehaviour container, float length, bool loop, bool fixedTime)
         {
@@ -77,6 +81,7 @@ namespace NyarlaEssentials
 
         private IEnumerator Ticking()
         {
+            OnStarted?.Invoke();
             for (_timeElapsed = 0;
                 _timeElapsed < Length;
                 _timeElapsed += FixedTime ? Time.fixedDeltaTime : Time.deltaTime)
@@ -85,6 +90,7 @@ namespace NyarlaEssentials
                     yield return new WaitForFixedUpdate();
                 else
                     yield return null;
+                OnTick?.Invoke(TimeLeft);
             }
             
             OnExpired?.Invoke();
@@ -92,7 +98,7 @@ namespace NyarlaEssentials
             if (Loop)
                 Start();
             else
-                Reset();
+                Stop();
         }
     }
 }
