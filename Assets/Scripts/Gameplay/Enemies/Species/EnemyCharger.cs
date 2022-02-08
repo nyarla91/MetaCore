@@ -26,16 +26,11 @@ namespace Gameplay.Enemies.Species
         [SerializeField] private float _chargeDelay;
         [SerializeField] private float _chargeDistance;
         [SerializeField] private float _chargeSpeed;
-
-        [Inject]
-        private PlayerMarker _playerMarker;
         
-        [Inject]
-        private void Construct(PlayerMarker playerMarker)
+        protected override void Init()
         {
             Movement.CurrentFacingType = EnemyMovement.FacingType.Movement;
-            _playerMarker = playerMarker;
-            Movement.Destination = playerMarker.transform;
+            Movement.Destination = Player.transform;
         }
 
         private void Awake()
@@ -46,7 +41,7 @@ namespace Gameplay.Enemies.Species
 
         private void FixedUpdate()
         {
-            if (Vector3.Distance(transform.position, _playerMarker.transform.position) < _chargeActivationDistance)
+            if (Vector3.Distance(transform.position, Player.transform.position) < _chargeActivationDistance)
             {
                 Movement.MaxSpeed = _closeSpeed;
             }
@@ -92,7 +87,7 @@ namespace Gameplay.Enemies.Species
         {
             yield return new WaitForSeconds(duration);
             yield return new WaitUntil(() =>
-                Vector3.Distance(_playerMarker.transform.position, transform.position) < _chargeActivationDistance);
+                Vector3.Distance(Player.transform.position, transform.position) < _chargeActivationDistance);
             StartCoroutine(Charge());
         }
 

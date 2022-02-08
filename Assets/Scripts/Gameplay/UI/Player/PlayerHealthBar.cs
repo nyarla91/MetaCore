@@ -1,5 +1,6 @@
 ﻿using NyarlaEssentials;
 using Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -10,6 +11,8 @@ namespace Gameplay.UI.Player
     {
         [SerializeField] private RectMask2D _currentHealthBar;
         [SerializeField] private RectTransform _maxHealthBar;
+        [SerializeField] private TextMeshProUGUI _currentMaxHealthValue;
+        [SerializeField] private TextMeshProUGUI _totalHealthValue;
 
         private PlayerMarker _player;
         
@@ -28,6 +31,8 @@ namespace Gameplay.UI.Player
             float currentHealthWidth = maxHealthWidth * currentHealth / maxHealth;
             _maxHealthBar.sizeDelta = new Vector2(-totalHealthWidth + maxHealthWidth, 0);
             _currentHealthBar.padding = new Vector4(0, 0, maxHealthWidth - currentHealthWidth);
+            _currentMaxHealthValue.text = $"{Mathf.CeilToInt(currentHealth)}/{Mathf.CeilToInt(maxHealth)}";
+            _totalHealthValue.text = $"{Mathf.CeilToInt(totalHealth)}";
         }
     }
 }

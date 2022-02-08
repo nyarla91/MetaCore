@@ -21,11 +21,10 @@ namespace Enemies.Species
         [SerializeField] private float _spinningSpeed;
         
         [Inject]
-        private void Construct(PlayerMarker playerMarker)
+        protected override void Init()
         {
             Movement.CurrentFacingType = EnemyMovement.FacingType.Movement;
-            _playerMarker = playerMarker;
-            Movement.Destination = playerMarker.transform;
+            Movement.Destination = Player.transform;
             StartCoroutine(SpinningCycle());
         }
 

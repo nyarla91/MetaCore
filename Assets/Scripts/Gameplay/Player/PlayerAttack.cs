@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Gameplay.Enemies;
 using Gameplay.Weapon;
 using NyarlaEssentials;
 using Player;
@@ -61,6 +64,11 @@ namespace Gameplay.Player
             _attacksLeft = _class.AttacksCount;
             _seriesRestorationTimer.Reset();
         }
+
+        public void OnEnemyKilled(EnemyStatus enemy)
+        {
+            
+        }
         
         private void Awake()
         {
@@ -68,6 +76,7 @@ namespace Gameplay.Player
             Controls.OnAttack += AttackPressed;
             _seriesRestorationTimer.OnExpired += DiscardSeries;
             _attacksLeft = _class.AttacksCount;
+            IEnumerable<int> ints = new List<int>();
         }
 
         private void FixedUpdate()
@@ -122,7 +131,7 @@ namespace Gameplay.Player
             _seriesRestorationTimer.Restart();
             Movement.Freeze();
             _meshRenderer.material = _swingMaterial;
-            if (_attacksLeft == 2)
+            if (_attacksLeft == 2 && _class.Name.Equals("spear"))
             {
                 _perfectHitStage = PerfectHitStage.Waiting;
                 _perfectHitTimeLeft = attack.RestorationTime + attack.SwingTime;

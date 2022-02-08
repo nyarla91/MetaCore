@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154e02c4ebcb40be8e563d54a469febd, type: 3}
   m_Name: Blade
   m_EditorClassIdentifier: 
+  _name: blade
   _seriesRestorationTime: 0.7
   _attacks:
   - _swingTime: 0.1
-    _restorationTime: 0.5
+    _restorationTime: 0.4
     _thrustForce: 7
     _pushModifier: 1
     _damageModifier: 1
   - _swingTime: 0.1
-    _restorationTime: 0.5
+    _restorationTime: 0.4
     _thrustForce: 7
     _pushModifier: 1
     _damageModifier: 1

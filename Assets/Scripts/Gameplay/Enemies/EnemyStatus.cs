@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections;
+using Enemies;
 using Gameplay.World;
-using NyarlaEssentials.Sound;
-using TMPro;
 using UnityEngine;
-using World;
 
-namespace Enemies
+namespace Gameplay.Enemies
 {
     public class EnemyStatus : EnemyComponent
     {
@@ -73,14 +71,15 @@ namespace Enemies
             Health = _maxHealth;
             OnDeath += () =>
             {
-                Progression.Kills++;
-                Instantiate(_explosionPrefab, transform.position, Quaternion.identity); 
             };
         }
 
         private void Die()
         {
             OnDeath?.Invoke();
+            Specie.Player.Attack.OnEnemyKilled(this);
+            Progression.Kills++;
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity); 
             Destroy(gameObject);
         }
     }

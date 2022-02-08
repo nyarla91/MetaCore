@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using Enemies.Species;
+using Gameplay.Enemies;
 using NyarlaEssentials;
 using Unity.VisualScripting;
 using UnityEngine;

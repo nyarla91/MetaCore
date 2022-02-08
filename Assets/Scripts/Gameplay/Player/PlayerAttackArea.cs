@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Enemies;
+using Gameplay.Enemies;
 using Gameplay.EntityPhysics;
 using UnityEngine;
 

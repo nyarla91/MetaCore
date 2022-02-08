@@ -85,10 +85,11 @@ namespace NyarlaEssentials
             }
             return finalCollection;
         }
-
-        public static T[] TakeRange<T>(T[] origin, int from /*inclusive*/, int to /*exclusive*/)
+        
+        public static T[] TakeRange<T>(this IEnumerable<T> collection, int from /*inclusive*/, int to /*exclusive*/)
         {
-            if (from < 0 || from > origin.Length || to < 0 || to > origin.Length)
+            T[] array = collection.ToArray();
+            if (from < 0 || from > array.Length || to < 0 || to > array.Length)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -100,11 +101,11 @@ namespace NyarlaEssentials
             T[] final = new T[to - from];
             for (int i = from; i < to; i++)
             {
-                final[i - from] = origin[i];
+                final[i - from] = array[i];
             }
             return final;
         }
 
-        public static bool HasIndex<T>(this T[] collection, int index) => index < collection.Length;
+        public static bool HasIndex<T>(this IEnumerable<T> collection, int index) => index < collection.ToArray().Length;
     }
 }

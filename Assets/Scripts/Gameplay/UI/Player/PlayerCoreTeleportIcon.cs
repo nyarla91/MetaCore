@@ -1,9 +1,6 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Player;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Gameplay.UI.Player
@@ -27,13 +24,13 @@ namespace Gameplay.UI.Player
         private void FadeIn()
         {
             _canvasGroup.DOKill();
-            _canvasGroup.DOFade(1, 0.2f);
+            _canvasGroup.DOFade(1, 0.2f).SetUpdate(UpdateType.Normal);
         }
         
         private void FadeOut()
         {
             _canvasGroup.DOKill();
-            _canvasGroup.DOFade(0.3f, 0.2f);
+            _canvasGroup.DOFade(0.3f, 0.2f).SetUpdate(UpdateType.Normal);
         }
     }
 }

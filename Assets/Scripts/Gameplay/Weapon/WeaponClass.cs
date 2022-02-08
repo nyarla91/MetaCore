@@ -7,11 +7,13 @@ namespace Gameplay.Weapon
     [CreateAssetMenu(menuName = "Weapon Class")]
     public class WeaponClass : ScriptableObject
     {
+        [SerializeField] private string _name;
         [SerializeField] private float _seriesRestorationTime;
         [SerializeField] private WeaponAttack[] _attacks;
 
         public int AttacksCount => _attacks.Length;
         public float SeriesRestorationTime => _seriesRestorationTime;
+        public string Name => _name;
         
         public WeaponAttack GetAttack(int index) => _attacks[index];
     }

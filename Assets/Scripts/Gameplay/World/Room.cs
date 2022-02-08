@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Enemies;
+using Gameplay.Enemies;
 using NyarlaEssentials;
 using Player;
 using Project;

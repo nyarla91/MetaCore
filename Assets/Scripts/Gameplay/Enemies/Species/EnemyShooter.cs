@@ -25,21 +25,18 @@ namespace Enemies.Species
         [SerializeField] private float _fleeSpeed;
         [SerializeField] private float _approachSpeed;
 
-        private PlayerMarker _playerMarker;
         private bool _isShooting;
         
-        [Inject]
-        private void Construct(PlayerMarker playerMarker)
+        protected override void Init()
         {
             Movement.CurrentFacingType = EnemyMovement.FacingType.Destination;
-            _playerMarker = playerMarker;
-            Movement.Destination = playerMarker.transform;
+            Movement.Destination = Player.transform;
             StartCoroutine(Shooting());
         }
 
         private void Update()
         {
-            float distanceToPlayer = Vector3.Distance(_playerMarker.transform.position, transform.position);
+            float distanceToPlayer = Vector3.Distance(Player.transform.position, transform.position);
             if (!_isShooting && distanceToPlayer > _maxApproachDistance)
             {
                 Movement.Unfreeze();
@@ -74,7 +71,7 @@ namespace Enemies.Species
 
                 for (int i = 0; i < _bulletsPerRound; i++)
                 {
-                    Vector3 direction = _playerMarker.transform.position - transform.position;
+                    Vector3 direction = Player.transform.position - transform.position;
                     direction = direction.WithY(0).normalized;
                     EnemyProjectile.CreateProjectile(_bulletPrefab, _bulletOrigin, direction);
                     yield return new WaitForSeconds(_shootingPeriod);

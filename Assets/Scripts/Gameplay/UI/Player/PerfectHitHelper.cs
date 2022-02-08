@@ -1,9 +1,9 @@
-﻿using DG.Tweening;
-using NyarlaEssentials;
-using Player;
-using UnityEngine;
+﻿using NyarlaEssentials;
 using UnityEngine.UI;
+using DG.Tweening;
+using UnityEngine;
 using Zenject;
+using Player;
 
 namespace Gameplay.UI.Player
 {
@@ -19,6 +19,7 @@ namespace Gameplay.UI.Player
         private void Construct(PlayerMarker player)
         {
             _player = player;
+            _canvasGroup.alpha = 0;
         }
 
         private void Awake()

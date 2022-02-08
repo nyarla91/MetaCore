@@ -1,5 +1,6 @@
 ﻿using System;
 using Enemies;
+using Gameplay.Enemies;
 using Newtonsoft.Json;
 using NyarlaEssentials;
 using UnityEngine;

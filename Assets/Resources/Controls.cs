@@ -134,6 +134,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ff93fe9-3ced-4d17-8088-7cb318c58527"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -420,6 +429,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""UseHealing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""556d18cc-3509-4c5a-9e9c-2b240d94c8d1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7657b14-4cdb-4179-916d-9aa8dc5cd7bb"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -793,9 +824,27 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""NeverShow"",
+                    ""name"": ""MainAction1"",
                     ""type"": ""Button"",
                     ""id"": ""897abb9e-0046-4ad8-a639-2ef0d3d1f4ad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MainAction2"",
+                    ""type"": ""Button"",
+                    ""id"": ""50b82aa5-8d6d-4ef8-a584-da4f16e8c09a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Close"",
+                    ""type"": ""Button"",
+                    ""id"": ""3fa2061a-100d-4944-a62e-3142c16029f8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -861,22 +910,66 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a397ce6e-550f-4457-a100-cbf10e14b238"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""NeverShow"",
+                    ""action"": ""MainAction1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""64a37fd9-f06f-4314-86d8-f3d0947fc768"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""NeverShow"",
+                    ""action"": ""MainAction1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93537d58-07a1-473d-9e44-26837f7b7530"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainAction2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b64e37c3-2e3e-4052-b405-12f99b24745f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainAction2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef7437a3-4171-4036-b533-f0145bf977dc"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Close"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81755ee3-37f1-433f-894d-427620d6c825"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Close"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -927,6 +1020,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_UseMaskAbility = m_Gameplay.FindAction("UseMaskAbility", throwIfNotFound: true);
         m_Gameplay_UseHealing = m_Gameplay.FindAction("UseHealing", throwIfNotFound: true);
+        m_Gameplay_OpenMenu = m_Gameplay.FindAction("OpenMenu", throwIfNotFound: true);
         // System
         m_System = asset.FindActionMap("System", throwIfNotFound: true);
         m_System_SwitchToKeyboardMouse = m_System.FindAction("SwitchToKeyboardMouse", throwIfNotFound: true);
@@ -935,7 +1029,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
         m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
-        m_Menu_NeverShow = m_Menu.FindAction("NeverShow", throwIfNotFound: true);
+        m_Menu_MainAction1 = m_Menu.FindAction("MainAction1", throwIfNotFound: true);
+        m_Menu_MainAction2 = m_Menu.FindAction("MainAction2", throwIfNotFound: true);
+        m_Menu_Close = m_Menu.FindAction("Close", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1007,6 +1103,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_UseMaskAbility;
     private readonly InputAction m_Gameplay_UseHealing;
+    private readonly InputAction m_Gameplay_OpenMenu;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -1023,6 +1120,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @UseMaskAbility => m_Wrapper.m_Gameplay_UseMaskAbility;
         public InputAction @UseHealing => m_Wrapper.m_Gameplay_UseHealing;
+        public InputAction @OpenMenu => m_Wrapper.m_Gameplay_OpenMenu;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1068,6 +1166,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @UseHealing.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHealing;
                 @UseHealing.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHealing;
                 @UseHealing.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHealing;
+                @OpenMenu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnOpenMenu;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -1108,6 +1209,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @UseHealing.started += instance.OnUseHealing;
                 @UseHealing.performed += instance.OnUseHealing;
                 @UseHealing.canceled += instance.OnUseHealing;
+                @OpenMenu.started += instance.OnOpenMenu;
+                @OpenMenu.performed += instance.OnOpenMenu;
+                @OpenMenu.canceled += instance.OnOpenMenu;
             }
         }
     }
@@ -1159,14 +1263,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_Confirm;
     private readonly InputAction m_Menu_Cancel;
-    private readonly InputAction m_Menu_NeverShow;
+    private readonly InputAction m_Menu_MainAction1;
+    private readonly InputAction m_Menu_MainAction2;
+    private readonly InputAction m_Menu_Close;
     public struct MenuActions
     {
         private @Controls m_Wrapper;
         public MenuActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Confirm => m_Wrapper.m_Menu_Confirm;
         public InputAction @Cancel => m_Wrapper.m_Menu_Cancel;
-        public InputAction @NeverShow => m_Wrapper.m_Menu_NeverShow;
+        public InputAction @MainAction1 => m_Wrapper.m_Menu_MainAction1;
+        public InputAction @MainAction2 => m_Wrapper.m_Menu_MainAction2;
+        public InputAction @Close => m_Wrapper.m_Menu_Close;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1182,9 +1290,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Cancel.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnCancel;
-                @NeverShow.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnNeverShow;
-                @NeverShow.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnNeverShow;
-                @NeverShow.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnNeverShow;
+                @MainAction1.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMainAction1;
+                @MainAction1.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMainAction1;
+                @MainAction1.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMainAction1;
+                @MainAction2.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMainAction2;
+                @MainAction2.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMainAction2;
+                @MainAction2.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMainAction2;
+                @Close.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnClose;
+                @Close.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnClose;
+                @Close.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnClose;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -1195,9 +1309,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
-                @NeverShow.started += instance.OnNeverShow;
-                @NeverShow.performed += instance.OnNeverShow;
-                @NeverShow.canceled += instance.OnNeverShow;
+                @MainAction1.started += instance.OnMainAction1;
+                @MainAction1.performed += instance.OnMainAction1;
+                @MainAction1.canceled += instance.OnMainAction1;
+                @MainAction2.started += instance.OnMainAction2;
+                @MainAction2.performed += instance.OnMainAction2;
+                @MainAction2.canceled += instance.OnMainAction2;
+                @Close.started += instance.OnClose;
+                @Close.performed += instance.OnClose;
+                @Close.canceled += instance.OnClose;
             }
         }
     }
@@ -1234,6 +1354,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnUseMaskAbility(InputAction.CallbackContext context);
         void OnUseHealing(InputAction.CallbackContext context);
+        void OnOpenMenu(InputAction.CallbackContext context);
     }
     public interface ISystemActions
     {
@@ -1244,6 +1365,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     {
         void OnConfirm(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
-        void OnNeverShow(InputAction.CallbackContext context);
+        void OnMainAction1(InputAction.CallbackContext context);
+        void OnMainAction2(InputAction.CallbackContext context);
+        void OnClose(InputAction.CallbackContext context);
     }
 }
