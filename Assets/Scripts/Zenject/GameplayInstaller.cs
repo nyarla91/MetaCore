@@ -11,7 +11,6 @@ namespace Zenject
         [SerializeField] private CameraMouseCast _cameraMouseCast;
         [SerializeField] private CameraView _cameraView;
         [SerializeField] private Canvas _canvas;
-        [SerializeField] private PlayerUICluster _playerUICluster;
         [SerializeField] private MessageWindow messageWindow;
 
         public override void InstallBindings()
@@ -20,7 +19,6 @@ namespace Zenject
             Container.Bind<GameplayInstaller>().FromInstance(this).AsSingle();
             Container.Bind<CameraView>().FromInstance(_cameraView).AsSingle();
             Container.Bind<Canvas>().FromInstance(_canvas).AsSingle();
-            Container.Bind<PlayerUICluster>().FromInstance(_playerUICluster).AsSingle();
             Container.Bind<MessageWindow>().FromInstance(messageWindow).AsSingle();
             BindPlayerMarker();
         }

@@ -13,7 +13,7 @@ namespace Gameplay.World
         
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.TryGetComponent(out PlayerControls playerInput) || playerInput.Status.IsInCombat)
+            if (!other.TryGetComponent(out PlayerControls playerInput) || playerInput.Vitals.IsInCombat)
                 return;
 
             _playerControls = playerInput;
@@ -35,7 +35,7 @@ namespace Gameplay.World
         {
             MessageWindow.Instance.Hide();
             _playerControls.DisabeControls();
-            _playerControls.Status.StoreHealthToProgression();
+            _playerControls.Vitals.StoreHealthToProgression();
             StartCoroutine(SceneTransition());
         }
 

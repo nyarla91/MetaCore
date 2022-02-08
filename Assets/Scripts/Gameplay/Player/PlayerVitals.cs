@@ -7,7 +7,7 @@ using World;
 
 namespace Gameplay.Player
 {
-    public class PlayerStatus : PlayerComponent
+    public class PlayerVitals : PlayerComponent
     {
         [SerializeField] private float _damageImmunityDuration;
         [SerializeField] private float _totalHealth;

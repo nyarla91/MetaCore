@@ -44,7 +44,7 @@ namespace Gameplay.Player
 
         private void Awake()
         {
-            Controls.OnInteract += () => Status.TakeDamage(30, 0.1f);
+            Controls.OnInteract += () => Vitals.TakeDamage(30, 0.1f);
             Controls.OnTeleportToCore += () => Mana += 8;
             Controls.OnUseMaskAbility += TryUseMaskAbility;
             Controls.OnUseHealing += TryUseHealing;
@@ -61,7 +61,7 @@ namespace Gameplay.Player
             if (!EnoughManaForOneUse)
                 return;
 
-            Status.RestoreHealth(Status.MaxHealth * 0.3f);
+            Vitals.RestoreHealth(Vitals.MaxHealth * 0.3f);
             SpendManaSegment();
         }
 
@@ -70,7 +70,7 @@ namespace Gameplay.Player
             if (!EnoughManaForOneUse || !_maskAbilityCooldownTimer.IsExpired)
                 return;
 
-            Status.RestoreHealth(5);
+            Vitals.RestoreHealth(5);
             _maskAbilityCooldownTimer.Restart();
             OnMaskAbilityUsed?.Invoke();
             SpendManaSegment();

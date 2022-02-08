@@ -28,7 +28,6 @@
       <Path>Library/PackageCache/com.unity.testtools.codecoverage@1.0.1</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@3.0.6</Path>
       <Path>Library/PackageCache/com.unity.timeline@1.6.2</Path>
-      <Path>Library/PackageCache/com.unity.visualscripting@1.7.5</Path>
       <Path>Packages</Path>
       <Path>ProjectSettings</Path>
     </explicitIncludes>

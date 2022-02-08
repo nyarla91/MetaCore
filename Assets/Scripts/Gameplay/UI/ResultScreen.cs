@@ -27,7 +27,7 @@ namespace UI
         private void Construct(Controls controls, PlayerMarker playerMarker)
         {
             _playerMarker = playerMarker;
-            _playerMarker.Status.OnDeath += Show;
+            _playerMarker.Vitals.OnDeath += Show;
             
             _controls = controls;
             _controls.Menu.Confirm.performed += Restart;
@@ -51,7 +51,7 @@ namespace UI
 
         public void Restart()
         {
-            if (!_playerMarker.Status.IsDead)
+            if (!_playerMarker.Vitals.IsDead)
                 return;
 
             _controls.Menu.Disable();
@@ -65,7 +65,7 @@ namespace UI
 
         public void Quit()
         {
-            if (!_playerMarker.Status.IsDead)
+            if (!_playerMarker.Vitals.IsDead)
                 return;
             
             Application.Quit();

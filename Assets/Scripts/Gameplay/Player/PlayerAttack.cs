@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using Gameplay.Effects.Statuses;
 using Gameplay.Enemies;
 using Gameplay.Weapon;
 using NyarlaEssentials;
-using Player;
 using UnityEngine;
 
 namespace Gameplay.Player
@@ -28,13 +27,14 @@ namespace Gameplay.Player
         [SerializeField] private Material _restorationMaterial;
 
         private int _attacksLeft;
-
         private Timer _seriesRestorationTimer;
         private Coroutine _attackCoroutine;
         private float _attackBuffer;
         
         private PerfectHitStage _perfectHitStage = PerfectHitStage.None;
         private float _perfectHitTimeLeft;
+
+        public Dictionary<string, PlayerAttackDamageBonus> damageModifiers;
 
         public event Action OnPerfectHitSucceed;
         public event Action OnPerfectHitFailed;
@@ -74,6 +74,8 @@ namespace Gameplay.Player
         {
             _seriesRestorationTimer = new Timer(this, _class.SeriesRestorationTime);
             Controls.OnAttack += AttackPressed;
+            Controls.OnAttack += () =>
+                StatusContainer.AddStatus(new StatusDamageBonusVsStunned(StatusContainer, 3, 50));
             _seriesRestorationTimer.OnExpired += DiscardSeries;
             _attacksLeft = _class.AttacksCount;
             IEnumerable<int> ints = new List<int>();
@@ -88,6 +90,13 @@ namespace Gameplay.Player
                 _perfectHitStage = 0;
                 _perfectHitStage = PerfectHitStage.Failed;
                 OnPerfectHitFailed?.Invoke();
+            }
+
+            string log = "";
+            foreach (var damageModifier in damageModifiers)
+            {
+                PlayerAttackDamageBonus bonus = damageModifier.Value;
+                log += $"{damageModifier.Key} : {bonus.Percents}, {bonus.Percents}";
             }
             
             if (_attackBuffer > 0)
@@ -164,6 +173,21 @@ namespace Gameplay.Player
             Waiting,
             Failed,
             Success
+        }
+    }
+
+    public class PlayerAttackDamageBonus
+    {
+        private Func<EnemyStatus, bool> _condition;
+        private int _percents;
+
+        public int Percents => _percents;
+        public bool CheckCondition(EnemyStatus enemy) => _condition.Invoke(enemy);
+
+        public PlayerAttackDamageBonus(Func<EnemyStatus, bool> condition, int percents)
+        {
+            _condition = condition;
+            _percents = percents;
         }
     }
 }

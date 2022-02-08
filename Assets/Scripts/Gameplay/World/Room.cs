@@ -69,7 +69,7 @@ namespace World
 
             yield return new WaitForSeconds(0.3f);
             
-            PlayerMarker.Status.IsInCombat = true;
+            PlayerMarker.Vitals.IsInCombat = true;
             Music.Instance.TargetVolume = 1;
             foreach (var wave in _enemyWaves)
             {
@@ -91,7 +91,7 @@ namespace World
                 yield return new WaitUntil(() => _enemiesAlive.Count == 0);
             }
             _competed = true;
-            PlayerMarker.Status.IsInCombat = false;
+            PlayerMarker.Vitals.IsInCombat = false;
             Music.Instance.TargetVolume = 0.3f;
             
             foreach (var exitWall in _exitWalls)

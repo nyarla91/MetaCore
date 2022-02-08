@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using System.Linq;
 using Enemies.Species;
-using Gameplay.Enemies;
 using NyarlaEssentials;
-using Unity.VisualScripting;
 using UnityEngine;
 using World;
-using Zenject;
 
-namespace Enemies
+namespace Gameplay.Enemies
 {
     public class EnemyBeacon : Transformer
     {

@@ -17,7 +17,7 @@ namespace Enemies
             if (!Active)
                 return;
             
-            if (other.TryGetComponent(out PlayerStatus status))
+            if (other.TryGetComponent(out PlayerVitals status))
             {
                 status.TakeDamage(_damage, 0.3f);
             }

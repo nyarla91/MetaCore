@@ -20,7 +20,7 @@ namespace Gameplay.UI.Player
         private void Construct(PlayerMarker player)
         {
             _player = player;
-            _player.Status.OnHealthChanged += UpdateBars;
+            _player.Vitals.OnHealthChanged += UpdateBars;
         }
 
         private void UpdateBars(float currentHealth, float maxHealth, float totalHealth)

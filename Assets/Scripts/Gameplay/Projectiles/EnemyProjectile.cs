@@ -29,7 +29,7 @@ namespace Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out PlayerStatus playerStatus))
+            if (other.TryGetComponent(out PlayerVitals playerStatus))
             {
                 playerStatus.TakeDamage(_damage, 0.3f);
                 Destroy(gameObject);
