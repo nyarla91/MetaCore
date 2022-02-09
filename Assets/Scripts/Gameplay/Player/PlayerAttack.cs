@@ -34,7 +34,8 @@ namespace Gameplay.Player
         private PerfectHitStage _perfectHitStage = PerfectHitStage.None;
         private float _perfectHitTimeLeft;
 
-        public Dictionary<string, PlayerAttackDamageBonus> damageModifiers;
+        public readonly Dictionary<string, PlayerAttackDamageBonus> damageModifiers =
+            new Dictionary<string, PlayerAttackDamageBonus>();
 
         public event Action OnPerfectHitSucceed;
         public event Action OnPerfectHitFailed;
@@ -65,7 +66,7 @@ namespace Gameplay.Player
             _seriesRestorationTimer.Reset();
         }
 
-        public void OnEnemyKilled(EnemyStatus enemy)
+        public void OnEnemyKilled(EnemyVitals enemy)
         {
             
         }
@@ -74,8 +75,8 @@ namespace Gameplay.Player
         {
             _seriesRestorationTimer = new Timer(this, _class.SeriesRestorationTime);
             Controls.OnAttack += AttackPressed;
-            Controls.OnAttack += () =>
-                StatusContainer.AddStatus(new StatusDamageBonusVsStunned(StatusContainer, 3, 50));
+            //Controls.OnAttack += () =>
+            //    StatusContainer.AddStatus(new StatusDamageBonusVsStunned(StatusContainer, 3, 50));
             _seriesRestorationTimer.OnExpired += DiscardSeries;
             _attacksLeft = _class.AttacksCount;
             IEnumerable<int> ints = new List<int>();
@@ -135,7 +136,6 @@ namespace Gameplay.Player
             Vector3 direction = Controls.RelativeAimVector;
             WeaponAttack attack = _class.GetAttack(_class.AttacksCount - _attacksLeft);
             int attackNumber = 4 - _attacksLeft;
-            print(attack.SwingTime);
             
             _seriesRestorationTimer.Restart();
             Movement.Freeze();
@@ -157,7 +157,7 @@ namespace Gameplay.Player
             
             Vector3 thrustForce = direction * attack.ThrustForce;
             Thrust.Force = thrustForce;
-            _attackArea.Activate(_damage * attack.DamageModifier, thrustForce * attack.PushModifier);
+            _attackArea.Activate(_damage * attack.DamageModifier, attack.RestorationTime + 0.3f, thrustForce * attack.PushModifier);
             
             Marker.Animator.SetInteger(AnimationAttackStage, 2);
             Marker.Animator.SetFloat(AnimationAttackSpeed, 1 / attack.RestorationTime);
@@ -178,13 +178,13 @@ namespace Gameplay.Player
 
     public class PlayerAttackDamageBonus
     {
-        private Func<EnemyStatus, bool> _condition;
+        private Func<EnemyVitals, bool> _condition;
         private int _percents;
 
         public int Percents => _percents;
-        public bool CheckCondition(EnemyStatus enemy) => _condition.Invoke(enemy);
+        public bool CheckCondition(EnemyVitals enemy) => _condition.Invoke(enemy);
 
-        public PlayerAttackDamageBonus(Func<EnemyStatus, bool> condition, int percents)
+        public PlayerAttackDamageBonus(Func<EnemyVitals, bool> condition, int percents)
         {
             _condition = condition;
             _percents = percents;

@@ -39,7 +39,7 @@ namespace Core
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out EnemyStatus status))
+            if (other.TryGetComponent(out EnemyVitals status))
             {
                 status.TakeDamage(_damage, PlayerDamageSource.Core);
             }

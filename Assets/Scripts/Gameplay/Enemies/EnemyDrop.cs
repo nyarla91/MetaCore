@@ -12,7 +12,7 @@ namespace Gameplay.Enemies
 
         private void Awake()
         {
-            Specie.Status.OnDeath += TryDrop;
+            Specie.Vitals.OnDeath += TryDrop;
         }
 
         private void TryDrop()

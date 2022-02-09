@@ -2442,7 +2442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776346641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.241}
+  m_LocalPosition: {x: -8.92, y: 0, z: 5.241}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4521,7 +4521,6 @@ MonoBehaviour:
   _cameraMouseCast: {fileID: 3262791235022735033}
   _cameraView: {fileID: 338988474}
   _canvas: {fileID: 1107862320}
-  _playerUICluster: {fileID: 1873280353}
   messageWindow: {fileID: 1672925305}
 --- !u!1 &1409515304
 GameObject:
@@ -6017,7 +6016,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1873280350}
   - component: {fileID: 1873280352}
-  - component: {fileID: 1873280353}
   m_Layer: 5
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -6056,28 +6054,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873280349}
   m_CullTransparentMesh: 1
---- !u!114 &1873280353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873280349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 682d6f0652914382b4dd8afe3dc2d14b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _teleportCooldown: {fileID: 80580432}
-  _teleportCooldownValue: {fileID: 1548564792}
-  _repairPack: {fileID: 0}
-  _repairPackAmmount: {fileID: 0}
-  _immortalityModule: {fileID: 0}
-  _immortalityModuleAmmount: {fileID: 0}
-  _coreCharger: {fileID: 0}
-  _coreChargerAmmount: {fileID: 0}
-  _chronoBooster: {fileID: 0}
-  _chronoBoosterAmmount: {fileID: 0}
 --- !u!1 &1909164300
 GameObject:
   m_ObjectHideFlags: 0

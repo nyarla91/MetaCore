@@ -9,7 +9,7 @@ namespace Gameplay.Effects.Statuses
         public StatusDamageBonusVsStunned(PlayerStatusContainer playerStatusContainer, float timeLeft, int percents)
             : base(playerStatusContainer, timeLeft, percents) { }
 
-        protected override Func<EnemyStatus, bool> Condition => enemy => enemy.IsStunned;
+        protected override Func<EnemyVitals, bool> Condition => enemy => enemy.Specie.StatusContainer.IsStunned;
         protected override string Name => "vsStunned";
     }
 }

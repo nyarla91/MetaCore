@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
-using Enemies.Species;
+using Gameplay.Enemies.Species;
 using NyarlaEssentials;
 using UnityEngine;
 using World;
@@ -26,8 +26,8 @@ namespace Gameplay.Enemies
             EnemySpecie specie = _enemyRoster.ToList().ChooseRandomElement();
             _meshRenderer.material = specie.BeaconMaterial;
             yield return new WaitForSeconds(_delay);
-            EnemyStatus enemy = Instantiate(specie.gameObject, transform.position.WithY(0),
-                    Quaternion.identity, _roomIn.transform).GetComponent<EnemyStatus>();
+            EnemyVitals enemy = Instantiate(specie.gameObject, transform.position.WithY(0),
+                    Quaternion.identity, _roomIn.transform).GetComponent<EnemyVitals>();
             
             _roomIn.AddEnemyAlive(enemy);
             Destroy(gameObject);

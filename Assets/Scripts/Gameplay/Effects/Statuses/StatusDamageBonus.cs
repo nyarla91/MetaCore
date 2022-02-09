@@ -15,7 +15,7 @@ namespace Gameplay.Effects.Statuses
             PlayerStatusContainer.Attack.damageModifiers.Add(Name, _bonus);
         }
 
-        protected virtual Func<EnemyStatus, bool> Condition => enemy => true;
+        protected virtual Func<EnemyVitals, bool> Condition => enemy => true;
         protected abstract string Name { get; }
 
         public override int Power => _bonus.Percents;

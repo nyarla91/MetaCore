@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyRoster:
-  - {fileID: 9025406613969088780, guid: 8f2ced138ec03324b8b78cf416227461, type: 3}
   - {fileID: 485268134380740715, guid: c12056efa728df9478f0d812476d41ef, type: 3}
-  - {fileID: 6545082699067164469, guid: 3f94bdb46f6d144439f62eb9e5e16c4a, type: 3}
   _delay: 2
   _meshRenderer: {fileID: 6775051239808391995}
 --- !u!1 &8372040438754562795

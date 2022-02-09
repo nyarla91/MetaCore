@@ -14,13 +14,13 @@ namespace UI
         private float _verticalOffset;
         private Transform _target;
         
-        public void Init(Transform target, float verticalOffset, float length, EnemyStatus targetStatus)
+        public void Init(Transform target, float verticalOffset, float length, EnemyVitals targetVitals)
         {
             _target = target;
             _verticalOffset = verticalOffset;
             RectTransform.sizeDelta = new Vector2(length, 20);
-            targetStatus.OnHealthPercentChanged += SetHealthbBar;
-            targetStatus.OnDeath += Destroy;
+            targetVitals.OnHealthPercentChanged += SetHealthbBar;
+            targetVitals.OnDeath += Destroy;
         }
 
         private void SetHealthbBar(float percent)

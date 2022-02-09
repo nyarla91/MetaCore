@@ -25,7 +25,6 @@ namespace Gameplay.UI.Player
 
         private void UpdateBars(float currentHealth, float maxHealth, float totalHealth)
         {
-            print(_maxHealthBar.sizeDelta);
             float totalHealthWidth = RectTransform.rect.width;
             float maxHealthWidth = totalHealthWidth * maxHealth / totalHealth;
             float currentHealthWidth = maxHealthWidth * currentHealth / maxHealth;

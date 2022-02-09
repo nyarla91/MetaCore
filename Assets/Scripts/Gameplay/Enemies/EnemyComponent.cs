@@ -1,8 +1,8 @@
-﻿using Enemies.Species;
+﻿using Gameplay.Enemies.Species;
 using NyarlaEssentials;
 using UnityEngine;
 
-namespace Enemies
+namespace Gameplay.Enemies
 {
     [RequireComponent(typeof(EnemySpecie))]
     public class EnemyComponent : Transformer

@@ -1,4 +1,5 @@
-﻿using NyarlaEssentials;
+﻿using Gameplay.Enemies;
+using NyarlaEssentials;
 using UI;
 using UnityEngine;
 using Zenject;
@@ -20,7 +21,7 @@ namespace Enemies
             _healthBar =
                 Instantiate(_healthBarPrefab, Vector3.zero, Quaternion.identity, canvas.transform).GetComponent<EnemyHealthBar>();
             _healthBar.transform.SetAsFirstSibling();
-            _healthBar.Init(_healthBarOrigin, _healthBarVerticalOffset, _healthBarLength, Specie.Status);
+            _healthBar.Init(_healthBarOrigin, _healthBarVerticalOffset, _healthBarLength, Specie.Vitals);
         }
     }
 }

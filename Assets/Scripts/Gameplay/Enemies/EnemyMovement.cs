@@ -1,4 +1,5 @@
-﻿using NyarlaEssentials;
+﻿using Gameplay.Enemies;
+using NyarlaEssentials;
 using UnityEngine;
 
 namespace Enemies
@@ -72,7 +73,7 @@ namespace Enemies
         private void Move()
         {
             Specie.Animator.SetFloat("Speed", _velocity.magnitude);
-            if (_freezed || Specie.Status.IsStunned)
+            if (_freezed || Specie.StatusContainer.IsStunned)
             {
                 _velocity = Vector3.zero;
                 return;

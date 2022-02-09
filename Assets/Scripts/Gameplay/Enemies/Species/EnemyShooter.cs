@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using Enemies;
 using NyarlaEssentials;
-using Player;
 using Projectiles;
 using UnityEngine;
-using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Enemies.Species
+namespace Gameplay.Enemies.Species
 {
     public class EnemyShooter : EnemySpecie
     {
@@ -63,8 +61,8 @@ namespace Enemies.Species
                 
                 _isShooting = true;
                 Movement.Freeze();
-                Status.ForceExitStun();
-                Status.CannotBeStunned = true;
+                StatusContainer.ExitStun();
+                StatusContainer.CanBeAttackStunned = false;
                 
                 Animator.SetBool("Shoot", true);
                 yield return new WaitForSeconds(_shootingDelay);
@@ -77,11 +75,21 @@ namespace Enemies.Species
                     yield return new WaitForSeconds(_shootingPeriod);
                 }
                 Animator.SetBool("Shoot", false);
-                Status.CannotBeStunned = false;
+                StatusContainer.CanBeAttackStunned = true;
 
                 _isShooting = false;
                 Movement.Unfreeze();
             }
+        }
+
+        public override void OnStun()
+        {
+            
+        }
+
+        public override void OnExitStun()
+        {
+            
         }
     }
 }

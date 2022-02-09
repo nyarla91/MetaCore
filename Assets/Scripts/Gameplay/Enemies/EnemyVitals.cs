@@ -6,12 +6,11 @@ using UnityEngine;
 
 namespace Gameplay.Enemies
 {
-    public class EnemyStatus : EnemyComponent
+    public class EnemyVitals : EnemyComponent
     {
         [SerializeField] private GameObject _explosionPrefab;
         [SerializeField]  private float _maxHealth;
 
-        private bool _isStunned;
         private float _health;
         public float Health
         {
@@ -27,8 +26,6 @@ namespace Gameplay.Enemies
 
         public Action<float> OnHealthPercentChanged;
 
-        public bool IsStunned => _isStunned;
-        public bool CannotBeStunned { get; set; }
 
         public Action<float, PlayerDamageSource> OnTakeDamage;
         public Action OnDeath;
@@ -37,33 +34,6 @@ namespace Gameplay.Enemies
         {
             OnTakeDamage?.Invoke(damage, source);
             Health -= damage;
-        }
-
-        public void Stun(float duration)
-        {
-            if (CannotBeStunned)
-                return;
-            
-            StopAllCoroutines();
-            _isStunned = true;
-            Specie.Animator.SetBool("Stun", false);
-            StartCoroutine(ExitStun(duration));
-        }
-
-        public void ForceExitStun()
-        {
-            StopAllCoroutines();
-            _isStunned = false;
-            Specie.Animator.SetBool("Stun", _isStunned);
-        }
-
-        private IEnumerator ExitStun(float duration)
-        {
-            yield return null;
-            Specie.Animator.SetBool("Stun", true);
-            yield return new WaitForSeconds(duration);
-            _isStunned = false;
-            Specie.Animator.SetBool("Stun", _isStunned);
         }
 
         private void Awake()

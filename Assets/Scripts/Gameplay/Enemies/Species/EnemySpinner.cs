@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using Enemies;
 using Player;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Enemies.Species
+namespace Gameplay.Enemies.Species
 {
     public class EnemySpinner : EnemySpecie
     {
@@ -45,16 +45,28 @@ namespace Enemies.Species
                 yield return new WaitForSeconds(_spinningDelay);
                 Movement.Unfreeze();
                 
-                Status.ForceExitStun();
+                StatusContainer.ExitStun();
+                StatusContainer.CanBeAttackStunned = false;
                 Animator.SetInteger("SpinStage", 2);
                 Movement.MaxSpeed = _spinningSpeed;
                 AttackArea.Active = true;
+                StatusContainer.CanBeAttackStunned = true;
                 
                 yield return new WaitForSeconds(_spinningDuration);
                 AttackArea.Active = false;
                 
                 Animator.SetInteger("SpinStage", 0);
             }
+        }
+
+        public override void OnStun()
+        {
+            
+        }
+
+        public override void OnExitStun()
+        {
+            
         }
     }
 }

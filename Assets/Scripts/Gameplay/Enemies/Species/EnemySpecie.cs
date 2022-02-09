@@ -1,11 +1,11 @@
-﻿using Gameplay.Enemies;
+﻿using Enemies;
 using Gameplay.EntityPhysics;
 using NyarlaEssentials;
 using Player;
 using UnityEngine;
 using Zenject;
 
-namespace Enemies.Species
+namespace Gameplay.Enemies.Species
 {
     [RequireComponent(typeof(EnemyMovement))]
     public abstract class EnemySpecie : Transformer
@@ -14,9 +14,10 @@ namespace Enemies.Species
         [SerializeField] private Material _beaconMaterial;
         [SerializeField] private Animator _animator;
         private EnemyMovement _movement;
-        private EnemyStatus _status;
-        private Rigidbody _rigidbody;
+        private EnemyVitals _vitals;
+        private EnemyStatusContainer _statusContainer;
         private EnemyUI _ui;
+        private Rigidbody _rigidbody;
         private Thrust _thrust;
         private PlayerMarker _player;
 
@@ -28,12 +29,16 @@ namespace Enemies.Species
         }
 
         protected abstract void Init();
+        public abstract void OnStun();
+        public abstract void OnExitStun();
 
         public Material BeaconMaterial => _beaconMaterial;
         public EnemyMovement Movement => _movement ??= GetComponent<EnemyMovement>();
-        public EnemyStatus Status => _status ??= GetComponent<EnemyStatus>();
+        public EnemyVitals Vitals => _vitals ??= GetComponent<EnemyVitals>();
         public Rigidbody Rigidbody => _rigidbody ??= GetComponent<Rigidbody>();
         public EnemyAttackArea AttackArea => _attackArea;
+
+        public EnemyStatusContainer StatusContainer => _statusContainer ??= GetComponent<EnemyStatusContainer>();
         public EnemyUI UI => _ui ??= GetComponent<EnemyUI>();
         public Animator Animator => _animator;
         public Thrust Thrust => _thrust ??= GetComponent<Thrust>();

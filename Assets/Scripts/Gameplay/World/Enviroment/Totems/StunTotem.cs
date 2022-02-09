@@ -13,12 +13,12 @@ namespace Gameplay.World.Enviroment.Totems
         protected override void Activate()
         {
             Collider[] colliers = Physics.OverlapSphere(transform.position, _radius, LayerMask.GetMask("Enemy"));
-            List<EnemyStatus> statuses = new List<EnemyStatus>();
+            List<EnemyVitals> statuses = new List<EnemyVitals>();
             foreach (var collider in colliers)
             {
-                if (collider.TryGetComponent(out EnemyStatus status))
+                if (collider.TryGetComponent(out EnemyStatusContainer statusContainer))
                 {
-                    status.Stun(_duration);
+                    statusContainer.Stun(false, _duration);
                 }
             }
         }

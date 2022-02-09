@@ -21,7 +21,7 @@ namespace World
         private bool _competed = true;
         private List<Vector3>[] _enemyWaves;
         public PlayerMarker PlayerMarker { get; set; }
-        private List<EnemyStatus> _enemiesAlive = new List<EnemyStatus>();
+        private List<EnemyVitals> _enemiesAlive = new List<EnemyVitals>();
         
         public WallPiece GetExitWall(int index) => _exitWalls[index];
 
@@ -46,7 +46,7 @@ namespace World
             }
         }
 
-        public void AddEnemyAlive(EnemyStatus enemyStatus) => _enemiesAlive.Add(enemyStatus);
+        public void AddEnemyAlive(EnemyVitals enemyVitals) => _enemiesAlive.Add(enemyVitals);
 
         public void Show()
         {

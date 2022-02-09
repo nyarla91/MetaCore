@@ -12,13 +12,15 @@ namespace Gameplay.Player
         [SerializeField] private Collider _attackTrigger;
         private Vector3 Force { get; set; }
         private float Damage { get; set; }
+        private float StunTime { get; set; }
 
         private List<Collider> _affectedEnemies = new List<Collider>();
 
-        public void Activate(float damage, Vector3 force)
+        public void Activate(float damage, float stunTime, Vector3 force)
         {
             Force = force;
             Damage = damage;
+            StunTime = stunTime;
             _affectedEnemies = new List<Collider>();
             _attackTrigger.enabled = true;
             
@@ -44,11 +46,12 @@ namespace Gameplay.Player
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out EnemyStatus status) && !_affectedEnemies.Contains(other))
+            if (other.TryGetComponent(out EnemyVitals vitals) && !_affectedEnemies.Contains(other))
             {
                 _affectedEnemies.Add(other);
-                status.TakeDamage(Damage, PlayerDamageSource.Melee);
-                status.Specie.Thrust.Force = Force;
+                vitals.TakeDamage(Damage, PlayerDamageSource.Melee);
+                vitals.Specie.StatusContainer.Stun(true, StunTime);
+                vitals.Specie.Thrust.Force = Force;
             }
         }
     }

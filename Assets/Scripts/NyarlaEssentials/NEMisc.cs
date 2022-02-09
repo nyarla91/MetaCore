@@ -18,6 +18,7 @@ namespace NyarlaEssentials
 
         public static void StopThisCoroutine(this Coroutine coroutine, MonoBehaviour container)
         {
+            Debug.Log("coroutine stopped");
             container.StopCoroutine(coroutine);
         }
     }
